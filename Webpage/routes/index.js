@@ -10,6 +10,10 @@ const User = require('../models/User');
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
+router.get('/download', forwardAuthenticated, (req, res) => res.render('download'));
+router.get('/devs', forwardAuthenticated, (req, res) => res.render('devs'));
+router.get('/features', forwardAuthenticated, (req, res) => res.render('features'));
+router.get('/faq', forwardAuthenticated, (req, res) => res.render('faq'));
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>

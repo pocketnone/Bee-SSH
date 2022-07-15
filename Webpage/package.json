@@ -1,0 +1,33 @@
+{
+  "name": "beessh_webpage",
+  "version": "0.0.1",
+  "description": "beessh webpage",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "*",
+    "connect-flash": "*",
+    "dotenv": "^16.0.1",
+    "ejs": "*",
+    "express": "*",
+    "express-ejs-layouts": "*",
+    "express-session": "*",
+    "findhit-proxywrap": "^0.3.13",
+    "hcaptcha": "*",
+    "helmet": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "randomstring": "*",
+    "speakeasy": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "*"
+  }
+}

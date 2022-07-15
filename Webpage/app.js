@@ -39,7 +39,8 @@ app.use(
       cookie: {
         sameSite: true, maxAge: 86400 * 1000
       },
-    resave: true
+    resave: true,
+    saveUninitialized: false
   })
 );
 
@@ -69,7 +70,7 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/api', require('./routes/beeapi.js'));
-app.use(express.static('./ressources'));
+app.use('/assets', express.static(__dirname + '/ressources'))
 
 const PORT = 5000;
 

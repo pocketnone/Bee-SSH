@@ -20,7 +20,7 @@ namespace BeeSSH.DiscordRPC
         private static string GetSmallImage() => "beesshsmall";
 
         private static string GetTitle() => "Bee SSH Client"; 
-        private static string GetDiscordIDFromAPI() => "987291263852240916";
+        private static string GetDiscordIDFromAPI() => "997852720620904532";
         
     }
 }

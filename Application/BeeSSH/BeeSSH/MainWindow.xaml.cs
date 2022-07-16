@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Syncfusion.SfSkinManager;
 using Syncfusion.Windows.Shared;
+using BeeSSH.DiscordRPC;
 
 namespace BeeSSH
 {
@@ -11,8 +12,10 @@ namespace BeeSSH
     {
         public MainWindow()
         {
-            SfSkinManager.SetTheme(this, new Theme("MaterialDark", new string[] { "ButtonAdv", "ChromelessWindow" }));
+            
             InitializeComponent();
+            DiscordRPC_Manager.RunDiscordRPC();
+
         }
     }
 }

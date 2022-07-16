@@ -22,6 +22,7 @@
     "hcaptcha": "*",
     "helmet": "*",
     "mongoose": "*",
+    "nodemailer": "^6.7.7",
     "passport": "*",
     "passport-local": "*",
     "randomstring": "*",

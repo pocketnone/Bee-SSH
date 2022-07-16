@@ -7,12 +7,13 @@
         xmlns:local="clr-namespace:BeeSSH"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         xmlns:syncfusionskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
-        Title="MainWindow" Height="600" Width="1250"
+        Title="BeeSSH" Height="600" Width="1250"
         WindowStartupLocation="CenterScreen"
         syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManagerExtension ThemeName=MaterialDark, FluentHoverEffectMode=Border}">
     <Grid Background="#FF272A3A">
-        
-        <syncfusion:ButtonAdv Label="Syncfusion Button" SmallIcon="{x:Null}"  Margin="0,0,0,0" Width="150" Height="24"/>
-        
+
+        <!--Login Frame-->
+        <Frame Source="/UserFrames/Login.xaml" x:Name="LoginFrame" Width="800" Margin="225,0,225,0" Height="585"/>
+
     </Grid>
 </syncfusion:ChromelessWindow>

@@ -1,0 +1,26 @@
+﻿<Page x:Class="BeeSSH.UserFrames.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BeeSSH.UserFrames"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+      xmlns:syncfusionskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="585" d:DesignWidth="800"
+      Title="Login"
+      syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManagerExtension ThemeName=MaterialDark}">
+
+    <Grid Background="#33262637">
+
+        <Button x:Name="Login_Button" Content="Login"  syncfusion:SfSkinManager.Theme="{syncfusion:SkinManagerExtension ThemeName=MaterialDark}" Background="#FFFDFF00" Margin="0,0,285,55" RenderTransformOrigin="0.477,0.528" Height="44" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="215" Foreground="Black" FontSize="24"/>
+        <Button x:Name="Register_Button" Content="Register"  syncfusion:SfSkinManager.Theme="{syncfusion:SkinManagerExtension ThemeName=MaterialDark}" Background="#FFFDFF00" Margin="0,0,517,55" RenderTransformOrigin="0.477,0.528" Height="44" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="182" Foreground="Black" FontSize="24"/>
+
+        <!--Blur Background Effekt-->
+        <Border>
+            <Border.Effect>
+                <BlurEffect Radius="5" KernelType="Gaussian"></BlurEffect>
+            </Border.Effect>
+        </Border>
+    </Grid>
+</Page>

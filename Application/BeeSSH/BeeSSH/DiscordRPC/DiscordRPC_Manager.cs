@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace BeeSSH.DiscordRPC
 {
-    internal class DiscordRPC_Manager
+    internal static class DiscordRPC_Manager
     {
+        private static DiscordRPC_Loader drpcl = new DiscordRPC_Loader();
+        internal static void RunDiscordRPC()
+        {
+            drpcl._Main();
+        }
+
+        internal static void Close()
+        {
+            drpcl._Discpose();
+        }
     }
 }

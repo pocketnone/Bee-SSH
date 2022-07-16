@@ -8,5 +8,7 @@ namespace BeeSSH.API_Utils
 {
     internal class API_Cache
     {
+        internal static string UserNameFromAPI { get; set; }
+
     }
 }

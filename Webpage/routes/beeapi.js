@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-var randomstring = require("randomstring");
+const randomstring = require("randomstring");
 const mfa = require('../config/totpAuth');
 
 // Databases

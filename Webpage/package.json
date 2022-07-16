@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "*",
+    "check-password-strength": "^2.0.5",
     "connect-flash": "*",
     "dotenv": "^16.0.1",
     "ejs": "*",
@@ -26,6 +27,7 @@
     "passport": "*",
     "passport-local": "*",
     "randomstring": "*",
+    "sanitize-html": "^2.7.0",
     "speakeasy": "^2.0.0"
   },
   "devDependencies": {

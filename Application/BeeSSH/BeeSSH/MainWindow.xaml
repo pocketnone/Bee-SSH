@@ -8,12 +8,20 @@
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         xmlns:syncfusionskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
         Title="BeeSSH" Height="600" Width="1250"
+        TitleBarHeight="20"
         WindowStartupLocation="CenterScreen"
-        syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManagerExtension ThemeName=MaterialDark, FluentHoverEffectMode=Border}" Icon="/UIIcons/b3.ico">
+        syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManagerExtension ThemeName=MaterialDark, FluentHoverEffectMode=Border}" Icon="/UI_components/b3.ico">
+
     <Grid Background="#FF272A3A">
 
         <!--Login Frame-->
-        <Frame Source="/UserFrames/Login.xaml" x:Name="LoginFrame" Width="800" Margin="225,0,225,0" Height="585"/>
+        <Frame Source="/UserFrames/Login.xaml" x:Name="LoginFrame" Margin="0,0,0,-1"/>
+        <!--Nav Bar-->
+        <Border BorderThickness="1" HorizontalAlignment="Left" Width="250" Background="#FF3C3C3C" BorderBrush="#FF3C3C3C">
+            
+        </Border>
+
+
 
     </Grid>
 </syncfusion:ChromelessWindow>

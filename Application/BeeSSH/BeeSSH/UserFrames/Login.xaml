@@ -7,20 +7,19 @@
       xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
       xmlns:syncfusionskin="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
       mc:Ignorable="d" 
-      d:DesignHeight="585" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1250"
       Title="Login"
       syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManagerExtension ThemeName=MaterialDark}">
 
     <Grid Background="#33262637">
-
-        <Button x:Name="Login_Button" Content="Login"  syncfusion:SfSkinManager.Theme="{syncfusion:SkinManagerExtension ThemeName=MaterialDark}" Background="#FFFDFF00" Margin="0,0,285,55" RenderTransformOrigin="0.477,0.528" Height="44" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="215" Foreground="Black" FontSize="24"/>
-        <Button x:Name="Register_Button" Content="Register"  syncfusion:SfSkinManager.Theme="{syncfusion:SkinManagerExtension ThemeName=MaterialDark}" Background="#FFFDFF00" Margin="0,0,517,55" RenderTransformOrigin="0.477,0.528" Height="44" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="182" Foreground="Black" FontSize="24"/>
-
-        <!--Blur Background Effekt-->
         <Border>
             <Border.Effect>
                 <BlurEffect Radius="5" KernelType="Gaussian"></BlurEffect>
             </Border.Effect>
         </Border>
+        <Button x:Name="Login_Button" Content="Login" syncfusion:SfSkinManager.Theme="{syncfusion:SkinManagerExtension ThemeName=MaterialDark}" Background="#FFFDFF00" Margin="0,492,0,0" RenderTransformOrigin="0.477,0.528" Height="44" VerticalAlignment="Top" HorizontalAlignment="Center" Width="214" Foreground="Black" FontSize="24" Click="Login_Button_Click"/>
+        <Button x:Name="Register_Button" Content="Register"  syncfusion:SfSkinManager.Theme="{syncfusion:SkinManagerExtension ThemeName=MaterialDark}" Background="#FFFDFF00" Margin="0,0,775,64" RenderTransformOrigin="0.477,0.528" Height="44" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="182" Foreground="Black" FontSize="24" Click="Register_Button_Click"/>
+        <Button x:Name="Offline_Button" Content="Offline" syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManager ThemeName=MaterialDark}" Background="#FFFDFF00" Margin="772,492,0,0" RenderTransformOrigin="0.477,0.528" Height="44" VerticalAlignment="Top" HorizontalAlignment="Left" Width="214" Foreground="Black" FontSize="24" Click="Offline_Button_Click"/>
+
     </Grid>
 </Page>

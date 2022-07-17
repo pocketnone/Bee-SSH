@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,21 @@ namespace BeeSSH.UserFrames
         public Login()
         {
             InitializeComponent();
+        }
+        // Open Webapp
+        private void Register_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://as.mba/");
+        }
+
+        private void Offline_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

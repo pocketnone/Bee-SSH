@@ -49,6 +49,4 @@ router.post('/delete_user', ensureAuthenticated, (req, res) => {
     res.redirect('/admin/gui');
 });
 
-
-
 module.exports = router;

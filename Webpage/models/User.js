@@ -14,13 +14,19 @@ const UserSchema = new mongoose.Schema({
     required: true,
     default: false
   },
+  Admin: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   UID: {
     type: String,
     required: true
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,

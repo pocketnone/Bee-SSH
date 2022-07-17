@@ -25,6 +25,7 @@ app.use(helmet({
     contentSecurityPolicy: false,
 }));
 app.set('view engine', 'ejs');
+app.set('trust proxy', 1);
 app.set('views', [__dirname + '\\views_userpandel', __dirname + '\\view_login',
     __dirname + '\\view_global', __dirname + '\\view_admin']);
 
@@ -37,7 +38,9 @@ app.use(
     secret: [process.env.SESSIONSECRET, process.env.SESSIONSECRET_1, process.env.SESSIONSECRET_2],
       name: 'beessh',
       cookie: {
-        sameSite: true, maxAge: 86400 * 1000
+        sameSite: true,
+        maxAge: 86400 * 1000,
+        domain: process.env.WEBPAGEDOMAIN
       },
     resave: true,
     saveUninitialized: false
@@ -47,6 +50,8 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.favicon())
+app.use(express.logger('dev'))
 app.use(express.json());
 app.use((req, res, next) => {
     if (!allowedMethods.includes(req.method)) {
@@ -60,6 +65,7 @@ app.use(flash());
 
 // Global variables
 app.use(function(req, res, next) {
+  res.locals.admin_msg = req.flash('admin_msg');
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -70,6 +76,7 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/api', require('./routes/beeapi.js'));
+app.use('/admin', require('./routes/admin.js'));
 app.use('/assets', express.static(__dirname + '/ressources'))
 
 const PORT = 5000;

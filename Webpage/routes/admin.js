@@ -17,10 +17,11 @@ router.get('/gui', ensureAuthenticated, (req, res) => {
         return res.redirect("/users/dashboard");
    }
 
-    User.find().then(Users => {+
-        AuthCookie.find().then(_AuthCoo => {
-
-        })
+    User.find().then(Users => {
+        res.render('admin_gui', {
+           user: req.user,
+           OtherUser: Users
+        });
     });
 });
 

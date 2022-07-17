@@ -48,6 +48,8 @@ router.post("/client_login", (req, res) => {
             if (err) throw err;
             if (isMatch) {
                 if(user.mfa) {
+                    if(!otp)
+                        return res.json({Info: "2FA Error"}).status(201);
                     if(mfa(user.secret, otp)) {
                         sshdb.find({UID: user.UID}).then(sshdata => {
                             const authcookie = randomstring.generate(55);

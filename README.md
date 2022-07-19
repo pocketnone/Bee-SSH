@@ -1,16 +1,13 @@
 # Bee-SSH SSH Client
 
-----
-
 <p align="center">
-  <img src="https://github.com/sysfaker/Bee-SSH/blob/Development/Branding/b3.png">
+  <img src="https://github.com/sysfaker/Bee-SSH/blob/Development/Branding/b3.png" style="max-height: 50%">
 </p>
 
 ----
 
 ## Project Infos
 
-----
 
 <p align="center">
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/sysfaker/Bee-SSH?style=for-the-badge">

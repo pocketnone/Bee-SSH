@@ -5,6 +5,10 @@ const AuthCookie = new mongoose.Schema({
         type: String,
         required: true
     },
+    IP: {
+        type: String,
+        required: true
+    },
     AuthCookie: {
         type:String,
         required: true

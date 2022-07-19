@@ -3,13 +3,20 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const randomstring = require("randomstring");
 const mfa = require('../config/totpAuth');
+const rateLimit = require('express-rate-limit');
 
 // Databases
 const User = require('../models/User');
 const sshdb = require('../models/SSHSessions');
 const AuthCookie = require('../models/AuthCookie');
 
-
+const limiter = rateLimit({
+    windowMs: 2 * 60 * 1000, // 2 minutes
+    max: 20, // Limit each IP to 20 requests per `window` (here, per 2 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    keyGenerator: (request, response) => request.cf_ip, // Set the Cloudflare IP
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
 // API
 // Get App Version
 router.get("/client_version", (req, res) =>{
@@ -22,7 +29,7 @@ router.get("/client_version", (req, res) =>{
 // REST Login
 router.post("/client_login", (req, res) => {
     const {tool, email, password, otp } = req.body;
-
+    const IPAdress = req.cf_ip;
     // Errors
     let errors = [];
 
@@ -52,12 +59,14 @@ router.post("/client_login", (req, res) => {
                         return res.json({Info: "2FA Error"}).status(201);
                     if(mfa(user.secret, otp)) {
                         sshdb.find({UID: user.UID}).then(sshdata => {
+                            AuthCookie.findOneAndDelete({UID: user.UID}).then(()=>{});
                             const authcookie = randomstring.generate(55);
                             const new_authcookie = new AuthCookie({
                                 UID: user.UID,
-                                AuthCookie: authcookie
-                            });
-                            new_authcookie.save();
+                                AuthCookie: authcookie,
+                                IP: IPAdress
+                            }).save();
+
                             const pack_data = JSON.stringify(sshdata);
                             return res.json({
                                 AuthKey: authcookie,
@@ -69,13 +78,14 @@ router.post("/client_login", (req, res) => {
                     }
                 } else {
                     // if there no 2FA
+                    AuthCookie.findOneAndDelete({UID: user.UID}).then(()=>{});
                     sshdb.find({UID: user.UID}).then(sshdata => {
                         const authcookie = randomstring.generate(55);
                         const new_authcookie = new AuthCookie({
                             UID: user.UID,
-                            AuthCookie: authcookie
-                        });
-                        new_authcookie.save();
+                            AuthCookie: authcookie,
+                            IP: IPAdress
+                        }).save();
                         const pack_data = JSON.stringify(sshdata);
                         return res.json({
                             AuthKey: authcookie,
@@ -122,5 +132,21 @@ router.post("/client_new", (req, res) => {
         return res.status(200);
     })
 });
+
+
+// Developer APIs.
+
+router.get('/ip', (req, res) => {
+    if(process.env.PRODUCTION) {
+        res.json({
+            "ClientIP Normal": req.ip,
+            "ClientIP Cloudflare": req.cf_ip,
+            ClientHeader: req.headers
+        })
+    } else {
+        return res.status(201);
+    }
+});
+
 
 module.exports = router;

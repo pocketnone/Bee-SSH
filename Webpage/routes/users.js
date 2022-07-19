@@ -181,6 +181,7 @@ router.get('/resetpassword', forwardAuthenticated, (req, res) => {
 router.post('/requestreset', forwardAuthenticated, (req, res) =>{
       const email = req.body.email;
       const htoken = req.POST_DATA['h-captcha-response'];
+      const IPAdresse = req.cf_ip;
       const hsecret = process.env.HCAPTCHASECRET;
 
       let errors = [];
@@ -210,7 +211,7 @@ router.post('/requestreset', forwardAuthenticated, (req, res) =>{
             ResetToken: ResetTokenString
           });
           // Reset Email
-          ResetEmail(user.name, user.email, ResetTokenString);
+          ResetEmail(user.name, user.email, ResetTokenString, IPAdresse);
 
           //Save new DB Entry
           _ResetToken.save();

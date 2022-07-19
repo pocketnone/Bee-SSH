@@ -4,6 +4,9 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const helmet = require("helmet");
+const favicon = require('serve-favicon');
+const Static = require('serve-static');
+const cloudflare = require('cloudflare-express');
 require('dotenv').config();
 const app = express();
 
@@ -19,15 +22,17 @@ mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
+mongoose.set('useCreateIndex', true);
 
 // EJS
+app.use(cloudflare.restore());
 app.use(helmet({
     contentSecurityPolicy: false,
 }));
 app.set('view engine', 'ejs');
-app.set('trust proxy', 1);
-app.set('views', [__dirname + '\\views_userpandel', __dirname + '\\view_login',
-    __dirname + '\\view_global', __dirname + '\\view_admin']);
+app.set('trust proxy', 2);
+app.set('views', [__dirname + '/views_userpandel', __dirname + '/view_login',
+    __dirname + '/view_global', __dirname + '/view_admin']);
 
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
@@ -49,13 +54,12 @@ app.use(
 
 // Passport middleware
 app.use(passport.initialize());
+app.use(favicon(__dirname + '/ressources/img/b3.ico'));
 app.use(passport.session());
-app.use(express.favicon())
-app.use(express.logger('dev'))
 app.use(express.json());
 app.use((req, res, next) => {
     if (!allowedMethods.includes(req.method)) {
-        return res.end(401);
+        return res.end(201);
     }
     next()
 });
@@ -77,10 +81,10 @@ app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/api', require('./routes/beeapi.js'));
 app.use('/admin', require('./routes/admin.js'));
-app.use('/assets', express.static(__dirname + '/ressources'))
+app.use('/assets', Static(__dirname + '/ressources'))
 
 const PORT = 5000;
 
-app.listen(PORT, ()=> {
-    console.log(`Listening as : ${PORT}`);
-});
+app.listen(PORT, () =>{
+    console.log("Startet on Port: " + PORT);
+})

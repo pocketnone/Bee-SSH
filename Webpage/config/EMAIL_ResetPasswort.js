@@ -1,9 +1,9 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 
-module.exports = function (username, useremail, resettoken) {
+module.exports = function (username, useremail, resettoken, ip_adress) {
     const email = fs.readFile("./emails/PasswortReset.html", (err) => {console.log(err)}).toString();
-    const emailData = email.replace("{USERNAME}", username).replace("{resettoken}", resettoken);
+    const emailData = email.replace("{USERNAME}", username).replace("{resettoken}", resettoken).replace("{ipadressbox}", ip_adress);
 
 
     const smtpTransport = nodemailer.createTransport(smtpTransport({

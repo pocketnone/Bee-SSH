@@ -17,7 +17,6 @@
 
 ## About
 
----
 
 Bee SSH is a Open-Source SSH Client similar like [Putty](https://www.putty.org/) and [FileZilla](https://filezilla-project.org/). <br>
 Bee SSH can be used over the Internet to store its servers and custom user scripts on a central platform and work independently of the computer. <br>
@@ -33,14 +32,12 @@ Since Bee SSH is open source you can easily host your own system. <br>
 
 ## Donations
 
----
 
 You are welcome to support BeeSSH public website and service. The donations will be spent on the server and the domain, everything else will be donated to animal welfare organizations (With focus on bees and insects).  
 
 
 ## Installation Webpage
 
----
 
 #### Preparation
 

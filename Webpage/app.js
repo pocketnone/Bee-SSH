@@ -26,9 +26,16 @@ mongoose.set('useCreateIndex', true);
 
 // EJS
 app.use(cloudflare.restore());
-app.use(helmet({
-    contentSecurityPolicy: false,
-}));
+// Helmet Config
+app.use(helmet.expectCt());
+app.use(helmet.frameguard());
+app.use(helmet.hidePoweredBy());
+app.use(helmet.hsts());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
+app.use(helmet.originAgentCluster());
+app.use(helmet.noSniff());
+
 app.set('view engine', 'ejs');
 app.set('trust proxy', 2);
 app.set('views', [__dirname + '/views_userpandel', __dirname + '/view_login',
@@ -45,7 +52,8 @@ app.use(
       cookie: {
         sameSite: true,
         maxAge: 86400 * 1000,
-        domain: process.env.WEBPAGEDOMAIN
+        domain: process.env.WEBPAGEDOMAIN,
+        path: 'beessh/cookies',
       },
     resave: true,
     saveUninitialized: false

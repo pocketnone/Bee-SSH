@@ -72,6 +72,17 @@ app.use((req, res, next) => {
     next()
 });
 
+// Error Handle Frontend
+app.use(function(req, res, next) {
+    return res.status(404).send({ message: 'Route'+req.url+' Not found.' });
+});
+
+// 500 Error
+app.use(function(err, req, res, next) {
+    return res.status(500).send({ error: 500 });
+});
+
+
 // Connect flash
 app.use(flash());
 

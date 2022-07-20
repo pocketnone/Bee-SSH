@@ -30,6 +30,14 @@ Since Bee SSH is open source you can easily host your own system. <br>
 - FTP
 - User System to store Server and custom Userscripts
 
+## Webpage Security
+
+- Password Hash, Salt and Pepper (Random 55 long string behind every password)
+- 2FA Added
+- hCaptcha
+- Ratelimit on API (Fetch Cloudflare IP. Need to be removed if you dont use Cloudflare)
+- [Helmet](https://helmetjs.github.io/)
+
 ## Donations
 
 

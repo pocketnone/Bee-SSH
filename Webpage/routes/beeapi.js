@@ -16,7 +16,11 @@ const limiter = rateLimit({
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     keyGenerator: (request, response) => request.cf_ip, // Set the Cloudflare IP
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-})
+});
+
+// Ratelimit the API
+router.use(limiter);
+
 // API
 // Get App Version
 router.get("/client_version", (req, res) =>{
@@ -100,6 +104,16 @@ router.post("/client_login", (req, res) => {
     });
 });
 
+// User Scripte
+
+router.post("/fetch_userscripte", (req, res) => {
+
+});
+
+// Add a new Userscript
+router.post("/add_userscript", (res, res)=> {
+
+});
 
 router.post("/client_new", (req, res) => {
    const { authkey, tool } = req.body;

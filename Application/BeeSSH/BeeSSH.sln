@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.2.32602.215
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeSSH", "BeeSSH\BeeSSH.csproj", "{BDF8AAE3-289D-4F47-8A88-DC840B46BCE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeSSH", "BeeSSH\BeeSSH.csproj", "{11602167-7BE3-4082-BBC5-C70CD03876B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BDF8AAE3-289D-4F47-8A88-DC840B46BCE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDF8AAE3-289D-4F47-8A88-DC840B46BCE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDF8AAE3-289D-4F47-8A88-DC840B46BCE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDF8AAE3-289D-4F47-8A88-DC840B46BCE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C20FF373-F414-4DB0-B5F3-441F9EB3AE85}
+		SolutionGuid = {7323A8EA-B90A-4104-8E93-77BB0A2F1159}
 	EndGlobalSection
 EndGlobal

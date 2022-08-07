@@ -18,11 +18,10 @@
                   PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
 
                     <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock VerticalAlignment="Center" Text="Dark Mode"></TextBlock>
-                        <ToggleButton Cursor="Hand" ToolTip="Enable Dark Mode" Margin="12 0 8 0" x:Name="themeDark"
-                          IsChecked="{Binding isDarkTheme}" Click="toggleTheme"></ToggleButton>
+                        <TextBlock VerticalAlignment="Center" Text="Enable Musik"/>
+                        <ToggleButton Cursor="Hand" ToolTip="Enable Background Musik" Margin="12 0 8 0" x:Name="tglMusik"></ToggleButton>
                         <Button ToolTip="Having Trouble Logging in?" Margin="0 8 0 0" Content="Help Me" Click="forgotPassword"/>
-                        <Button x:Name="btn_exit" ToolTip="Close BeeSSH" Content="Close BeeSSH" Click="exitApp"/>
+                        <Button x:Name="btn_exit" ToolTip="Close BeeSSH" Margin="0 8 0 0" Content="Close BeeSSH" Click="exitApp"/>
                     </StackPanel>
                     
                 </materialDesign:PopupBox>
@@ -42,7 +41,15 @@
                              materialDesign:HintAssist.Hint="Enter Password"
                              BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"></PasswordBox>
-
+                <Button Margin="0 20 0 0" x:Name="loginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                        Height="53" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
+                        FontSize="18" Content="Login"/>
+                <Button Margin="0 20 0 0" x:Name="Register" Style="{StaticResource MaterialDesignFlatButton}" 
+                        Height="35" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
+                        FontSize="18" Content="Register" Cursor="Hand"/>
+                <Button Margin="0 20 0 0" x:Name="loginBtnOffline" Style="{StaticResource MaterialDesignFlatButton}" 
+                        Height="40" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
+                        FontSize="18" Content="Run Offline"/>
             </StackPanel>
         </materialDesign:DialogHost>
     </materialDesign:Card>

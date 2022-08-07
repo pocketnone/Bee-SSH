@@ -75,6 +75,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interface\ApplicationWindow.xaml.cs">
+      <DependentUpon>ApplicationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Pages\SSHPandle.xaml.cs">
+      <DependentUpon>SSHPandle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\DiscordRPC\DiscordRPCConfig.cs" />
+    <Compile Include="Utils\DiscordRPC\DiscordRPCDriver.cs" />
+    <Compile Include="Utils\DiscordRPC\DiscordRPCLoader.cs" />
+    <Page Include="Interface\ApplicationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Pages\SSHPandle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

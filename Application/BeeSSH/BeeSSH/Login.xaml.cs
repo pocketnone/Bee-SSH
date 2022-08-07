@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,31 @@ namespace BeeSSH
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void loginBtnOffline_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://as.mba");
+        }
+
+        private void forgotPassword(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://as.mba/user/resetpassword");
+        }
+
+        private void exitApp(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

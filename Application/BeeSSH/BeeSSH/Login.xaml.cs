@@ -33,7 +33,9 @@ namespace BeeSSH
 
         private void loginBtnOffline_Click(object sender, RoutedEventArgs e)
         {
-
+            Interface.ApplicationWindow b = new Interface.ApplicationWindow();
+            b.Show();
+            this.Hide();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
@@ -49,6 +51,12 @@ namespace BeeSSH
         private void exitApp(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void dragmove(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

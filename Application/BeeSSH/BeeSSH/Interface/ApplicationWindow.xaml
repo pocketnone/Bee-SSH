@@ -10,8 +10,26 @@
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="ApplicationWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="ApplicationWindow" Height="720" Width="1000" MouseDown="dragmove">
+    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="15">
+        <Grid>
+            <Border Background="#FF5F5F5F" BorderThickness="1" 
+                CornerRadius="0,15,15,0" Margin="0,49,770,-4" Width="200"/>
+            <Image x:Name="beesshlogo" Source="/UI/b3.ico" Margin="2,7,908,646"></Image>
+            <TextBlock FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Left"
+                           Text="BeeSSH" Margin="70,14,0,653"></TextBlock>
+            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0,13,770,652"
+                  PlacementMode="BottomAndAlignRightEdges" StaysOpen="true" Height="25" PopupUniformCornerRadius="15" Background="Black">
+                <StackPanel Margin="16 10 10 6" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Button x:Name="settingsBtn" ToolTip="Open Settings" Margin="0 8 8 0" Content="Settings" Click="openSettings" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand"  
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"/>
+                    <Button x:Name="btn_minimize" ToolTip="Close BeeSSH" Margin="0 8 8 0" Content="Minimize" Click="appminimize" Cursor="Hand" Style="{StaticResource MaterialDesignFlatButton}"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"/>
+                    <Button x:Name="btn_exit" ToolTip="Close BeeSSH" Margin="0 8 8 0" Content="Exit" Click="exitApp" Cursor="Hand" Style="{StaticResource MaterialDesignFlatButton}"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"/>
+                </StackPanel>
+            </materialDesign:PopupBox>
+            
+        </Grid>
+    </materialDesign:Card>
 </Window>

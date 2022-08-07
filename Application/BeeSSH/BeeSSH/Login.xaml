@@ -10,18 +10,18 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{x:Null}"
         AllowsTransparency="True"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" MouseDown="dragmove">
     <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25">
         <materialDesign:DialogHost CloseOnClickAway="True" x:Name="Dialog">
             <StackPanel>
                 <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 20 20 0"
-                  PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
+                  PlacementMode="BottomAndAlignRightEdges" StaysOpen="True" Height="25" PopupUniformCornerRadius="15" Background="Black">
 
-                    <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock VerticalAlignment="Center" Text="Enable Musik"/>
-                        <ToggleButton Cursor="Hand" ToolTip="Enable Background Musik" Margin="12 0 8 0" x:Name="tglMusik"></ToggleButton>
-                        <Button ToolTip="Having Trouble Logging in?" Margin="0 8 0 0" Content="Help Me" Click="forgotPassword"/>
-                        <Button x:Name="btn_exit" ToolTip="Close BeeSSH" Margin="0 8 0 0" Content="Close BeeSSH" Click="exitApp"/>
+                    <StackPanel Margin="16 10 10 6" Orientation="Vertical" HorizontalAlignment="Center">
+                        <Button ToolTip="Having Trouble Logging in?" Margin="0 8 8 0" Content="Help Me" Click="forgotPassword" Style="{StaticResource MaterialDesignFlatButton}"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"/>
+                        <Button x:Name="btn_exit" ToolTip="Close BeeSSH" Margin="0 8 8 0" Content="Close BeeSSH" Click="exitApp" Style="{StaticResource MaterialDesignFlatButton}"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"/>
                     </StackPanel>
                     
                 </materialDesign:PopupBox>
@@ -43,13 +43,13 @@
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"></PasswordBox>
                 <Button Margin="0 20 0 0" x:Name="loginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" 
                         Height="53" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
-                        FontSize="18" Content="Login"/>
+                        FontSize="18" Content="Login" Click="loginBtn_Click" Cursor="Hand"/>
                 <Button Margin="0 20 0 0" x:Name="Register" Style="{StaticResource MaterialDesignFlatButton}" 
                         Height="35" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
-                        FontSize="18" Content="Register" Cursor="Hand"/>
+                        FontSize="18" Content="Register" Cursor="Hand" Click="Register_Click"/>
                 <Button Margin="0 20 0 0" x:Name="loginBtnOffline" Style="{StaticResource MaterialDesignFlatButton}" 
-                        Height="40" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
-                        FontSize="18" Content="Run Offline"/>
+                        Height="35" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
+                        FontSize="18" Content="Run Offline" Cursor="Hand" Click="loginBtnOffline_Click"/>
             </StackPanel>
         </materialDesign:DialogHost>
     </materialDesign:Card>

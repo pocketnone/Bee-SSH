@@ -78,6 +78,12 @@
     <Compile Include="Interface\ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interface\Pages\AddServer.xaml.cs">
+      <DependentUpon>AddServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Pages\Connecting.xaml.cs">
+      <DependentUpon>Connecting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interface\Pages\SSHPandle.xaml.cs">
       <DependentUpon>SSHPandle.xaml</DependentUpon>
     </Compile>
@@ -85,6 +91,14 @@
     <Compile Include="Utils\DiscordRPC\DiscordRPCDriver.cs" />
     <Compile Include="Utils\DiscordRPC\DiscordRPCLoader.cs" />
     <Page Include="Interface\ApplicationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Pages\AddServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Pages\Connecting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

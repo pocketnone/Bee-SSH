@@ -35,7 +35,26 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.UTC
-  }
+  },
+  ProfileBadges: [
+    {
+      Admin: {
+        type: Boolean,
+        default: false,
+        required: true
+      },
+      Donator: {
+        type: Boolean,
+        default: false,
+        required: true
+      },
+      Developer: {
+        type: Boolean,
+        default: false,
+        required: true
+      }
+    }
+  ]
 });
 
 const User = mongoose.model('User', UserSchema);

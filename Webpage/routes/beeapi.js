@@ -10,7 +10,7 @@ const User = require('../models/User');
 const sshdb = require('../models/SSHSessions');
 const AuthCookie = require('../models/AuthCookie');
 
-const limiter = rateLimit({
+var limiter = rateLimit({
     windowMs: 2 * 60 * 1000, // 2 minutes
     max: 20, // Limit each IP to 20 requests per `window` (here, per 2 minutes)
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers

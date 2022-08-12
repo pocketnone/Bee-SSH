@@ -34,7 +34,7 @@ namespace BeeSSH
         private void forgotPassword(object sender, RoutedEventArgs e)
         {
             Process.Start("https://as.mba/user/resetpassword");
-        }
+        }//TEST
 
         private void exitApp(object sender, RoutedEventArgs e)
         {

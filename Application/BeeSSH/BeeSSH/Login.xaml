@@ -14,6 +14,7 @@
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
         MouseDown="dragmove">
 
     <Border
@@ -136,7 +137,9 @@
 
                                Width="350"
                                />
-                            <Label Content="Log in to your Account or use it Offline" Margin="5"
+                            <Label
+                                x:Name="statusLbl"
+                                Content="Log in to your Account or use it Offline" Margin="5"
                                    Style="{DynamicResource MaterialDesignLabel}"
                                FontSize="20"
                                
@@ -231,8 +234,24 @@
                                 </RadioButton>
 
                             </StackPanel>
-
-                                    <Label Content="OR" HorizontalAlignment="Center"
+                            <materialDesign:Card
+                                x:Name="masterPasBoxCard"
+                            
+                            Background="{DynamicResource AttentionToActionBrush}"
+                            >
+                                <PasswordBox x:Name="masterPasBox"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            Width="200"
+                            Height="30"
+                            Background="Transparent"
+                                 materialDesign:HintAssist.Hint="Master Password"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Center"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                            />
+                            </materialDesign:Card>
+                            <Label Content="OR" HorizontalAlignment="Center"
                                             FontSize="25" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                             <materialDesign:Card
                             Background="{DynamicResource AttentionToActionBrush}"

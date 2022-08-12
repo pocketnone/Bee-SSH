@@ -50,23 +50,8 @@ namespace BeeSSH
             runOfflineBtn.IsEnabled = false;
         }
 
-        private void loginBtnOffline_Click(object sender, RoutedEventArgs e)
-        {
-            if (loginBtn.Content.ToString() == "Final Step")
-            {
-                //make master password checks here
-                Interface.ApplicationWindow b = new Interface.ApplicationWindow();
-                b.Show();
-                this.Hide();
-            }
-            else
-            {
-                //normal checks here
-                if (userIsLoggedIn)
-                    ShowMasterPasswordBox();
-            }
+        private void loginBtnOffline_Click(object sender, RoutedEventArgs e) => ShowMasterPasswordBox();
 
-        }
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {

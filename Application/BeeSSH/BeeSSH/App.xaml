@@ -10,8 +10,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Yellow.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Yellow.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <BitmapImage x:Key="BeeSSH_logo" UriSource="UI/png_b3.png"/>
+            <BitmapImage x:Key="BeeSSH_LogoBig" UriSource="UI/beessh.png"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

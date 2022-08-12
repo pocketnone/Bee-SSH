@@ -6,51 +6,280 @@
         xmlns:local="clr-namespace:BeeSSH"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="BeeSSH Login" Height="760" Width="450"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{x:Null}"
+        FontFamily="Roboto"
+        Height="760"
+        Width="450"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="Transparent"
         AllowsTransparency="True"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen" MouseDown="dragmove">
-    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25">
-        <materialDesign:DialogHost CloseOnClickAway="True" x:Name="Dialog">
-            <StackPanel>
-                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 20 20 0"
-                  PlacementMode="BottomAndAlignRightEdges" StaysOpen="True" Height="25" PopupUniformCornerRadius="15" Background="Black">
+        WindowStartupLocation="CenterScreen"
+        MouseDown="dragmove">
 
-                    <StackPanel Margin="16 10 10 6" Orientation="Vertical" HorizontalAlignment="Center">
-                        <Button ToolTip="Having Trouble Logging in?" Margin="0 8 8 0" Content="Help Me" Click="forgotPassword" Style="{StaticResource MaterialDesignFlatButton}"
-                             materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"/>
-                        <Button x:Name="btn_exit" ToolTip="Close BeeSSH" Margin="0 8 8 0" Content="Close BeeSSH" Click="exitApp" Style="{StaticResource MaterialDesignFlatButton}"
-                             materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"/>
+    <Border
+            Grid.Row="1"
+            Grid.RowSpan="8"
+            Grid.ColumnSpan="7"
+            CornerRadius="25"
+            BorderBrush="{DynamicResource SecondaryHueMidBrush}"
+            Background="{DynamicResource MaterialDesignChipBackground}"
+            >
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <!--Header-->
+            <Border BorderBrush="{DynamicResource PrimaryHueDarkBrush}"
+                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="6"
+                Panel.ZIndex="1" 
+                BorderThickness="0,0,0,5" CornerRadius="0,0,25,0"
+                Background="{DynamicResource MaterialDesignDarkBackground}"
+                    >
+                <materialDesign:Card
+                Background="Transparent"
+                             >
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <Image 
+                    VerticalAlignment="Center"
+                    Source="{StaticResource BeeSSH_logo}"
+                    Width="50" Height="50" Margin="5">
+                        </Image>
+
+                        <Label Content="Login"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="24" FontWeight="Bold"
+                       Margin="5"
+                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="170,0,0,0">
+                            <RadioButton x:Name="minBtn"
+                                    Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                                 Margin="5"
+                                    HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                    Click="minBtn_Click">
+                                <RadioButton.Content>
+                                    <materialDesign:PackIcon Kind="WindowMinimize"
+                                                             Foreground="White"
+                                                             />
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton x:Name="CloseBtn"
+                                    Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                                 Margin="5"
+                                    HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                    Click="exitApp">
+                                <RadioButton.Content>
+                                    <materialDesign:PackIcon Kind="WindowClose"
+                                                             Foreground="White"/>
+                                </RadioButton.Content>
+                            </RadioButton>
+
+                        </StackPanel>
                     </StackPanel>
-                    
-                </materialDesign:PopupBox>
-                <Image Margin="0 60 0 5" Source="/UI/b3.ico" Height="100"></Image>
+                </materialDesign:Card>
+            </Border>
+            <!--design master.exe-->
+            <Border
+                Grid.Row="1"
+                Grid.ColumnSpan="7"
+                Background="{DynamicResource PrimaryHueDarkBrush}"
+                />
+            <!--#endregion-->
+            <!--#endregion-->
 
-                <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center" FontSize="28"
-                           FontWeight="Bold" Text="Bee SSH"></TextBlock>
-                <TextBlock FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center"
-                           Text="log in to your account or use it offline"></TextBlock>
 
-                <TextBox Margin="0 50 0 0" x:Name="textEmail" Width="300" FontSize="18"
-                           materialDesign:HintAssist.Hint="Enter Email"
-                           BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"
-                           Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <Border
+                BorderThickness="0,0,15,25"
+                CornerRadius="15"
+                Background="{DynamicResource MaterialDesignDarkBackground}"
+                BorderBrush="{DynamicResource PrimaryHueDarkBrush}"
+                Grid.Column="0"
+                Grid.ColumnSpan="7"
+                Grid.Row="0"
+                Grid.RowSpan="9"
+                
+                >
+                <StackPanel
+                
+                Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                >
+                    <materialDesign:Card Background="Transparent">
+                        <StackPanel>
+                            <Image Source="{DynamicResource BeeSSH_LogoBig}"
+                               
+                               Height="280"
 
-                <PasswordBox Margin="0 20 0 0" x:Name="txtPassword" Width="300" FontSize="18"
-                             materialDesign:HintAssist.Hint="Enter Password"
-                             BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"
-                             Style="{StaticResource MaterialDesignOutlinedPasswordBox}"></PasswordBox>
-                <Button Margin="0 20 0 0" x:Name="loginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" 
-                        Height="53" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
-                        FontSize="18" Content="Login" Click="loginBtn_Click" Cursor="Hand"/>
-                <Button Margin="0 20 0 0" x:Name="Register" Style="{StaticResource MaterialDesignFlatButton}" 
-                        Height="35" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
-                        FontSize="18" Content="Register" Cursor="Hand" Click="Register_Click"/>
-                <Button Margin="0 20 0 0" x:Name="loginBtnOffline" Style="{StaticResource MaterialDesignFlatButton}" 
-                        Height="35" Width="300" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ButtonAssist.CornerRadius="10"
-                        FontSize="18" Content="Run Offline" Cursor="Hand" Click="loginBtnOffline_Click"/>
-            </StackPanel>
-        </materialDesign:DialogHost>
-    </materialDesign:Card>
+                               Width="350"
+                               />
+                            <Label Content="Log in to your Account or use it Offline" Margin="5"
+                                   Style="{DynamicResource MaterialDesignLabel}"
+                               FontSize="20"
+                               
+                               />
+                            <materialDesign:Card
+                            
+                            Background="{DynamicResource AttentionToActionBrush}"
+                            >
+                                <TextBox x:Name="emailBox"
+                            Margin="10"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="200"
+                            Height="30"
+                            Background="Transparent"
+                                 materialDesign:HintAssist.Hint="Email"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Center"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                            />
+                            </materialDesign:Card>
+
+                            <materialDesign:Card
+                            
+                            Background="{DynamicResource AttentionToActionBrush}"
+                            >
+                                <PasswordBox x:Name="passBox"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            Width="200"
+                            Height="30"
+                            Background="Transparent"
+                                 materialDesign:HintAssist.Hint="Password"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Center"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                            />
+                            </materialDesign:Card>
+
+
+
+
+
+
+                            <materialDesign:Card
+                            Background="{DynamicResource AttentionToActionBrush}"
+                            
+                            >
+                                <TextBox  x:Name="faAuthBox"
+                                  Visibility="Collapsed"
+                            Margin="5"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="200"
+                            Height="30"
+                            Background="Transparent"
+                                 materialDesign:HintAssist.Hint="2-FA"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Center"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                                 />
+                            </materialDesign:Card>
+
+                            <CheckBox Content="Enable 2-FA"
+                                      x:Name="twoFAEnabled"
+                                  Style="{DynamicResource MaterialDesignCheckBox}"
+                                  HorizontalAlignment="Right"
+                                  Margin="0,0,10,0"
+                                      Checked="twoFAEnabled_Checked"
+                                      Unchecked="twoFAEnabled_Unchecked"
+                                  />
+                            <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    >
+                                <RadioButton x:Name="loginBtn" Click="loginBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Login"/>
+                                            <materialDesign:PackIcon Kind="LoginVariant" Foreground="White"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton x:Name="regBtn" Click="Register_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Register"/>
+                                            <materialDesign:PackIcon Kind="RegisterOutline" Foreground="White"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                            </StackPanel>
+
+                                    <Label Content="OR" HorizontalAlignment="Center"
+                                            FontSize="25" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                            <materialDesign:Card
+                            Background="{DynamicResource AttentionToActionBrush}"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                            >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                    <RadioButton  x:Name="runOfflineBtn" 
+                                          Click="loginBtnOffline_Click"
+                                     Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
+                                     Margin="10"
+                                     HorizontalAlignment="Center">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="Run Offline"/>
+                                                <materialDesign:PackIcon Kind="Connection"
+                                                                 VerticalAlignment="Center"
+                                                                 Foreground="White"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
+
+                                    <RadioButton  x:Name="helpBtn" 
+                                     Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
+                                     Margin="10"
+                                     HorizontalAlignment="Center">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="Need Help"/>
+                                                <materialDesign:PackIcon Kind="Help"
+                                                                 VerticalAlignment="Center"
+                                                                 Foreground="White"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
+                                    
+                                </StackPanel>
+                                
+                            </materialDesign:Card>
+                            
+                        </StackPanel>
+                    </materialDesign:Card>
+                </StackPanel>
+            </Border>
+            
+
+        </Grid>
+    </Border>
+    
 </Window>

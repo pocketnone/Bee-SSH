@@ -201,7 +201,8 @@
                                  materialDesign:HintAssist.Hint="2-FA"
                                  VerticalContentAlignment="Center"
                                  HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" PreviewTextInput="OnlyNumber"
+                            
                                  />
                             </materialDesign:Card>
 

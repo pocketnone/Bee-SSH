@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace BeeSSH
 {
@@ -101,6 +102,13 @@ namespace BeeSSH
             passBox.IsEnabled = true;
             helpBtn.IsEnabled = true;
             runOfflineBtn.IsEnabled = true;
+        }
+
+        // Only input Numbers
+        private void OnlyNumber(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

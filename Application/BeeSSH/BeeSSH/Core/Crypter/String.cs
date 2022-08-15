@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BeeSSH.Core.Crypter
 {
@@ -44,7 +41,7 @@ namespace BeeSSH.Core.Crypter
             {
                 plainText = transform.TransformFinalBlock(encryptedData, 0, encryptedData.Length);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 plainText = null;

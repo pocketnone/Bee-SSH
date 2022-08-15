@@ -14,25 +14,39 @@ namespace BeeSSH.Interface
             InitializeComponent();
         }
 
-        private void exitApp(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void openSettings(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void dragmove(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+                DragMove();
         }
 
-        private void appminimize(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            ContentFrame.Navigate(new Uri("Interface/UserControlls/WelcomeUserControl.xaml", UriKind.Relative));
+        }
+
+        private void minBtn_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e) => Close();
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new Uri("Interface/UserControlls/AddServerUserControl.xaml", UriKind.Relative));
+        }
+
+        private void ConnectionsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new Uri("Interface/UserControlls/WelcomeUserControl.xaml", UriKind.Relative));
+        }
+
+        private void TerminalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new Uri("Interface/UserControlls/TerminalUsercControl.xaml", UriKind.Relative));
+        }
+
+        private void GenerateRSABtn_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new Uri("Interface/UserControlls/RSAKeyUserControl.xaml", UriKind.Relative));
         }
     }
 }

@@ -81,14 +81,17 @@
     <Compile Include="Interface\ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interface\Pages\AddServer.xaml.cs">
-      <DependentUpon>AddServer.xaml</DependentUpon>
+    <Compile Include="Interface\UserControlls\AddServerUserControl.xaml.cs">
+      <DependentUpon>AddServerUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interface\Pages\Connecting.xaml.cs">
-      <DependentUpon>Connecting.xaml</DependentUpon>
+    <Compile Include="Interface\UserControlls\RSAKeyUserControl.xaml.cs">
+      <DependentUpon>RSAKeyUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interface\Pages\SSHPandle.xaml.cs">
-      <DependentUpon>SSHPandle.xaml</DependentUpon>
+    <Compile Include="Interface\UserControlls\TerminalUsercControl.xaml.cs">
+      <DependentUpon>TerminalUsercControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\UserControlls\WelcomeUserControl.xaml.cs">
+      <DependentUpon>WelcomeUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\DiscordRPC\DiscordRPCConfig.cs" />
     <Compile Include="Utils\DiscordRPC\DiscordRPCDriver.cs" />
@@ -97,15 +100,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Interface\Pages\AddServer.xaml">
+    <Page Include="Interface\UserControlls\AddServerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Interface\Pages\Connecting.xaml">
+    <Page Include="Interface\UserControlls\RSAKeyUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Interface\Pages\SSHPandle.xaml">
+    <Page Include="Interface\UserControlls\TerminalUsercControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\UserControlls\WelcomeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

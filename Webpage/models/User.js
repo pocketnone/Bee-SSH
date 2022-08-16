@@ -6,8 +6,7 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   secret: {
-    type: String,
-    required: true
+    type: String
   },
   mfa: {
     type: Boolean,
@@ -32,9 +31,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  date: {
+  CreationDate: {
     type: Date,
-    default: Date.UTC
+    default: Date.now(),
+    required: true
   }
 });
 

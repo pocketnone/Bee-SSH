@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BeeSSH - Register</title>
-  <script src="https://js.hcaptcha.com/1/api.js?hl=fr" async defer></script>
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
   <%- include('./includes/trailwind.ejs'); %>
   <%- include('./includes/background.ejs'); %>
 </head>
@@ -23,7 +23,7 @@
         </p>
       </div>
       <%- include ("./partials/messages"); %>
-      <form class="mt-8 space-y-6" action="/users/login" method="POST">
+      <form class="mt-8 space-y-6" action="/users/register" method="POST">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="email-address" class="sr-only">Email address</label>

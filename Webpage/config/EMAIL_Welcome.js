@@ -2,28 +2,36 @@ const nodemailer = require('nodemailer');
 const fs = require("fs");
 
 
-module.exports = function (username, useremail) {
-    const email = fs.readFile("./emails/WelcomeMail.html", (err) => {console.log(err)});
-    const emailData = email.replace("{USERNAME}", username);
+module.exports = function(username, useremail) {
+    fs.readFile(__dirname + "/emails/WelcomeMail.html", 'utf8', (err, data) => {
+        if (err) {
+            return console.log(err);
+        }
+        const emailData = data.replace("{USERNAME}", username);
 
-    const smtpTransport = nodemailer.createTransport(smtpTransport({
-        host: process.env.EMAILHOST,
-        secure: true,
-        port: process.env.MAILPORT,
-        auth: {
-            user: process.env.MAILUSERNAME,
-            pass: process.env.MAILUSERPASS
-        }
-    }));
-    const mailOptions = {
-        from: process.env.MAILUSERNAME,
-        to : useremail,
-        subject : 'Welcome to BeeSSH ' + username,
-        html : emailData
-    };
-    smtpTransport.sendMail(mailOptions, function (error, response) {
-        if (error) {
-            console.log(error);
-        }
+        const smtpTransport = nodemailer.createTransport({
+            host: process.env.EMAILHOST,
+            secureConnection: false,
+            port: process.env.MAILPORT,
+            auth: {
+                user: process.env.MAILUSERNAME,
+                pass: process.env.MAILUSERPASS
+            },
+            tls: {
+                ciphers:'SSLv3',
+                rejectUnauthorized: false
+            }
+        });
+        const mailOptions = {
+            from: process.env.MAILUSERNAME,
+            to : useremail,
+            subject : 'Welcome to BeeSSH ' + username,
+            html : emailData
+        };
+        smtpTransport.sendMail(mailOptions, function (error, response) {
+            if (error) {
+                console.log(error);
+            }
+        });
     });
 }

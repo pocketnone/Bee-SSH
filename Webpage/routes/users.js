@@ -6,7 +6,8 @@ const passport = require('passport');
 // Webpage Security
 const {verify} = require('hcaptcha');
 const xssFilters = require('sanitize-html');
-const pwStrength = require("check-password-strength");
+const { passwordStrength } = require('check-password-strength')
+const pwStrength = passwordStrength;
 const randomstring = require("randomstring");
 
 // E-Mail Functions
@@ -27,7 +28,7 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-  const htoken = req.POST_DATA['h-captcha-response'];
+  const htoken = req.body['h-captcha-response'];
   const hsecret = process.env.HCAPTCHASECRET;
   const UID = randomstring.generate(20);
   const { name, email, password, password2 } = req.body;
@@ -38,7 +39,7 @@ router.post('/register', (req, res) => {
     errors.push({ msg: 'Please enter all fields' });
   }
   // Regex Name
-  if (!/[^a-zA-Z\d]/.test(name)){
+  if (/[^a-zA-Z]/.test(name)){
     errors.push({ msg: 'Only alphabetical symbols are allowed' });
   }
   // Lenght Check
@@ -73,7 +74,7 @@ router.post('/register', (req, res) => {
     });
   } else {
     User.findOne({ email: email }).then(user => {
-      if (user) {
+      if (!user) {
         errors.push({ msg: 'Email already exists' });
         res.render('register', {
           errors,
@@ -117,7 +118,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
   const secret = req.body.mfakey;
   const mail = req.body.email;
-  const htoken = req.POST_DATA['h-captcha-response'];
+  const htoken = req.body['h-captcha-response'];
   const hsecret = process.env.HCAPTCHASECRET;
 
   verify(hsecret, htoken).then((data) => {
@@ -179,7 +180,7 @@ router.get('/resetpassword', forwardAuthenticated, (req, res) => {
 
 router.post('/requestreset', forwardAuthenticated, (req, res) =>{
       const email = req.body.email;
-      const htoken = req.POST_DATA['h-captcha-response'];
+      const htoken = req.body['h-captcha-response'];
       const IPAdresse = req.cf_ip;
       const hsecret = process.env.HCAPTCHASECRET;
 

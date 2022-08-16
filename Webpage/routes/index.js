@@ -1,12 +1,16 @@
 const express = require('express');
 const Speakeasy = require('speakeasy');
 const mfa = require('../config/totpAuth');
+const QRCode = require('qrcode');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 
 // Models
 const User = require('../models/User');
+const sshdb = require('../models/SSHSessions');
+const AuthCookie = require('../models/AuthCookie');
+const UserScripteDB = require('../models/CustomUserScripts');
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
@@ -15,9 +19,15 @@ router.get('/features', forwardAuthenticated, (req, res) => res.render('features
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
-  res.render('dashboard', {
-    user: req.user
-  })
+    UserScripteDB.find({UID: req.user.UID}).then(scripts => {
+        sshdb.find({UID: req.user.UID}).then(servers => {
+            res.render('dashboard', {
+                user: req.user,
+                server: servers.length,
+                script: scripts.length
+            })
+        })
+    })
 );
 
 router.get('/edit_profile', ensureAuthenticated, (req, res) =>
@@ -36,11 +46,12 @@ router.get('/setup-2fa', ensureAuthenticated, (req,res) => {
     const secret = Speakeasy.generateSecret({length: 30});
 
     User.findOneAndUpdate({UID: req.user.UID}, {secret: secret.base32});
-
-    return res.render('2FA-Setup', {
-        user: req.user,
-        otp_secret: secret.base32,
-        qrcode: secret.google_auth_qr
+    QRCode.toDataURL(secret.otpauth_url, function(err, data_url) {
+        return res.render('2FA-Setup', {
+            user: req.user,
+            otp_secret: secret.base32,
+            qrcode: data_url
+        });
     });
 });
 

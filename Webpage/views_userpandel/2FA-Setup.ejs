@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BEESSH</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
+    <%- include('./includes/trailwind.ejs'); %>
+    <%- include('./includes/background.ejs'); %>
+</head>
+
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+
+<header>
+    <!--Nav-->
+    <nav aria-label="menu nav" class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
+
+        <div class="flex flex-wrap items-center">
+            <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
+                <a href="#" aria-label="Home">
+                    <img src="/img/logo.svg">
+                </a>
+            </div>
+            <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
+                <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <a class="inline-block py-2 px-4 text-white no-underline" href="">Download App</a>
+                    </li>
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <div class="relative inline-block">
+                            <button onclick="toggleDD('myDropdown')" class="drop-button text-white py-2 px-2"> <span class="pr-2"><i class="em em-robot_face"></i></span> Hi, <%= user.name %> <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg></button>
+                            <div id="myDropdown" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
+                                <a href="/edit_profile" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-user fa-fw"></i> Profile</a>
+                                <div class="border border-gray-800"></div>
+                                <a href="/logout" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="flex flex-col md:flex-row">
+        <nav aria-label="alternative nav">
+            <div class="bg-gray-800 shadow-xl h-20 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48 content-center">
+
+                <div class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+                    <ul class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
+                        <li class="mr-3 flex-1">
+                            <a href="/dashboard" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                <i class="fas fa-tasks pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dash</span>
+                            </a>
+                        </li>
+                        <li class="mr-3 flex-1">
+                            <a href="/edit_profile" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
+                                <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Profile</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </nav>
+        <section>
+            <div id="main" class="main-content flex-1 mt-12 md:mt-2 pb-24 md:pb-5 ">
+
+                <div class="bg-gray-800 pt-3">
+                    <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-yellow-300 p-4 shadow text-2xl text-white">
+                        <h1 class="font-bold pl-2">Enable 2-FA</h1>
+                    </div>
+                </div>
+
+                <div class="lex flex-wrap  bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="max-w-2xl mx-auto py-16 sm:py-24 lg:py-32 lg:max-w-none bg-white">
+                            <h2 class="text-2xl font-bold text-white-400">Enable 2-FA</h2>
+
+                            <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
+                                <div class="group relative">
+                                    <div class="relative w-390 h-380 bg-white rounded-lg overflow-hidden group-hover:opacity-75">
+                                        <img src="<%= qrcode %>" class="w-full h-full object-center object-cover">
+                                    </div>
+                                    <h3 class="mt-6 text-sm text-white-400">
+                                        <a href="#">
+                                            <span class="absolute inset-0"></span>
+                                            Scan the QR Code
+                                        </a>
+                                    </h3>
+                                    <p class="text-base font-semibold text-white-400"><%= otp_secret %></p>
+                                </div>
+
+                                <div class="group relative">
+                                    <p class="text-base font-semibold text-white-400">Enter 2-FA</p>
+                                    <form class="mt-8 space-y-6" action="/setup-2fa-validate" method="POST">
+                                        <div class="rounded-md shadow-sm -space-y-px">
+                                            <div>
+                                                <label for="mfa" class="sr-only">2FA Token</label>
+                                                <input id="mfa" name="token" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
+                                                placeholder-white-500 text-yellow-300 rounded-b-md focus:outline-none focus:ring-yellow-500
+                                                focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="123456" maxlength="6"
+                                                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium
+                                            rounded-md text-black bg-yellow-300 hover:bg-transparent duration-300 ease-in-out hover:text-white duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
+                                                Verity 2-FA
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                    </div>
+                </div>
+        </section>
+    </div>
+</main>
+
+<script>
+    /*Toggle dropdown list*/
+    function toggleDD(myDropMenu) {
+        document.getElementById(myDropMenu).classList.toggle("invisible");
+    }
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.drop-button') && !event.target.matches('.drop-search')) {
+            var dropdowns = document.getElementsByClassName("dropdownlist");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (!openDropdown.classList.contains('invisible')) {
+                    openDropdown.classList.add('invisible');
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

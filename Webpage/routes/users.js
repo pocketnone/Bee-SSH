@@ -41,6 +41,7 @@ router.post('/register', (req, res) => {
   if (!/[^a-zA-Z\d]/.test(name)){
     errors.push({ msg: 'Only alphabetical symbols are allowed' });
   }
+
   // Lenght Check
   if(name.length >= 16){
     errors.push({ msg: 'Name is too long' });

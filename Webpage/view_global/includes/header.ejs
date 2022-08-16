@@ -1,31 +1,22 @@
-<div class="w-full container mx-auto">
-  <div class="w-full flex items-center justify-between">
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <img class="bi me-2" width="50" height="42" src="/assets/img/logo.png">
+        </a>
 
-    <a class="flex items-center text-yellow-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
-      <div class="flex-shrink-0 flex items-center"><img src="/img/logo.svg" class="h-11 inset-y-0 flex items-center pl-3"></div>
-      BEE <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-red-500 to-blue-600">SSH</span>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+          <li><a href="/features" class="nav-link px-2 text-white">Features</a></li>
+          <li><a href="/download" class="nav-link px-2 text-white">Download</a></li>
+          <li><a href="/faq" class="nav-link px-2 text-white">FAQs</a></li>
+          <li><a href="/devs" class="nav-link px-2 text-white">Devs</a></li>
+        </ul>
 
-    </a>
-    <div class="flex w-1/2 justify-end content-center sm:items-stretch ">
-      <a class="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out" href="/features">
-        <button class="text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                type="button">
-          Features
-        </button>
-      </a>
-      <a class="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out" href="/users/login">
-        <button class="text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                type="button">
-          Login
-        </button>
-      </a>
-      <a class="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
-         href="/users/register">
-        <button class="bg-yellow-300 font-bold hover:text-white hover:bg-transparent duration-300 ease-in-out text-black py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                type="button">
-          Register
-        </button>
-      </a>
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-light me-2">Login</button>
+          <button type="button" class="btn btn-warning">Sign-up</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </header>

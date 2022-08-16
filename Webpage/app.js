@@ -100,7 +100,7 @@ app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/api', require('./routes/beeapi.js'));
 app.use('/admin', require('./routes/admin.js'));
-app.use(Static(__dirname + '/ressources'))
+app.use('/assets', Static(__dirname + '/ressources'))
 
 const PORT = 5000;
 

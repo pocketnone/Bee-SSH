@@ -1,76 +1,61 @@
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BeeSSH - Register</title>
-  <script src="https://js.hcaptcha.com/1/api.js?hl=fr" async defer></script>
-  <%- include('./includes/trailwind.ejs'); %>
-  <%- include('./includes/background.ejs'); %>
-</head>
-
-<body class="leading-normal tracking-normal text-white m-6 bg-cover bg-fixed">
-<div class="h-full">
-  <%- include ("./includes/header"); %>
-  <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <img class="mx-auto h-20 w-auto" src="/img/logo.svg" alt="Workflow">
-        <h2 class="mt-6 text-center text-3xl tracking-tight font-bold text-yellow-300">Register</h2>
-        <p class="mt-2 text-center text-sm text-white-200">
-          Or
-          <a href="/users/login" class="font-medium text-white-200 hover:text-yellow-300">login</a>
-        </p>
-      </div>
-      <%- include ("./partials/messages"); %>
-      <form class="mt-8 space-y-6" action="/users/login" method="POST">
-        <div class="rounded-md shadow-sm -space-y-px">
-          <div>
-            <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" name="email" type="email" autocomplete="email" required
-                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
-                     placeholder-white-500 text-yellow-300 rounded-t-md focus:outline-none focus:ring-yellow-300
-                     focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Email address" maxlength="30"
-                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                   value="<%= typeof email != 'undefined' ? email : '' %>">
-          </div>
-          <div>
-            <label for="username" class="sr-only">Username</label>
-            <input id="username" name="name" type="text" autocomplete="current-password" required
-                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
-                     placeholder-white-500 text-yellow-300 rounded-m-md focus:outline-none focus:ring-yellow-300
-                     focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Username" maxlength="16"
-                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                   value="<%= typeof name != 'undefined' ? name : '' %>">
-          </div>
-          <div>
-            <label for="password" class="sr-only">Password</label>
-            <input id="password" name="password" type="password" autocomplete="current-password" required
-                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
-                     placeholder-white-500 text-yellow-300 rounded-m-md focus:outline-none focus:ring-yellow-300
-                     focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Password"
-                     value="<%= typeof password != 'undefined' ? password : '' %>">
-          </div>
-          <div>
-            <label for="password2" class="sr-only">Confirm Password</label>
-            <input id="password2" name="password2" type="password" autocomplete="current-password" required
-                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
-                     placeholder-white-500 text-yellow-300 rounded-b-md focus:outline-none focus:ring-yellow-300
-                     focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Confirm Password"
-                     value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
-          </div>
+<%- include ("./includes/header"); %>
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body">
+      <h1 class="text-center mb-3">
+        <i class="fas fa-user-plus"></i> Register
+      </h1>
+      <%= include ("./partials/messages"); %>
+      <form action="/users/register" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="name"
+            id="name"
+            name="name"
+            class="form-control"
+            placeholder="Enter Name"
+            value="<%= typeof name != 'undefined' ? name : '' %>"
+          />
         </div>
-
-        <div class="h-captcha" data-sitekey="3ea12c5e-7584-4372-86fd-819b4239d6f0" data-theme="dark"></div>
-        <div>
-          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium
-            rounded-md text-black bg-yellow-300 hover:bg-transparent duration-300 ease-in-out hover:text-white duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
-            Register
-          </button>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Enter Email"
+            value="<%= typeof email != 'undefined' ? email : '' %>"
+          />
         </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Create Password"
+            value="<%= typeof password != 'undefined' ? password : '' %>"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirm Password</label>
+          <input
+            type="password"
+            id="password2"
+            name="password2"
+            class="form-control"
+            placeholder="Confirm Password"
+            value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Register
+        </button>
       </form>
+      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
     </div>
   </div>
 </div>
-</body>
-</html>

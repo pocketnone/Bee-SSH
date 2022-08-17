@@ -40,21 +40,21 @@ router.post("/client_login", (req, res) => {
 
     // Start check
     if(tool != process.env.CLIENTPASSWORD) {
-        errors.push("Error");
+        errors.push({msg: "No ClientPassword"});
     }
     if(!email) {
-        errors.push("No Username");
+        errors.push({msg: "No Email"});
     }
     if(!password) {
-        errors.push("no password")
+        errors.push({msg: "no password"});
     }
-    if(errors){
-        return res.json({Info: "Some Errors"}).status(400);
+    if(errors > 0){
+        return res.json({Info: errors, Data: req.body, Errors: errors.length}).status(400);
     }
 
-    User.findOne({email}).then(user => {
+    User.findOne({email: email}).then(user => {
        if(!user)
-           return res.json({Info: "Some Errors"}).status(400);
+           return res.json({Info: "No User"}).status(400);
 
         bcrypt.compare(password + process.env.PASSPEPPER, user.password, (err, isMatch) => {
             if (err) throw err;
@@ -71,13 +71,10 @@ router.post("/client_login", (req, res) => {
                                 AuthCookie: authcookie,
                                 IP: IPAdress
                             }).save();
-
-                            const pack_data = JSON.stringify(sshdata);
                             return res.json({
                                 AuthKey: authcookie,
-                                data: {
-                                    pack_data
-                                }
+                                data: sshdata
+
                             }).status(200);
                         })
                     } else {
@@ -93,17 +90,14 @@ router.post("/client_login", (req, res) => {
                             AuthCookie: authcookie,
                             IP: IPAdress
                         }).save();
-                        const pack_data = JSON.stringify(sshdata);
                         return res.json({
                             AuthKey: authcookie,
-                            data: {
-                                pack_data
-                            }
+                            data: sshdata
                         }).status(200);
                     })
                 }
             } else {
-                return res.json({Info: "Some Errors"}).status(400);
+                return res.json({Info: "Invalid Password"}).status(400);
             }
         });
     });
@@ -172,17 +166,17 @@ router.post("/client_new", (req, res) => {
    const {servername, port, isKEY, ipadress, PsswordorKey} = req.body;
 
     if(!authkey) {
-       return res.status(404);
+       return res.status(404).json({Info: "Auth Missing", data: req.body});
     }
     if(!tool) {
-        return res.status(404);
+        return res.status(404).json({Info: "Tool Missing", data: req.body});
     }
     if(tool != process.env.CLIENTPASSWORD) {
-        return res.status(404);
+        return res.status(404).json({Info: "Clientpass", data: req.body});
     }
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
         if(!_uid)
-            return res.status(201);
+            return res.status(201).json({Info: "AuthCookie Error"});
 
         const newServer = new sshdb({
             name: servername,

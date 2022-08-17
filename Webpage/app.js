@@ -69,7 +69,7 @@ app.use(passport.session());
 app.use(express.json());
 app.use((req, res, next) => {
     if (!allowedMethods.includes(req.method)) {
-        return res.end(201);
+        return res.end();
     }
     next()
 });

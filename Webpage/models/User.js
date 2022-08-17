@@ -6,7 +6,9 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   secret: {
-    type: String
+    type: String,
+    default: null,
+    required: true
   },
   mfa: {
     type: Boolean,

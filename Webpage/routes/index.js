@@ -46,12 +46,12 @@ router.get('/setup-2fa', ensureAuthenticated, (req,res) => {
     const secret = Speakeasy.generateSecret({length: 30});
 
     User.findOneAndUpdate({UID: req.user.UID}, {secret: secret.base32});
-    QRCode.toDataURL(secret.otpauth_url, function(err, data_url) {
-        return res.render('2FA-Setup', {
-            user: req.user,
-            otp_secret: secret.base32,
-            qrcode: data_url
-        });
+        QRCode.toDataURL(secret.otpauth_url, function(err, data_url) {
+            return res.render('2FA-Setup', {
+                user: req.user,
+                otp_secret: secret.base32,
+                qrcode: data_url
+            });
     });
 });
 

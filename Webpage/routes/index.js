@@ -45,7 +45,7 @@ router.get('/setup-2fa', ensureAuthenticated, (req,res) => {
 
     const secret = Speakeasy.generateSecret({length: 30});
 
-    User.findOneAndUpdate({UID: req.user.UID}, {secret: secret.base32});
+    User.findOneAndUpdate({UID: req.user.UID}, {secret: secret.base32}).then(b => {});
         QRCode.toDataURL(secret.otpauth_url, function(err, data_url) {
             return res.render('2FA-Setup', {
                 user: req.user,
@@ -58,17 +58,17 @@ router.get('/setup-2fa', ensureAuthenticated, (req,res) => {
 router.post("/setup-2fa-validate", ensureAuthenticated, (req, res) =>{
     const token = req.body.token;
     if(!token)
-        return res.redirect("/users/dashboard");
+        return res.redirect("/dashboard");
     if(req.user.mfa)
-        return res.redirect("/users/setup-2fa");
+        return res.redirect("/setup-2fa");
 
     if(mfa(req.user.secret, token)) {
-        User.findByIdAndUpdate(req.user._id, {mfa: true});
+        User.findByIdAndUpdate(req.user._id, {mfa: true}).then(b =>{});
         req.logout();
         req.flash('success_msg', '2FA Aktivated and Regenerated AuthCookie. Please login back.');
         return res.redirect('/users/login');
     } else {
-        return res.redirect("/users/setup-2fa");
+        return res.redirect("/setup-2fa");
     }
 });
 

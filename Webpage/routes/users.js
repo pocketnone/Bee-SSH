@@ -133,7 +133,7 @@ router.post('/login', (req, res, next) => {
   User.findOne({email: mail}).then(user=>{
     if(user) {
       if (user.mfa == true) {                        // User use 2FA
-        if (mfa(user.secret, secret)) {
+        if (mfa(user.secret , secret)) {
           passport.authenticate('local', {
             successRedirect: '/dashboard',
             failureRedirect: '/users/login',
@@ -142,7 +142,7 @@ router.post('/login', (req, res, next) => {
         } else {
           req.flash(
               'error_msg',
-              'Username, Password or 2FA-Code are Incorrect'
+              'User, Password ore 2FA Code are Incorrect'
           );
           return res.redirect('/users/login');
         }
@@ -167,10 +167,9 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
   req.logout(function(err) {
       if (err) { return next(err); }
-      res.redirect('/');
+      req.flash('success_msg', 'You are logged out');
+      res.redirect('/users/login');
   });
-  req.flash('success_msg', 'You are logged out');
-  res.redirect('/users/login');
 });
 
 

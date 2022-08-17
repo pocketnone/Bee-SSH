@@ -67,9 +67,11 @@ router.post("/setup-2fa-validate", ensureAuthenticated, (req, res) =>{
 
     if(mfa(req.user.secret, token)) {
         User.findByIdAndUpdate(req.user._id, {mfa: true}).then(b =>{});
-        bye();
-        req.flash('success_msg', '2FA Aktivated and Regenerated AuthCookie. Please login back.');
-        return res.redirect('/users/login');
+        req.logout(function(err) {
+            if (err) { return next(err); }
+            req.flash('success_msg', '2FA Aktivated and Regenerated AuthCookie. Please login back.');
+            return res.redirect('/users/login');
+        });
     } else {
         return res.redirect("/setup-2fa");
     }
@@ -79,7 +81,7 @@ router.post("/setup-2fa-validate", ensureAuthenticated, (req, res) =>{
 router.post("/schange_password", ensureAuthenticated, (req, res) =>{
     const {cirrent_password, password, password_2, token} = req.body;
 
-    let erros = [];
+    let errors = [];
 
     if(!cirrent_password, !password, !password_2) {
         errors.push({ msg: 'Please fill out every Password Box' });
@@ -128,7 +130,6 @@ router.post("/schange_password", ensureAuthenticated, (req, res) =>{
 
     if(!req.user.mfa)
     {
-
         bcrypt.compare(cirrent_password + process.env.PASSPEPPER, req.user.password, (err, isMatch) =>{
             if(err) console.log(err);
 
@@ -154,11 +155,5 @@ router.post("/schange_password", ensureAuthenticated, (req, res) =>{
 });
 
 
-function bye() {
-    req.logout(function(err) {
-        if (err) { return next(err); }
-        res.redirect('/');
-    });
-}
 
 module.exports = router;

@@ -142,7 +142,7 @@ router.post('/login', (req, res, next) => {
         } else {
           req.flash(
               'error_msg',
-              'Something went wrong'
+              'Username, Password or 2FA-Code are Incorrect'
           );
           return res.redirect('/users/login');
         }

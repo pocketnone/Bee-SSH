@@ -2,6 +2,8 @@ const express = require('express');
 const Speakeasy = require('speakeasy');
 const mfa = require('../config/totpAuth');
 const QRCode = require('qrcode');
+const { passwordStrength } = require('check-password-strength')
+const pwStrength = passwordStrength;
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
@@ -11,6 +13,7 @@ const User = require('../models/User');
 const sshdb = require('../models/SSHSessions');
 const AuthCookie = require('../models/AuthCookie');
 const UserScripteDB = require('../models/CustomUserScripts');
+const bcrypt = require("bcryptjs");
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
@@ -64,12 +67,98 @@ router.post("/setup-2fa-validate", ensureAuthenticated, (req, res) =>{
 
     if(mfa(req.user.secret, token)) {
         User.findByIdAndUpdate(req.user._id, {mfa: true}).then(b =>{});
-        req.logout();
+        bye();
         req.flash('success_msg', '2FA Aktivated and Regenerated AuthCookie. Please login back.');
         return res.redirect('/users/login');
     } else {
         return res.redirect("/setup-2fa");
     }
 });
+
+
+router.post("/schange_password", ensureAuthenticated, (req, res) =>{
+    const {cirrent_password, password, password_2, token} = req.body;
+
+    let erros = [];
+
+    if(!cirrent_password, !password, !password_2) {
+        errors.push({ msg: 'Please fill out every Password Box' });
+    }
+    if(password != password_2) {
+        errors.push({ msg: 'Password do not match' });
+    }
+
+    if(pwStrength(password).value !== 'Strong'){
+        errors.push({ msg: 'Your password is too weak. A calculator could bruteforce it' });
+    }
+
+    // User have 2FA
+    if(req.user.mfa){
+        if(mfa(req.user.secret, token)) {
+            bcrypt.compare(cirrent_password + process.env.PASSPEPPER, req.user.password, (err, isMatch) =>{
+                if(err) console.log(err);
+
+                if(isMatch) {
+                    bcrypt.genSalt(16, (err, salt) => {
+                        bcrypt.hash(password + process.env.PASSPEPPER, salt, (err, hash) => {
+                            if(err) throw err;
+                            User.findByIdAndUpdate(req.user._id, {password: hash}).then(b =>{});
+                            req.flash('success_msg', 'Successful changed Password');
+                            return res.redirect('/edit_profile');
+                        });
+                    });
+
+                } else {
+                    errors.push({ msg: 'Password False' });
+                    res.render('edit_profile', {
+                        errors,
+                        user: req.user
+                    });
+                }
+            });
+        } else {
+            errors.push({ msg: '2FA Code Invalid' });
+            res.render('edit_profile', {
+                errors,
+                user: req.user
+            });
+        }
+    }
+
+
+    if(!req.user.mfa)
+    {
+
+        bcrypt.compare(cirrent_password + process.env.PASSPEPPER, req.user.password, (err, isMatch) =>{
+            if(err) console.log(err);
+
+            if(isMatch) {
+                bcrypt.genSalt(16, (err, salt) => {
+                    bcrypt.hash(password + process.env.PASSPEPPER, salt, (err, hash) => {
+                        if(err) throw err;
+                        User.findByIdAndUpdate(req.user._id, {password: hash}).then(b =>{});
+                        req.flash('success_msg', 'Successful changed Password');
+                        return res.redirect('/edit_profile');
+                    });
+                });
+
+            } else {
+                errors.push({ msg: 'Password False' });
+                res.render('edit_profile', {
+                    errors,
+                    user: req.user
+                });
+            }
+        });
+    }
+});
+
+
+function bye() {
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
+}
 
 module.exports = router;

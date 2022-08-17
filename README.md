@@ -81,7 +81,11 @@ Rename .env.Example to .env and past any missing values
 #### Start Webpage
 
 ```bash
-npm app.js
+$ npm app.js
 ```
 
 - You can use `pm2` to let the App run forever.
+
+#### API Documentation
+
+Coming Soon...

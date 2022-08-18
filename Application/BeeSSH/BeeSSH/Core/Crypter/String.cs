@@ -13,7 +13,6 @@ namespace BeeSSH.Core.Crypter
             RijndaelManaged rijndael = SetRijndaelManaged(key);
             ICryptoTransform transform = rijndael.CreateEncryptor();
 
-            // Erstellt ein Byte Array mit dem verschlüsselten String
             byte[] encryptBytes = transform.TransformFinalBlock(textBytes, 0, textBytes.Length);
 
             string newText = Convert.ToBase64String(encryptBytes);

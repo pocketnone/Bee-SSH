@@ -6,7 +6,8 @@ module.exports = function (username, useremail, resettoken, ip_adress) {
         if (err) {
             return console.log(err);
         }
-        const emailData = data.replace("{USERNAME}", username).replace("{resettoken}", resettoken).replace("{ipadressbox}", ip_adress);
+        const emailData = data.replace("{USERNAME}", username).replace("{ipadressbox}", ip_adress).replace("\"[RESETTOKKEN]",  resettoken + "\"").replace("\"[RESETTOKKEN]",  resettoken + "\"");
+
 
 
         const smtpTransport = nodemailer.createTransport({

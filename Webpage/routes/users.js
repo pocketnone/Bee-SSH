@@ -220,7 +220,7 @@ router.post('/requestreset', forwardAuthenticated, (req, res) =>{
 
         req.flash(
             'success_msg',
-            'You are now registered and can log in'
+            'Please check you E-Mail to reset your Password'
         );
         res.redirect('/users/resetpassword');
       });
@@ -248,10 +248,12 @@ router.get('/complete/:ResetToken', forwardAuthenticated, (req, res) =>{
       resetDB.findOne({ResetToken: resetToken}).then(_uidUser => {
           if(!_uidUser) {
               errors.push({ msg: 'Please request a Password-Reset' });
+              console.log(errors);
               return res.render('PasswordResetRequest', { errors });
           }
 
           User.findOne({UID: _uidUser.UID}).then(_user => {
+
               res.render('PasswordResetComplete', {
                   user: _user,
                   ResetToken: resetToken

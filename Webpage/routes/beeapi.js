@@ -116,6 +116,10 @@ router.post("/fetch_userscripte", (req, res) => {
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
         if(!_uid)
             return res.status(201).json({Info:"Invalid"});
+        if(_uid.IP !== req.cf_ip) {
+            AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
+            return res.status(201).json({Info:"Invalid"});
+        }
 
         UserScripteDB.find({UID: _uid.UID}).then(_data =>{
 
@@ -149,7 +153,10 @@ router.post("/add_userscript", (req, res)=> {
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
         if(!_uid)
             return res.status(201).json({Info:"Invalid"});
-
+        if(_uid.IP !== req.cf_ip) {
+            AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
+            return res.status(201).json({Info:"Invalid"});
+        }
         const _NewScript = new UserScripteDB({
             name: scriptName,
             UID: _uid.UID,
@@ -182,7 +189,10 @@ router.post("/client_new", (req, res) => {
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
         if(!_uid)
             return res.status(201).json({Info: "AuthCookie Error"});
-
+        if(_uid.IP !== req.cf_ip) {
+            AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
+            return res.status(201).json({Info:"Invalid"});
+        }
         const newServer = new sshdb({
             name: servername,
             crpyt_ServerUser: ServerUsername,
@@ -206,9 +216,7 @@ router.post("/client_new", (req, res) => {
 router.get('/ip', (req, res) => {
     if(process.env.PRODUCTION) {
         res.json({
-            "ClientIP Normal": req.ip,
-            "ClientIP Cloudflare": req.cf_ip,
-            ClientHeader: req.headers
+            "ClientIP Cloudflare": req.cf_ip
         })
     } else {
         return res.status(201);

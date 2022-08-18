@@ -65,7 +65,7 @@ router.post('/register', (req, res) => {
 
 
   if (errors.length > 0) {
-    res.render('register', {
+    return res.render('register', {
       errors,
       name,
       email,
@@ -76,7 +76,7 @@ router.post('/register', (req, res) => {
     User.findOne({ email: email }).then(user => {
       if (user) {
         errors.push({ msg: 'Email already exists' });
-        res.render('register', {
+          return res.render('register', {
           errors,
           name,
           email,
@@ -104,7 +104,7 @@ router.post('/register', (req, res) => {
                   'success_msg',
                   'You are now registered and can log in'
                 );
-                res.redirect('/users/login');
+                return res.redirect('/users/login');
               })
               .catch(err => console.log(err));
           });

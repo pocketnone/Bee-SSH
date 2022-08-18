@@ -78,7 +78,7 @@ router.post("/setup-2fa-validate", ensureAuthenticated, (req, res) =>{
 });
 
 
-router.post("/schange_password", ensureAuthenticated, (req, res) =>{
+router.post("/change_password", ensureAuthenticated, (req, res) =>{
     const {cirrent_password, password, password_2, token} = req.body;
 
     let errors = [];

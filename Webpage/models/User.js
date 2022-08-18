@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
   },
   secret: {
     type: String,
-    default: null,
+    default: "Data",
     required: true
   },
   mfa: {

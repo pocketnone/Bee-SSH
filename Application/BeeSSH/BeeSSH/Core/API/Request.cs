@@ -46,6 +46,7 @@ namespace BeeSSH.Core.API
                             {
                                 ServerName = Decrypt(item.Name, EncryptionMasterPass),
                                 ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
+                                ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
                                 ServerPassword = Decrypt(item.serverpass, EncryptionMasterPass),
                                 ServerPort = Decrypt(item.port, EncryptionMasterPass)
                             });
@@ -55,6 +56,7 @@ namespace BeeSSH.Core.API
                             {
                                 ServerName = Decrypt(item.Name, EncryptionMasterPass),
                                 ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
+                                ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
                                 ServerPort = Decrypt(item.port, EncryptionMasterPass),
                                 RSAKEY = Encoding.UTF8.GetBytes(Decrypt(item.serverpass, EncryptionMasterPass))
                             });
@@ -104,12 +106,19 @@ namespace BeeSSH.Core.API
     internal class DataLoginModel {
         [JsonProperty("name")]
         public string Name { get; set; }
+        
+        [JsonProperty("crpyt_ServerUser")]
+        public string ServeruserName { get; set; }
+
         [JsonProperty("crpyt_ip")]
         public string ServerIP { get; set; }
+
         [JsonProperty("crpyt_password")]
         public string serverpass { get; set; }
+
         [JsonProperty("crpyt_port")]
         public string port { get; set; }
+
         [JsonProperty("isKey")]
         public string isKey { get; set; }
     }

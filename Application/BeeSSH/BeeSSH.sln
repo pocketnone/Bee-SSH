@@ -7,10 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeSSH", "BeeSSH\BeeSSH.csp
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11602167-7BE3-4082-BBC5-C70CD03876B3}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{11602167-7BE3-4082-BBC5-C70CD03876B3}.All|Any CPU.Build.0 = Release|Any CPU
 		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Release|Any CPU.ActiveCfg = Release|Any CPU

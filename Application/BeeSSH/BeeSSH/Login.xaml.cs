@@ -18,6 +18,7 @@ namespace BeeSSH
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
+
             if (loginBtn.Content.ToString() == "Final Step")
             {
                 //make master password checks here
@@ -61,7 +62,7 @@ namespace BeeSSH
 
         private void forgotPassword(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://as.mba/user/resetpassword");
+            Process.Start("https://as.mba/users/resetpassword");
         }
 
         private void exitApp(object sender, RoutedEventArgs e)

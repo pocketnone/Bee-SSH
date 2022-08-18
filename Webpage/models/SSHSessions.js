@@ -5,6 +5,10 @@ const SSH = new mongoose.Schema({
         type: String,
         required: true
     },
+    crpyt_ServerUser: {
+        type: String,
+        required: true
+    },
     crpyt_ip: {
         type: String,
         required: true

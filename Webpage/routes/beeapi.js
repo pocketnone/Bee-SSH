@@ -163,7 +163,7 @@ router.post("/add_userscript", (req, res)=> {
 
 router.post("/client_new", (req, res) => {
    const { authkey, tool } = req.body;
-   const {servername, port, isKEY, ipadress, PasswordKey} = req.body;
+   const {servername, port, isKEY, ipadress, PasswordKey, ServerUsername} = req.body;
 
     if(!authkey) {
        return res.status(404).json({Info: "Auth Missing", data: req.body});
@@ -180,6 +180,7 @@ router.post("/client_new", (req, res) => {
 
         const newServer = new sshdb({
             name: servername,
+            crpyt_ServerUser: ServerUsername,
             crpyt_ip: ipadress,
             crpyt_password: PasswordKey,
             crpyt_port: port,

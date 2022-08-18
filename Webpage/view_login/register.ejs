@@ -28,7 +28,7 @@
           <div>
             <label for="email-address" class="sr-only">Email address</label>
             <input id="email-address" name="email" type="email" autocomplete="email" required
-                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
+                   class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-white-300
                      placeholder-white-500 text-yellow-300 rounded-t-md focus:outline-none focus:ring-yellow-300
                      focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Email address" maxlength="30"
                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -37,7 +37,7 @@
           <div>
             <label for="username" class="sr-only">Username</label>
             <input id="username" name="name" type="text" autocomplete="current-password" required
-                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
+                   class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-white-300
                      placeholder-white-500 text-yellow-300 rounded-m-md focus:outline-none focus:ring-yellow-300
                      focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Username" maxlength="16"
                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -46,7 +46,7 @@
           <div>
             <label for="password" class="sr-only">Password</label>
             <input id="password" name="password" type="password" autocomplete="current-password" required
-                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
+                   class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-white-300
                      placeholder-white-500 text-yellow-300 rounded-m-md focus:outline-none focus:ring-yellow-300
                      focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Password"
                      value="<%= typeof password != 'undefined' ? password : '' %>">
@@ -54,7 +54,7 @@
           <div>
             <label for="password2" class="sr-only">Confirm Password</label>
             <input id="password2" name="password2" type="password" autocomplete="current-password" required
-                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-white-300
+                   class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-white-300
                      placeholder-white-500 text-yellow-300 rounded-b-md focus:outline-none focus:ring-yellow-300
                      focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Confirm Password"
                      value="<%= typeof password2 != 'undefined' ? password2 : '' %>">

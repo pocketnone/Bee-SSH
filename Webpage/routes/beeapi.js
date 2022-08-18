@@ -117,13 +117,12 @@ router.post("/fetch_userscripte", (req, res) => {
         if(!_uid)
             return res.status(201).json({Info:"Invalid"});
 
-        UserScripteDB.find({UID: _uid.UID}).then(data =>{
+        UserScripteDB.find({UID: _uid.UID}).then(_data =>{
 
             return res.status(200).json({
                 Info: "Success",
-                data: {
-                    data
-                }
+                data: _data
+
             });
         });
     });
@@ -142,7 +141,10 @@ router.post("/add_userscript", (req, res)=> {
         return res.status(404);
     }
     if(tool != process.env.CLIENTPASSWORD) {
-        return res.status(404);
+        return res.end();
+    }
+    if(!tool|| !userscript|| !scriptName ) {
+        return res.status(404).json({Info: "Values Missing", data: req.body});
     }
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
         if(!_uid)
@@ -173,6 +175,9 @@ router.post("/client_new", (req, res) => {
     }
     if(tool != process.env.CLIENTPASSWORD) {
         return res.status(404).json({Info: "Clientpass", data: req.body});
+    }
+    if(!servername || !port || !isKEY || !ipadress || !PasswordKey || !ServerUsername) {
+        return res.status(404).json({Info: "Values Missing", data: req.body});
     }
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
         if(!_uid)

@@ -40,7 +40,7 @@ namespace BeeSSH.Core.API
                     AuthCookieForAPI = datastuff.AuthCookie;
                     foreach (var item in datastuff.ServerRes)
                     {
-                        if(item.isKey == "false")
+                        if(!Boolean.Parse(item.isKey))
                         {
                             ServerList.Add(new ServerListModel
                             {

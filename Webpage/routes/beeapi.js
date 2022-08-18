@@ -154,7 +154,7 @@ router.post("/add_userscript", (req, res)=> {
             name: scriptName,
             UID: _uid.UID,
             Script: userscript
-        })
+        }).save();
 
        return res.status(200).json({
            Info: "Success"

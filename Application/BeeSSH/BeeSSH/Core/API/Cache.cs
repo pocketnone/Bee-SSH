@@ -11,6 +11,7 @@ namespace BeeSSH.Core.API
         internal static string AuthCookieForAPI { get; set; }
         internal static string EncryptionMasterPass { get; set; }                           // Master Password for encryption
         internal static List<ServerListModel> ServerList = new List<ServerListModel>();     // All Servers in a list Uncrypted
+        internal static List<ScriptModel> Scriptlist = new List<ScriptModel>();             // All Scripts
 
         // API Endpoints 
         internal static string LoginAPIURL = "https://as.mba/api/client_login";             // Request a Login
@@ -33,5 +34,12 @@ namespace BeeSSH.Core.API
         internal string ServerPort           { get; set; }
         internal string ServerUserName       { get; set; }
         internal byte[] RSAKEY               { get; set; }
+    }
+
+    internal class ScriptModel
+    {
+        internal string name { get; set; }
+        
+        internal string script { get; set; }
     }
 }

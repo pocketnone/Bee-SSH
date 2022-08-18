@@ -15,9 +15,8 @@
                 <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
                     <Label Content="Add Server" HorizontalAlignment="Center"/>
                 </materialdesign:Card>
-                <TextBox materialdesign:HintAssist.Hint="SFTP" Foreground="White" Margin="5"/>
-
-                <TextBox materialdesign:HintAssist.Hint="ServerAdress" Foreground="White" Margin="5"/>
+                <TextBox materialdesign:HintAssist.Hint="Server Name" Foreground="White" Margin="5"/>
+                <TextBox materialdesign:HintAssist.Hint="Server Adress" Foreground="White" Margin="5"/>
                 <TextBox materialdesign:HintAssist.Hint="Port" Foreground="White" Margin="5"/>
                 <TextBox materialdesign:HintAssist.Hint="Username" Foreground="White" Margin="5"/>
                 <TextBox materialdesign:HintAssist.Hint="Password" Foreground="White" Margin="5"/>

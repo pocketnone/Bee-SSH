@@ -90,7 +90,62 @@ namespace BeeSSH.Core.API
                 return datastuff.DataRes;
             }
         }
+
+        internal static string AddScripts(string Scriptname, string ScriptContent)
+        {
+            var requestOptions = new Dictionary<string, string>();
+            requestOptions.Add("tool", ClientAuthKey);
+            requestOptions.Add("authkey", AuthCookieForAPI);
+            requestOptions.Add("userscript", ScriptContent);
+            requestOptions.Add("scriptName", Scriptname);
+            using (var client = new HttpClient())
+            {
+                var req = new HttpRequestMessage(HttpMethod.Post, AddServerAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };                 // Request
+                var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
+                string res = res_raw.Content.ReadAsStringAsync().Result;                                                                                    // Convert to String
+                var datastuff = JsonConvert.DeserializeObject<OtherResponse>(res);
+                return datastuff.DataRes;
+            }
+        }
+        
+        internal static string FetchShortCutsScripts()
+        {
+            var requestOptions = new Dictionary<string, string>();
+            requestOptions.Add("tool", ClientAuthKey);
+            requestOptions.Add("authkey", AuthCookieForAPI);
+            using (var client = new HttpClient())
+            {
+                var req = new HttpRequestMessage(HttpMethod.Post, AddServerAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
+                var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
+                string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
+                var datastuff = JsonConvert.DeserializeObject<ScriptsModel>(res);
+                
+                if(datastuff.InfoRes != "Success")
+                {
+                    return datastuff.InfoRes;
+                }
+                
+                
+                foreach (var resListArr in datastuff.ListRes)
+                {
+                    Scriptlist.Add(new ScriptModel
+                        {
+                            name = resListArr.Name,
+                            script = resListArr.scriptdata
+                        }
+                    );
+                }
+
+                return "ok";
+            }
+        }
     }
+
+    //=================================================================================================================
+    // Data Models
+    //=================================================================================================================
+
+    #region DataModels
 
     // Login
     internal class LoginDeserilizeModel
@@ -129,4 +184,25 @@ namespace BeeSSH.Core.API
         [JsonProperty("Info")]
         public string DataRes { get; set; }
     }
+
+    internal class ScriptsModel
+    {
+        [JsonProperty("Info")]
+        public string InfoRes { get; set; }
+        
+        [JsonProperty("data")]
+        public List<ScriptsExtensionModel> ListRes { get; set; }
+    }
+
+    internal class ScriptsExtensionModel
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        
+        [JsonProperty("Script")]
+        public string scriptdata { get; set; }
+
+    }
+
+    #endregion DataModels
 }

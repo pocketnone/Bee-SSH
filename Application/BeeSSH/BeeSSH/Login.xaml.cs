@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
+using BeeSSH.Utils.DiscordRPC;
+using static BeeSSH.Utils.DiscordRPC.DiscordRPCConfig;
 
 namespace BeeSSH
 {
@@ -11,14 +13,17 @@ namespace BeeSSH
     public partial class Login : Window
     {
         private bool userIsLoggedIn = true; //bool temoprär
+        DiscordRPCLoader loader = new DiscordRPCLoader(DiscordID);
         public Login()
         {
             InitializeComponent();
+            
+            loader.UpdateDetails("In Login");
         }
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            loader.UpdateDetails("Pressed Button Login");
             if (loginBtn.Content.ToString() == "Final Step")
             {
                 //make master password checks here
@@ -37,6 +42,7 @@ namespace BeeSSH
 
         private void ShowMasterPasswordBox()
         {
+            loader.UpdateDetails("Look at Masterpassword Input");
             masterPasBoxCard.Visibility = Visibility.Visible;
             masterPasBox.Visibility = Visibility.Visible;
             loginBtn.Content = "Final Step";

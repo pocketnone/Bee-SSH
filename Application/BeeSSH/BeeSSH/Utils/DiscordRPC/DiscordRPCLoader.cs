@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DiscordRPC;
+using static BeeSSH.Utils.DiscordRPC.DiscordRPCConfig;
 
 namespace BeeSSH.Utils.DiscordRPC
 {
     internal class DiscordRPCLoader : IDisposable
     {
-        internal DiscordRpcClient _client = new DiscordRpcClient(_clientID);
+        internal DiscordRpcClient _client = new DiscordRpcClient(DiscordID);
         internal static string _clientID { get; set; }
 
         public DiscordRPCLoader(string _ClientID)
@@ -23,15 +24,13 @@ namespace BeeSSH.Utils.DiscordRPC
                 Timestamps = Timestamps.Now,
                 Assets = new Assets()
                 {
-                    LargeImageKey = "",
-                    LargeImageText = "Bee-SSH Client",
-                    SmallImageKey = "",
-                    SmallImageText = ""
+                    LargeImageKey = "logo",
+                    LargeImageText = "Sum Sum SSH"
                 },
                 Buttons = new Button[]
                 {
                     new Button(){ Label = "Download BeeSSH", Url = "https://as.mba/" },
-                    new Button(){ Label = "Discord", Url = "" }
+                    new Button(){ Label = "Discord", Url = "https://discord.gg/ChhDyjCQWK" }
                 }
             });
         }

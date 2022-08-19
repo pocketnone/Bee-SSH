@@ -11,7 +11,136 @@
     <%- include('./includes/trailwind.ejs'); %>
 </head>
 
-<body>
+<body class="landing-page">
+<!-- Begin Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="https://as.mba/dashboard" rel="tooltip" title="" data-placement="bottom" target="_blank" data-original-title="Designed by Creative Tim">
+                <span>BEE•</span> SSH
+            </a>
+            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <div class="navbar-collapse-header">
+                <div class="row">
+                    <div class="col-6 collapse-brand">
+                        <a>
+                            BEE•
+                        </a>
+                    </div>
+                    <div class="col-6 collapse-close text-right">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="tim-icons icon-simple-remove"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <ul class="navbar-nav">
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-cogs d-lg-none d-xl-none"></i> Welcome <%= user.name %>
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                       <% if(!user.mfa) {%>
+                        <a href="examples/register-page.html" class="dropdown-item">
+                            <i class="tim-icons icon-bullet-list-67"></i>Enable 2FA
+                        </a>
+                        <% } %>
+                        <a href="examples/profile-page.html" class="dropdown-item">
+                            <i class="tim-icons icon-double-right"></i>Logout
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-default d-none d-lg-block" href="javascript:void(0)" onclick="scrollToDownload()">
+                        <i class="tim-icons icon-cloud-download-93"></i> Download
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->
+section class="section section-lg">
+<section class="section">
+    <img src="/img/path4.png" class="path">
+    <div class="container">
+        <div class="row row-grid justify-content-between">
+            <div class="col-md-5 mt-lg-5">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 px-2 py-2">
+                        <div class="card card-stats ">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="tim-icons icon-trophy text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-title"><%= current_user %>
+                                            </p><p>
+                                            </p><p class="card-category">Users</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 px-2 py-2">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="tim-icons icon-chart-bar-32 text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-title"><%= server %>
+                                            </p><p>
+                                            </p><p class="card-category">Servers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 px-2 py-2">
+                        <div class="card card-stats ">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="tim-icons icon-book-bookmark text-info"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-title"><%= script %>
+                                            </p><p>
+                                            </p><p class="card-category">Scripts</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</section>
 </body>
 </html>

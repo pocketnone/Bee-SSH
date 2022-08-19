@@ -22,10 +22,13 @@ router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
     UserScripteDB.find({UID: req.user.UID}).then(scripts => {
         sshdb.find({UID: req.user.UID}).then(servers => {
-            res.render('dashboard', {
-                user: req.user,
-                server: servers.length,
-                script: scripts.length
+            User.find({}).then(data => {
+                res.render('dashboard', {
+                    user: req.user,
+                    server: servers.length,
+                    script: scripts.length,
+                    current_user: data.length
+                })
             })
         })
     })

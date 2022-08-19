@@ -17,8 +17,6 @@ const bcrypt = require("bcryptjs");
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
-router.get('/download', forwardAuthenticated, (req, res) => res.render('download'));
-router.get('/features', forwardAuthenticated, (req, res) => res.render('features'));
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
@@ -33,11 +31,6 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
     })
 );
 
-router.get('/edit_profile', ensureAuthenticated, (req, res) =>
-    res.render('edit_profile', {
-        user: req.user
-    })
-);
 
 router.get('/setup-2fa', ensureAuthenticated, (req,res) => {
     if(req.user.mfa) {

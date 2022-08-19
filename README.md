@@ -2,7 +2,7 @@
 # Bee-SSH SSH Client
 
 <p align="center">
-  <img src="https://github.com/sysfaker/Bee-SSH/blob/Development/Branding/b3.png" style="max-height: 50%">
+  <img src="https://github.com/sysfaker/Bee-SSH/blob/Indev/Branding/b3.png" style="max-height: 50%">
 </p>
 
 ----

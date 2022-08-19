@@ -87,11 +87,14 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-app.use('/', require('./routes/index.js'));
-app.use('/users', require('./routes/users.js'));
+app.use('/', require('./routes/index.js'), Static(__dirname + '/ressources'));
+app.use('/users', require('./routes/users.js'), Static(__dirname + '/ressources'));
 app.use('/api', require('./routes/beeapi.js'));
 app.use('/admin', require('./routes/admin.js'));
-app.use(Static(__dirname + '/ressources'))
+app.use(Static(__dirname + '/ressources'));
+app.use(Static(__dirname + '/ressources/js'));
+app.use(Static(__dirname + '/ressources'));
+
 
 const PORT = 5000;
 

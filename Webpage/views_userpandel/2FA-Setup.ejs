@@ -46,11 +46,11 @@
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
                         <% if(!user.mfa) {%>
-                            <a href="examples/register-page.html" class="dropdown-item">
+                            <a href="/setup-2fa" class="dropdown-item">
                                 <i class="tim-icons icon-bullet-list-67"></i>Enable 2FA
                             </a>
                         <% } %>
-                        <a href="examples/profile-page.html" class="dropdown-item">
+                        <a href="/users/logout" class="dropdown-item">
                             <i class="tim-icons icon-double-right"></i>Logout
                         </a>
                     </div>
@@ -70,7 +70,10 @@
         <div class="content-center">
             <div class="container">
                 <div class="row align-items-center text-left">
-                    <div class="col-lg-6 col-12">
+                    <div class="header-shape col-sm col-12">
+                        <img src="<%= qrcode %>">
+                    </div>
+                    <div class="col col-12">
                         <h1 class="title">Enable
                             <br><strong class="text-info">2-FA Auth</strong></h1>
                         <p class="description">The secret: <%= otp_secret %></p>
@@ -85,39 +88,26 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-lg-6 col-12">
-                        <img src="<%= qrcode %>" class="path path3">
-                        <figure class="header-shape">
-                            <svg x="0px" y="0px" viewBox="10 12 878.9 907" style="enable-background:new 10 12 878.9 907;" xml:space="preserve" class="injected-svg js-svg-injector">
-                                    <g>
-                                        <defs>
-                                            <path id="shape1" d="M300.34,75.35C379.42-7.43,305.86,185.78,540.87,98.95,647.68,46,677,219,674.65,258.55c-11,185-132.32,65-13.89,317.66,56.86,121.32-94.88,256-155.89,151.41-55.11-94.48-151.56-85.1-189-90.54-311-45.27-9.33-148.52-125.21-256.78C9.7,211.2,190.5,100.86,306.34,70.35Z"></path>
-                                        </defs>
-                                        <clipPath id="shape2">
-                                            <use xlink:href="#shape1" style="overflow:visible;"></use>
-                                        </clipPath>
-                                        <g clip-path="url(#shape2)">
-                                            <image id="imageShape1" style="overflow:visible;" width="800" height="900" xlink:href="assets/img/img_352.png" transform="matrix(0.9488 0 0 0.9488 25 53.1187)"></image>
-                                        </g>
-                                    </g>
-                                <g>
-                                    <defs>
-                                        <path id="shape3" d="M186.26,647.36c7,1,14,1.87,21.11,2.4,42.73,3.24,173.84,9.32,234.51,60.15,72.83,61,105.38,80.19,37.4,96.45C388.73,828,438.49,724,312,749.28c-167.3,33.46-210.61-70.86-181.08-90.54C151.8,644.8,174.69,645.67,186.26,647.36Z"></path>
-                                    </defs>
-                                    <clipPath id="shape4">
-                                        <use xlink:href="#shape3" style="overflow:visible;"></use>
-                                    </clipPath>
-                                    <g transform="matrix(1 0 0 1 0 0)" clip-path="url(#shape4)">
-                                        <image id="imageShape2" style="overflow:visible;" width="900" height="900" xlink:href="assets/img/img_352.png" transform="matrix(0.9488 0 0 0.9488 25 53.1187)"> </image>
-                                    </g>
-                                </g>
-                            </svg>
-                        </figure>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--   Core JS Files   -->
+<script src="/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="/js/plugins/bootstrap-switch.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!-- Chart JS -->
+<script src="/js/plugins/chartjs.min.js"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="/js/plugins/moment.min.js"></script>
+<script src="/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<!-- Control Center for Black UI Kit: parallax effects, scripts for the example pages etc -->
+<script src="/js/blk-design-system.min.js?v=1.0.0" type="text/javascript"></script>
 </body>
 </html>

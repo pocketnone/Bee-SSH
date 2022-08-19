@@ -8,69 +8,102 @@
   <%- include('./includes/trailwind.ejs'); %>
   <%- include('./includes/background.ejs'); %>
 </head>
-
-<body class="leading-normal tracking-normal text-white m-6 bg-cover bg-fixed">
-<div class="h-full">
-  <%- include ("./includes/header"); %>
-  <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <img class="mx-auto h-20 w-auto" src="/img/logo.svg" alt="Workflow">
-        <h2 class="mt-6 text-center text-3xl tracking-tight font-bold text-yellow-300">Register</h2>
-        <p class="mt-2 text-center text-sm text-white-200">
-          Or
-          <a href="/users/login" class="font-medium text-white-200 hover:text-yellow-300">login</a>
-        </p>
+<body class="register-page">
+<%- include ("./includes/header"); %>
+<div class="wrapper">
+  <div class="page-header">
+    <div class="page-header-image"></div>
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-md-6 offset-lg-0 offset-md-3">
+            <div id="square7" class="square square-7"></div>
+            <div id="square8" class="square square-8"></div>
+            <div class="card card-register">
+              <div class="card-header">
+                <img class="card-img" src="/img/square1.png" alt="Card image" >
+                <h4 class="card-title">Register</h4>
+              </div>
+              <div class="card-body">
+                <!-- Begin Form -->
+                <form class="form" action="/users/register" method="POST">
+                  <div class="input-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-single-02"></i>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control"  name="name" placeholder="Full Name" maxlength="15"
+                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                             value="<%= typeof name != 'undefined' ? name : '' %>">
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-email-85"></i>
+                        </div>
+                      </div>
+                      <input placeholder="Email" class="form-control" name="email" type="email" autocomplete="email" required maxlength="30"
+                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                             value="<%= typeof email != 'undefined' ? email : '' %>">
+                    </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-lock-circle"></i>
+                      </div>
+                    </div>
+                    <input class="form-control" name="password" type="password" autocomplete="current-password" required placeholder="Password"
+                           value="<%= typeof password != 'undefined' ? password : '' %>">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-lock-circle"></i>
+                      </div>
+                    </div>
+                    <input class="form-control" name="password2" type="password" autocomplete="current-password" required
+                           placeholder="Confirm Password"
+                           value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
+                  </div>
+                  <div class="form-check  text-monospace">
+                    <div class="h-captcha" data-sitekey="3ea12c5e-7584-4372-86fd-819b4239d6f0" data-theme="dark"></div>
+                  </div>
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-info btn-round btn-lg">Login</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="register-bg"></div>
+        <div id="square1" class="square square-1"></div>
+        <div id="square2" class="square square-2"></div>
+        <div id="square3" class="square square-3"></div>
+        <div id="square4" class="square square-4"></div>
+        <div id="square5" class="square square-5"></div>
+        <div id="square6" class="square square-6"></div>
       </div>
-      <%- include ("./partials/messages"); %>
-      <form class="mt-8 space-y-6" action="/users/register" method="POST">
-        <div class="rounded-md shadow-sm -space-y-px">
-          <div>
-            <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" name="email" type="email" autocomplete="email" required
-                   class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-white-300
-                     placeholder-white-500 text-yellow-300 rounded-t-md focus:outline-none focus:ring-yellow-300
-                     focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Email address" maxlength="30"
-                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                   value="<%= typeof email != 'undefined' ? email : '' %>">
-          </div>
-          <div>
-            <label for="username" class="sr-only">Username</label>
-            <input id="username" name="name" type="text" autocomplete="current-password" required
-                   class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-white-300
-                     placeholder-white-500 text-yellow-300 rounded-m-md focus:outline-none focus:ring-yellow-300
-                     focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Username" maxlength="16"
-                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                   value="<%= typeof name != 'undefined' ? name : '' %>">
-          </div>
-          <div>
-            <label for="password" class="sr-only">Password</label>
-            <input id="password" name="password" type="password" autocomplete="current-password" required
-                   class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-white-300
-                     placeholder-white-500 text-yellow-300 rounded-m-md focus:outline-none focus:ring-yellow-300
-                     focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Password"
-                     value="<%= typeof password != 'undefined' ? password : '' %>">
-          </div>
-          <div>
-            <label for="password2" class="sr-only">Confirm Password</label>
-            <input id="password2" name="password2" type="password" autocomplete="current-password" required
-                   class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-white-300
-                     placeholder-white-500 text-yellow-300 rounded-b-md focus:outline-none focus:ring-yellow-300
-                     focus:border-yellow-300 focus:z-10 sm:text-sm" placeholder="Confirm Password"
-                     value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
-          </div>
-        </div>
-
-        <div class="h-captcha" data-sitekey="3ea12c5e-7584-4372-86fd-819b4239d6f0" data-theme="dark"></div>
-        <div>
-          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium
-            rounded-md text-black bg-yellow-300 hover:bg-transparent duration-300 ease-in-out hover:text-white duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
-            Register
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 </div>
+<!--   Core JS Files   -->
+<script src="/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="/js/plugins/bootstrap-switch.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!-- Chart JS -->
+<script src="/js/plugins/chartjs.min.js"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="/js/plugins/moment.min.js"></script>
+<script src="/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<!-- Control Center for Black UI Kit: parallax effects, scripts for the example pages etc -->
+<script src="/js/blk-design-system.min.js?v=1.0.0" type="text/javascript"></script>
 </body>
 </html>

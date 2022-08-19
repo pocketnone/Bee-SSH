@@ -48,5 +48,25 @@ namespace BeeSSH.Interface
         {
             ContentFrame.Navigate(new Uri("Interface/UserControlls/RSAKeyUserControl.xaml", UriKind.Relative));
         }
+
+        private void OpenMenuBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenMenuBtn.Visibility = Visibility.Collapsed;
+            CloseMenuBtn.Visibility = Visibility.Visible;
+            ContentFrame.Width = 1042;
+        }
+
+        private void CloseMenuBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenMenuBtn.Visibility = Visibility.Visible;
+            CloseMenuBtn.Visibility = Visibility.Collapsed;
+            ContentFrame.Width = 1190;
+
+        }
+
+        private void SettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new Uri("Interface/UserControlls/SettingsUserControl.xaml", UriKind.Relative));
+        }
     }
 }

@@ -87,6 +87,9 @@
     <Compile Include="Interface\UserControlls\RSAKeyUserControl.xaml.cs">
       <DependentUpon>RSAKeyUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interface\UserControlls\SettingsUserControl.xaml.cs">
+      <DependentUpon>SettingsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interface\UserControlls\TerminalUsercControl.xaml.cs">
       <DependentUpon>TerminalUsercControl.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interface\UserControlls\RSAKeyUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\UserControlls\SettingsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

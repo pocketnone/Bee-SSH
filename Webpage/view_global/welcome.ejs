@@ -1,52 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeeSSH</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BEESSH</title>
     <%- include('./includes/trailwind.ejs'); %>
-    <%- include('./includes/background.ejs'); %>
 </head>
-<body class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed">
-<div class="h-full">
-    <!--Nav-->
-    <%- include('./includes/header.ejs'); %>
-    <!--Main-->
-    <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-        <!--Left Col-->
-        <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-            <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
-                Welcome to
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-pink-500 to-yellow-500">
-              BEE - SSH!
-            </span>
-            </h1>
-            <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
-                A small, open-source SSH Client with a modern look.
-            </p>
-        </div>
-
-        <!--Right Col-->
-        <div class="w-full xl:w-3/5 p-12 overflow-hidden">
-            <img class="mx-auto w-full md:w-4/5 transform -rotate-3 transition hover:scale-30 duration-700 ease-in-out hover:rotate-3" src="./img/tool.svg" />
-        </div>
-
-        <div class="mx-auto md:pt-16">
-            <p class="text-blue-400 font-bold pb-8 lg:pb-6 text-center">
-                Download BEESSH:
-            </p>
-            <div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
-                <a href="https://github.com/sysfaker/Bee-SSH">
-                    <img src="./img/github.svg" class="h-10 pr-12 transform hover:scale-125 duration-300 ease-in-out"/>
-                </a>
-                <a href="">
-                    <img src="./img/download.svg" class="h-10 transform hover:scale-125 duration-300 ease-in-out"/>
-                </a>
+<body class="landing-page">
+<!-- Navbar -->
+<%- include('./includes/header.ejs'); %>
+<!-- End Navbar -->
+<div class="wrapper">
+    <div class="page-header">
+        <img src="/img/blob.png" class="path">
+        <img src="/img/path2.png" class="path2">
+        <img src="/img/triunghiuri.png" class="shapes triangle">
+        <img src="/img/waves.png" class="shapes wave">
+        <img src="/img/patrat.png" class="shapes squares">
+        <img src="/img/cercuri.png" class="shapes circle">
+        <div class="content-center">
+            <div class="row row-grid justify-content-between align-items-center text-left">
+                <div class="col-lg-6 col-md-6">
+                    <h1 class="text-white">Keep SSH and sFTP
+                        <br/>
+                        <span class="text-white">simple</span>
+                    </h1>
+                    <p class="text-white mb-3">A tool that covers all needs </p>
+                    <div class="btn-wrapper mb-3" >
+                        <p class="category text-success d-inline">Download now</p>
+                        <a href="#blk" class="btn btn-success btn-link btn-sm"><i class="tim-icons icon-minimal-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-7">
+                    <img src="/img/tool.svg" alt="Circle image" class="img-fluid">
+                </div>
             </div>
         </div>
-
     </div>
+    <section class="section section-lg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <h1 class="text-center">Why BEESSH?</h1>
+                    <div class="row row-grid justify-content-center">
+                        <div class="col-lg-3">
+                            <div class="info">
+                                <div class="icon icon-primary">
+                                    <i class="tim-icons icon-money-coins"></i>
+                                </div>
+                                <h4 class="info-title">No Cost</h4>
+                                <hr class="line-primary">
+                                <p>All features of BEESSH are free of charge. We do not want to restrict anything.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="info">
+                                <div class="icon icon-warning">
+                                    <i class="tim-icons icon-app"></i>
+                                </div>
+                                <h4 class="info-title">Many Features</h4>
+                                <hr class="line-warning">
+                                <p>BEESSH has many features. BEESSH supports besides SSH also sFTP, FTP, Remote Desktop and RSA Key Generation also SSH Shortcuts also called Scripts.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="info">
+                                <div class="icon icon-success">
+                                    <i class="tim-icons icon-tv-2"></i>
+                                </div>
+                                <h4 class="info-title">Great Design</h4>
+                                <hr class="line-success">
+                                <p>BEESSH has a modern and contemporary design which has an integration to Discord (Discord RPC). </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section section-lg section-safe">
+        <img src="/img/path5.png" class="path">
+        <div class="container">
+            <div class="row row-grid justify-content-between">
+                <div class="col-md-5">
+                    <img src="/img/tool.svg" class="img-fluid floating">
+                    <div class="card card-stats bg-danger">
+                        <div class="card-body">
+                            <div class="justify-content-center">
+                                <div class="numbers">
+                                    <p class="card-title">100%</p>
+                                    <p class="card-category text-white">Safe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-stats bg-info">
+                        <div class="card-body">
+                            <div class="justify-content-center">
+                                <div class="numbers">
+                                    <p class="card-title">100%</p>
+                                    <p class="card-category text-white">Open Source</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="px-md-5">
+                        <hr class="line-success">
+                        <h3>Awesome features</h3>
+                        <p>BEESSH comes with an intuitive design to make it as easy to use as possible.</p>
+                        <ul class="list-unstyled mt-5">
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-success mb-2">
+                                        <i class="tim-icons icon-vector"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h6>Carefully crafted components</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-success mb-2">
+                                        <i class="tim-icons icon-tap-02"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h6>Amazing animations</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-success mb-2">
+                                        <i class="tim-icons icon-single-02"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h6>Super aktive development team</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <a class="nav-link btn btn-default d-none d-lg-block" href="javascript:void(0)" download="">
+                                        <i class="tim-icons icon-cloud-download-93"></i> Download
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
+<!--   Core JS Files   -->
+<script src=" /js/core/jquery.min.js" type="text/javascript"></script>
+<script src="/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="/js/plugins/bootstrap-switch.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!-- Chart JS -->
+<script src="/js/plugins/chartjs.min.js"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="/js/plugins/moment.min.js"></script>
+<script src="/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<!-- Black Dashboard DEMO methods, don't include it in your project! -->
+<!-- Control Center for Black UI Kit: parallax effects, scripts for the example pages etc -->
+<script src="/js/blk-design-system.min.js?v=1.0.0" type="text/javascript"></script>
 </body>
 </html>

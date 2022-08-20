@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
+﻿using BeeSSH.Utils.DiscordRPC;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-using System.Text.RegularExpressions;
-using BeeSSH.Utils.DiscordRPC;
 using static BeeSSH.Utils.DiscordRPC.DiscordRPCConfig;
 
 namespace BeeSSH
@@ -17,7 +17,7 @@ namespace BeeSSH
         public Login()
         {
             InitializeComponent();
-            
+
             loader.UpdateDetails("In Login");
         }
 

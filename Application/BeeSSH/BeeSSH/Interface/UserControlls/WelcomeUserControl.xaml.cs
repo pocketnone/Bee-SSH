@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Diagnostics;
+using System.Windows.Controls;
 using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 
 namespace BeeSSH.Interface.UserControlls
@@ -12,6 +13,16 @@ namespace BeeSSH.Interface.UserControlls
         {
             InitializeComponent();
             MainView();
+        }
+
+        private void githubBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/sysfaker/Bee-SSH");
+        }
+
+        private void discordBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Process.Start("https://discord.gg/A2pUGTPjru");
         }
     }
 }

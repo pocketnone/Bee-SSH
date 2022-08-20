@@ -8,23 +8,23 @@
         internal static void LoginView()
         {
             _DiscordRPCLoader.UpdateDetails("In Login");
-            _DiscordRPCLoader.UpdateState("Is logging in");
+            _DiscordRPCLoader.UpdateState("logging in");
         }
 
         #region Dashboard
         internal static void MainView()
         {
-            _DiscordRPCLoader.UpdateDetails("In Dashboard");
-            _DiscordRPCLoader.UpdateState("Look at the Dashboard");
+            _DiscordRPCLoader.UpdateDetails("In Welcome Screen");
+            _DiscordRPCLoader.UpdateState("Looking at my Stats");
         }
         internal static void AddServer_MainView()
         {
-            _DiscordRPCLoader.UpdateState("Is adding a Server");
+            _DiscordRPCLoader.UpdateState("Adding a Server");
         }
 
         internal static void RSAKE_MainView()
         {
-            _DiscordRPCLoader.UpdateState("Is generating a RSA Key");
+            _DiscordRPCLoader.UpdateState("Generating a RSA Key");
         }
 
         internal static void Settings_MainView()
@@ -35,6 +35,10 @@
         internal static void Terminal_MainView()
         {
             _DiscordRPCLoader.UpdateState("In the Terminal");
+        }
+        internal static void Connections()
+        {
+            _DiscordRPCLoader.UpdateState("Looking at my Connections");
         }
 
         #endregion Dashboard

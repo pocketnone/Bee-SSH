@@ -14,34 +14,82 @@
         <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=SlideInFromBottom}">
             <StackPanel>
                 <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
-                    <Label Content="Saved Servers" HorizontalAlignment="Center"/>
+                    <Label Content="Welcome To BeeSSH" HorizontalAlignment="Center"/>
                 </materialdesign:Card>
-                <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
-                    <StackPanel Orientation="Vertical" Margin="10">
-
-                        <materialdesign:Card Margin="5">
-                            <StackPanel Orientation="Horizontal">
-                                <materialdesign:PackIcon Kind="ServerNetwork" Foreground="White" VerticalAlignment="Center" Margin="5"/>
-                                <Label Content="Server Name Example 1" VerticalAlignment="Center"/>
-                                <RadioButton Content="Connect" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}"/>
-                            </StackPanel>
-                        </materialdesign:Card>
-
-
-                        <materialdesign:Card Margin="5">
-                            <StackPanel Orientation="Horizontal">
-                                <materialdesign:PackIcon Kind="ServerNetwork" Foreground="White" VerticalAlignment="Center" Margin="5"/>
-                                <Label Content="Server Name Example 2" VerticalAlignment="Center"/>
-                                <RadioButton Content="Connect" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}"/>
-                            </StackPanel>
-                        </materialdesign:Card>
-
-
-                    </StackPanel>
-                </materialdesign:TransitioningContent>
             </StackPanel>
-            
+        </materialdesign:TransitioningContent>
 
+        <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=ExpandIn}">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                    Margin="0,0,0,10">
+                <Border Width="400"
+                    Height="200">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="{DynamicResource Accent900Foreground}" Offset="0.0"/>
+                            <GradientStop Color="{DynamicResource Accent400}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <Border.Clip>
+                        <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0,0,400,200"/>
+                    </Border.Clip>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="BeeSSH"
+                                   Foreground="White"
+                                   FontSize="28"
+                                   Margin="20,10,10,0"/>
+                            <TextBlock Text="Keep SSH and sFTP simple"
+                                   Foreground="{DynamicResource MaterialDesignTextAreaBorder}"
+                                   FontSize="18"
+                                   Margin="20,10,10,0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="discordBtn" Width="50"
+                                        Click="discordBtn_Click"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Left"
+                                    Margin="15"
+                                     Height="50" Style="{DynamicResource  MaterialDesignFlatAccentButton}">
+                                    <materialdesign:PackIcon Kind="Discord"
+                                                         
+                                                         Width="15"
+                                                         Foreground="White"/>
+                                </Button>
+                                <Button x:Name="githubBtn" Width="50"
+                                        Click="githubBtn_Click"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Left"
+                                    Margin="0,15,15,15"
+                                     Height="50" Style="{DynamicResource  MaterialDesignFlatAccentButton}">
+                                    <materialdesign:PackIcon Kind="Github"
+                                                         
+                                                         Width="15"
+                                                         Foreground="White"/>
+                                </Button>
+                            </StackPanel>
+                            
+                        </StackPanel>
+                        <Image Width="250"
+                           Height="250"
+                               Source="{StaticResource BeeSSH_logo}"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom" Margin="0,0,-128,-74" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-17.394"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Grid>
+                </Border>
+            </StackPanel>
         </materialdesign:TransitioningContent>
     </Grid>
 </UserControl>

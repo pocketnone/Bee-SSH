@@ -21,6 +21,11 @@ const SSH = new mongoose.Schema({
         type: String,
         required: true
     },
+    crpyt_PassPharse: {
+        type: String,
+        required: true,
+        default: "NULL"
+    },
     isKey: {
         type: Boolean,
         default: false,

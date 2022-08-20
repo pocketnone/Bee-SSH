@@ -24,5 +24,10 @@ namespace BeeSSH.Interface.UserControlls
         {
             InitializeComponent();
         }
+
+        private void GenerateRSA(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

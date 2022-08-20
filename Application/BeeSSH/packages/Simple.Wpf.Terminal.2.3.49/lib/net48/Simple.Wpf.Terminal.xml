@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simple.Wpf.Terminal</name>
+    </assembly>
+    <members>
+        <member name="P:Simple.Wpf.Terminal.ITerminalEx.LineColorConverter">
+            <summary>
+                The error color for the bound items.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.ITerminalEx.ItemHeight">
+            <summary>
+                The individual line height for the bound items.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.ITerminalEx.ItemsMargin">
+            <summary>
+                The margin around the bound items.
+            </summary>
+        </member>
+        <member name="T:Simple.Wpf.Terminal.Terminal">
+            <summary>
+                A WPF user control which mimics a terminal\console window, you are responsible for the service
+                providing the data for display and processing the entered line when the LineEntered event is raised.
+                The data is bound via the ItemsSource dependency property.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.ItemsSourceProperty">
+            <summary>
+                The items to be displayed in the terminal window, e.g. an ObservableCollection.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.AutoCompletionsSourceProperty">
+            <summary>
+                Auto-completion-strings to be traversed in terminal window when tab is pressed, e.g. an ObservableCollection.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.ItemsMarginProperty">
+            <summary>
+                The margin around the contents of the terminal window, optional field with a default value of 0.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.PromptProperty">
+            <summary>
+                The terminal prompt to be displayed.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.LineProperty">
+            <summary>
+                The current the editable line in the terminal, there is only one editable line in the terminal and this is at the
+                bottom of the content.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.ItemDisplayPathProperty">
+            <summary>
+                The property name of the 'value' to be displayed, optional field which if null then ToString() is called on the
+                bound instance.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.LineColorConverterProperty">
+            <summary>
+                The color converter for lines.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.ItemHeightProperty">
+            <summary>
+                The height of each line in the terminal window, optional field with a default value of 10.
+            </summary>
+        </member>
+        <member name="F:Simple.Wpf.Terminal.Terminal.AutoScrollProperty">
+            <summary>
+                Automatic scroll to end of vertical scrollbar when content is added.
+            </summary>
+        </member>
+        <member name="M:Simple.Wpf.Terminal.Terminal.#ctor">
+            <summary>
+                Default constructor.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.AutoScroll">
+            <summary>
+                Automatic scroll to end of vertical scrollbar
+            </summary>
+        </member>
+        <member name="E:Simple.Wpf.Terminal.Terminal.LineEntered">
+            <summary>
+                Event fired when the user presses the Enter key.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.ItemsSource">
+            <summary>
+                The bound items to the terminal.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.AutoCompletionsSource">
+            <summary>
+                The bound auto-completion-strings to the terminal.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.Prompt">
+            <summary>
+                The prompt of the terminal.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.Line">
+            <summary>
+                The current editable line of the terminal (bottom line).
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.ItemDisplayPath">
+            <summary>
+                The display path for the bound items.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.LineColorConverter">
+            <summary>
+                The error color for the bound items.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.ItemHeight">
+            <summary>
+                The individual line height for the bound items.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Terminal.ItemsMargin">
+            <summary>
+                The margin around the bound items.
+            </summary>
+        </member>
+        <member name="M:Simple.Wpf.Terminal.Terminal.OnInitialized(System.EventArgs)">
+            <summary>
+                Raises the Initialized event. This method is invoked whenever IsInitialized is set to true internally.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Simple.Wpf.Terminal.Terminal.OnPreviewKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+                Processes every key pressed when the control has focus.
+            </summary>
+            <param name="args">The key pressed arguments.</param>
+        </member>
+        <member name="M:Simple.Wpf.Terminal.Terminal.OnStyleChanged(System.Windows.Style,System.Windows.Style)">
+            <summary>
+                Processes style changes for the terminal.
+            </summary>
+            <param name="oldStyle">The current style applied to the terminal.</param>
+            <param name="newStyle">The new style to be applied to the terminal.</param>
+        </member>
+        <member name="T:Simple.Wpf.Terminal.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Simple.Wpf.Terminal.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Simple.Wpf.Terminal.VisualTreeExtensions">
+            <summary>
+                Extension methods for querying the Visual Tree
+            </summary>
+        </member>
+        <member name="M:Simple.Wpf.Terminal.VisualTreeExtensions.GetVisualAncestor``1(System.Windows.DependencyObject)">
+            <summary>
+                Search the Visual Tree for an Ancestor by Type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simple.Wpf.Terminal.VisualTreeExtensions.GetVisualAncestor(System.Windows.DependencyObject,System.Type)">
+            <summary>
+                Search the Visual Tree for an Ancestor
+            </summary>
+            <param name="d"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simple.Wpf.Terminal.VisualTreeExtensions.GetVisualDescendent``1(System.Windows.DependencyObject)">
+            <summary>
+                Search the Visual Tree for a Descendent (child) by Type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simple.Wpf.Terminal.VisualTreeExtensions.GetVisualDescendents``1(System.Windows.DependencyObject)">
+            <summary>
+                Search the Visual Tree for multiple Descendents (children) by Type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

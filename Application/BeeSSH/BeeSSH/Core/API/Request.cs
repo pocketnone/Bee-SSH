@@ -48,6 +48,7 @@ namespace BeeSSH.Core.API
                                 ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
                                 ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
                                 ServerPassword = Decrypt(item.serverpass, EncryptionMasterPass),
+                                PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),             
                                 ServerPort = Decrypt(item.port, EncryptionMasterPass)
                             });
                         } else
@@ -58,6 +59,7 @@ namespace BeeSSH.Core.API
                                 ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
                                 ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
                                 ServerPort = Decrypt(item.port, EncryptionMasterPass),
+                                PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),
                                 RSAKEY = Encoding.UTF8.GetBytes(Decrypt(item.serverpass, EncryptionMasterPass))
                             });
                         }
@@ -71,7 +73,7 @@ namespace BeeSSH.Core.API
         }
 
         // Add a Server to the Backend from the Webpage
-        internal static string AddServer(string servername_crypted, string port_crypted, bool isKey, string ipadress_crypted, string PasswordOrKey_crypted)
+        internal static string AddServer(string servername_crypted, string port_crypted, bool isKey, string ipadress_crypted, string PasswordOrKey_crypted, string passPharse = "null")
         {
             var requestOptions = new Dictionary<string, string>();
             requestOptions.Add("tool", ClientAuthKey);
@@ -81,6 +83,7 @@ namespace BeeSSH.Core.API
             requestOptions.Add("isKEY", isKey.ToString());
             requestOptions.Add("ipadress", ipadress_crypted);
             requestOptions.Add("PasswordKey", PasswordOrKey_crypted);
+            requestOptions.Add("PassPharse", passPharse);
             using (var client = new HttpClient())
             {
                 var req = new HttpRequestMessage(HttpMethod.Post, AddServerAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
@@ -176,6 +179,9 @@ namespace BeeSSH.Core.API
 
         [JsonProperty("isKey")]
         public string isKey { get; set; }
+        
+        [JsonProperty("crpyt_PassPharse")]
+        public string PassPharseData { get; set; }
     }
 
     // ETC

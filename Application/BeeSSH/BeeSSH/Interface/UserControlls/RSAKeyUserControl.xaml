@@ -15,9 +15,9 @@
                 <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
                     <Label Content="Generate RSAKey" HorizontalAlignment="Center"/>
                 </materialdesign:Card>
-                <TextBox materialdesign:HintAssist.Hint="RSAKey" Foreground="White" Margin="5"/>
+                <TextBox x:Name="RSAKeyName" materialdesign:HintAssist.Hint="key Name" Foreground="White" Margin="5" Cursor="Arrow"/>
 
-                <RadioButton Content="Generate" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}"/>
+                <RadioButton Content="Generate" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}" Click="GenerateRSA"/>
             </StackPanel>
         </materialdesign:TransitioningContent>
     </Grid>

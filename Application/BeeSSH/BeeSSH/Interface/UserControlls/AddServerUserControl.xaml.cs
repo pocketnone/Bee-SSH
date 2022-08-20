@@ -24,5 +24,15 @@ namespace BeeSSH.Interface.UserControlls
         {
             InitializeComponent();
         }
+
+        private void AddRSABtn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddServerBtn(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

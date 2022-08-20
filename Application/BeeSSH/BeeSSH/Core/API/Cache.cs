@@ -33,6 +33,7 @@ namespace BeeSSH.Core.API
         internal string ServerPassword       { get; set; }
         internal string ServerPort           { get; set; }
         internal string ServerUserName       { get; set; }
+        internal string PassPharse           { get; set; }
         internal byte[] RSAKEY               { get; set; }
     }
 

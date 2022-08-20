@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using static BeeSSH.Utils.DiscordRPC.DiscordRPCConfig;
+using static BeeSSH.Core.API.Request;
+using static BeeSSH.Core.API.Cache;
 
 namespace BeeSSH
 {
@@ -23,13 +25,29 @@ namespace BeeSSH
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            loader.UpdateDetails("Pressed Button Login");
             if (loginBtn.Content.ToString() == "Final Step")
             {
                 //make master password checks here
-                Interface.ApplicationWindow b = new Interface.ApplicationWindow();
-                b.Show();
-                this.Hide();
+                EncryptionMasterPass = masterPasBox.Password;
+                string email = emailBox.Text;
+                string password = passBox.Password;
+                string otp = faAuthBox.Text;
+
+                if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+                {
+                    string res = Login(email, password, otp);           // get all servers
+                    if (res != "ok")
+                    {
+                        FetchShortCutsScripts(); // Fetch Scripts
+                        Interface.ApplicationWindow b = new Interface.ApplicationWindow();
+                        b.Show();
+                        this.Close();
+                    } else
+                    {
+                        //ToDo: Error Response
+                       // ddd
+                    }
+                }
             }
             else
             {
@@ -58,7 +76,12 @@ namespace BeeSSH
             runOfflineBtn.IsEnabled = false;
         }
 
-        private void loginBtnOffline_Click(object sender, RoutedEventArgs e) => ShowMasterPasswordBox();
+        private void loginBtnOffline_Click(object sender, RoutedEventArgs e)
+        {
+            Interface.ApplicationWindow b = new Interface.ApplicationWindow();
+            b.Show();
+            this.Close();
+        }
 
 
         private void Register_Click(object sender, RoutedEventArgs e)
@@ -116,6 +139,11 @@ namespace BeeSSH
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void helpBtnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://as.mba");
         }
     }
 }

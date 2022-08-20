@@ -159,7 +159,7 @@
                                  materialDesign:HintAssist.Hint="Email"
                                  VerticalContentAlignment="Center"
                                  HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" Cursor="Arrow"
                             />
                             </materialDesign:Card>
 
@@ -176,7 +176,7 @@
                                  materialDesign:HintAssist.Hint="Password"
                                  VerticalContentAlignment="Center"
                                  HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" Cursor="Arrow"
                             />
                             </materialDesign:Card>
 
@@ -201,7 +201,7 @@
                                  materialDesign:HintAssist.Hint="2-FA"
                                  VerticalContentAlignment="Center"
                                  HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" PreviewTextInput="OnlyNumber"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" PreviewTextInput="OnlyNumber" Cursor="Arrow"
                             
                                  />
                             </materialDesign:Card>
@@ -249,7 +249,7 @@
                                  materialDesign:HintAssist.Hint="Master Password"
                                  VerticalContentAlignment="Center"
                                  HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" Cursor="Arrow"
                             />
                             </materialDesign:Card>
                             <Label Content="OR" HorizontalAlignment="Center"
@@ -264,7 +264,7 @@
                                           Click="loginBtnOffline_Click"
                                      Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
                                      Margin="10"
-                                     HorizontalAlignment="Center">
+                                     HorizontalAlignment="Center" Cursor="Hand">
                                         <RadioButton.Content>
                                             <StackPanel Orientation="Horizontal">
                                                 <Label Content="Run Offline"/>
@@ -278,7 +278,7 @@
                                     <RadioButton  x:Name="helpBtn" 
                                      Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
                                      Margin="10"
-                                     HorizontalAlignment="Center">
+                                     HorizontalAlignment="Center" Cursor="Hand" Click="helpBtnClick">
                                         <RadioButton.Content>
                                             <StackPanel Orientation="Horizontal">
                                                 <Label Content="Need Help"/>

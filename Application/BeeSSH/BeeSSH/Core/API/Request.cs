@@ -1,26 +1,24 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using static BeeSSH.Core.Crypter.String;
 using static BeeSSH.Core.API.Cache;
+using static BeeSSH.Core.Crypter.String;
 
 namespace BeeSSH.Core.API
 {
     internal class Request
-    {   
+    {
 
-        internal static string Login(string username,string password,string totp = "000000")
+        internal static string Login(string username, string password, string totp = "000000")
         {
             var requestOptions = new Dictionary<string, string>();
             requestOptions.Add("tool", ClientAuthKey);
             requestOptions.Add("email", username);
             requestOptions.Add("password", password);
             requestOptions.Add("otp", totp);
-            using(var client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 try
                 {
@@ -31,7 +29,7 @@ namespace BeeSSH.Core.API
                     var datastuff = JsonConvert.DeserializeObject<LoginDeserilizeModel>(res);                                                   // Convert to responseapi
 
                     // if Error
-                    if(!System.String.IsNullOrEmpty(datastuff.Error))
+                    if (!System.String.IsNullOrEmpty(datastuff.Error))
                     {
                         return datastuff.Error;
                     }
@@ -40,7 +38,7 @@ namespace BeeSSH.Core.API
                     AuthCookieForAPI = datastuff.AuthCookie;
                     foreach (var item in datastuff.ServerRes)
                     {
-                        if(!Boolean.Parse(item.isKey))
+                        if (!Boolean.Parse(item.isKey))
                         {
                             ServerList.Add(new ServerListModel
                             {
@@ -48,10 +46,11 @@ namespace BeeSSH.Core.API
                                 ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
                                 ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
                                 ServerPassword = Decrypt(item.serverpass, EncryptionMasterPass),
-                                PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),             
+                                PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),
                                 ServerPort = Decrypt(item.port, EncryptionMasterPass)
                             });
-                        } else
+                        }
+                        else
                         {
                             ServerList.Add(new ServerListModel
                             {
@@ -65,7 +64,8 @@ namespace BeeSSH.Core.API
                         }
                     }
                     return "ok";
-                } catch
+                }
+                catch
                 {
                     return "Error";
                 }
@@ -110,7 +110,7 @@ namespace BeeSSH.Core.API
                 return datastuff.DataRes;
             }
         }
-        
+
         internal static string FetchShortCutsScripts()
         {
             var requestOptions = new Dictionary<string, string>();
@@ -122,20 +122,20 @@ namespace BeeSSH.Core.API
                 var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
                 string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
                 var datastuff = JsonConvert.DeserializeObject<ScriptsModel>(res);
-                
-                if(datastuff.InfoRes != "Success")
+
+                if (datastuff.InfoRes != "Success")
                 {
                     return datastuff.InfoRes;
                 }
-                
-                
+
+
                 foreach (var resListArr in datastuff.ListRes)
                 {
                     Scriptlist.Add(new ScriptModel
-                        {
-                            name = resListArr.Name,
-                            script = resListArr.scriptdata
-                        }
+                    {
+                        name = resListArr.Name,
+                        script = resListArr.scriptdata
+                    }
                     );
                 }
 
@@ -161,10 +161,11 @@ namespace BeeSSH.Core.API
         public List<DataLoginModel> ServerRes { get; set; }
     }
     // Login
-    internal class DataLoginModel {
+    internal class DataLoginModel
+    {
         [JsonProperty("name")]
         public string Name { get; set; }
-        
+
         [JsonProperty("crpyt_ServerUser")]
         public string ServeruserName { get; set; }
 
@@ -179,7 +180,7 @@ namespace BeeSSH.Core.API
 
         [JsonProperty("isKey")]
         public string isKey { get; set; }
-        
+
         [JsonProperty("crpyt_PassPharse")]
         public string PassPharseData { get; set; }
     }
@@ -195,7 +196,7 @@ namespace BeeSSH.Core.API
     {
         [JsonProperty("Info")]
         public string InfoRes { get; set; }
-        
+
         [JsonProperty("data")]
         public List<ScriptsExtensionModel> ListRes { get; set; }
     }
@@ -204,7 +205,7 @@ namespace BeeSSH.Core.API
     {
         [JsonProperty("name")]
         public string Name { get; set; }
-        
+
         [JsonProperty("Script")]
         public string scriptdata { get; set; }
 

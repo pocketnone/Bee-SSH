@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:BeeSSH.Interface.UserControlls"
              xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              FontFamily="Roboto"
+             Loaded="UserControl_Loaded"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -15,29 +16,17 @@
                 <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
                     <Label Content="Saved Servers" HorizontalAlignment="Center"/>
                 </materialdesign:Card>
-                <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
-                    <StackPanel Orientation="Vertical" Margin="10">
-
-                        <materialdesign:Card Margin="5">
-                            <StackPanel Orientation="Horizontal">
-                                <materialdesign:PackIcon Kind="ServerNetwork" Foreground="White" VerticalAlignment="Center" Margin="5"/>
-                                <Label Content="Server Name Example 1" VerticalAlignment="Center"/>
-                                <RadioButton Content="Connect" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}"/>
-                            </StackPanel>
-                        </materialdesign:Card>
+                    <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
+                        <ListBox x:Name="ServerList" HorizontalAlignment="Center"
+                              VerticalAlignment="Top"
+                             Width="Auto"
+                             Background="{x:Null}"
+                             BorderBrush="Transparent"
+                             >
+                        </ListBox>
 
 
-                        <materialdesign:Card Margin="5">
-                            <StackPanel Orientation="Horizontal">
-                                <materialdesign:PackIcon Kind="ServerNetwork" Foreground="White" VerticalAlignment="Center" Margin="5"/>
-                                <Label Content="Server Name Example 2" VerticalAlignment="Center"/>
-                                <RadioButton Content="Connect" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}"/>
-                            </StackPanel>
-                        </materialdesign:Card>
-
-
-                    </StackPanel>
-                </materialdesign:TransitioningContent>
+                    </materialdesign:TransitioningContent>
             </StackPanel>
 
 

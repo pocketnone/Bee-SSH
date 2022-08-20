@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Utils\DiscordRPC\DiscordRPCConfig.cs" />
     <Compile Include="Utils\DiscordRPC\DiscordRPCLoader.cs" />
+    <Compile Include="Utils\DiscordRPC\DiscordRPCManager.cs" />
     <Page Include="Interface\ApplicationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

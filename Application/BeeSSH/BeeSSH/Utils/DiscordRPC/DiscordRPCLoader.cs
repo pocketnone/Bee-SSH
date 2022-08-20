@@ -13,9 +13,8 @@ namespace BeeSSH.Utils.DiscordRPC
         internal DiscordRpcClient _client = new DiscordRpcClient(DiscordID);
         internal static string _clientID { get; set; }
 
-        public DiscordRPCLoader(string _ClientID)
+        public DiscordRPCLoader()
         {
-            _clientID = _ClientID;
             _client.Initialize();
             _client.SetPresence(new RichPresence()
             {

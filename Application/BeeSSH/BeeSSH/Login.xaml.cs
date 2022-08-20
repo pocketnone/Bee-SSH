@@ -41,7 +41,7 @@ namespace BeeSSH
                         FetchShortCutsScripts(); // Fetch Scripts
                         Interface.ApplicationWindow b = new Interface.ApplicationWindow();
                         b.Show();
-                        this.Close();
+                        this.Close(); 
                     } else
                     {
                         //ToDo: Error Response

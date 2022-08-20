@@ -121,6 +121,19 @@
                                 </RadioButton.Content>
                             </RadioButton>
 
+                            <RadioButton Margin="5"
+                                 x:Name="RemoteBtn"
+                                 Click="RemoteBtn_Click"
+                             Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="RemoteDesktop" Foreground="White"
+                                                         VerticalAlignment="Center"/>
+                                        <Label Content="Remote Desktop"/>
+
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
 
                             <RadioButton Margin="5"
                                  x:Name="GenerateRSABtn"
@@ -167,7 +180,7 @@
                             </RadioButton>
                             
 
-                            <RadioButton Margin="5,405,5,0"
+                            <RadioButton Margin="5,368,5,0"
                                  x:Name="SettingsBtn"
                                          Click="SettingsBtn_Click"
                              Style="{DynamicResource MaterialDesignFlatAccentButton}">

@@ -69,5 +69,10 @@ namespace BeeSSH.Interface
         {
             ContentFrame.Navigate(new Uri("Interface/UserControlls/SettingsUserControl.xaml", UriKind.Relative));
         }
+
+        private void RemoteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

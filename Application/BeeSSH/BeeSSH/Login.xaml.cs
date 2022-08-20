@@ -6,6 +6,7 @@ using System.Windows.Input;
 using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 using static BeeSSH.Core.API.Request;
 using static BeeSSH.Core.API.Cache;
+using BeeSSH.Interface.CustomMessageBox;
 
 namespace BeeSSH
 {
@@ -34,7 +35,7 @@ namespace BeeSSH
                 if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
                 {
                     string res = Login(email, password, otp);           // get all servers
-                    if (res != "ok")
+                    if (res == "ok")
                     {
                         FetchShortCutsScripts(); // Fetch Scripts
                         Interface.ApplicationWindow b = new Interface.ApplicationWindow();
@@ -42,8 +43,7 @@ namespace BeeSSH
                         this.Close(); 
                     } else
                     {
-                        //ToDo: Error Response
-                       // ddd
+                        new BeeMessageBox(res, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog();
                     }
                 }
             }

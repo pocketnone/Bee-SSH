@@ -174,6 +174,9 @@ router.post("/client_new", (req, res) => {
    const { authkey, tool } = req.body;
    const {servername, port, isKEY, ipadress, PasswordKey, ServerUsername, PassPharse} = req.body;
 
+    if(tool != process.env.CLIENTPASSWORD) {
+        return res.end();
+    }
     if(!authkey) {
        return res.status(404).json({Info: "Auth Missing", data: req.body});
     }
@@ -183,7 +186,7 @@ router.post("/client_new", (req, res) => {
     if(tool != process.env.CLIENTPASSWORD) {
         return res.status(404).json({Info: "Clientpass", data: req.body});
     }
-    if(!servername || !port || !isKEY || !ipadress || !PasswordKey || !ServerUsername) {
+    if(!servername || !port || !ipadress || !PasswordKey || !ServerUsername) {
         return res.status(404).json({Info: "Values Missing", data: req.body});
     }
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {

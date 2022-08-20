@@ -25,43 +25,58 @@ namespace BeeSSH.Core.API
 
                     var req = new HttpRequestMessage(HttpMethod.Post, LoginAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
                     var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
-                    string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
-                    var datastuff = JsonConvert.DeserializeObject<LoginDeserilizeModel>(res);                                                   // Convert to responseapi
-
-                    // if Error
-                    if (!System.String.IsNullOrEmpty(datastuff.Error))
+                    string res = res_raw.Content.ReadAsStringAsync().Result;
+                    try
                     {
-                        return datastuff.Error;
+                        var datastuff = JsonConvert.DeserializeObject<LoginDeserilizeModel>(res);
+                        // if Error
+                        if (!System.String.IsNullOrEmpty(datastuff.Error))
+                        {
+                            return datastuff.Error;
+                        }
+
+
+                        AuthCookieForAPI = datastuff.AuthCookie;
+                        foreach (var item in datastuff.ServerRes)
+                        {
+                            if (!Boolean.Parse(item.isKey))
+                            {
+                                ServerList.Add(new ServerListModel
+                                {
+                                    ServerName = Decrypt(item.Name, EncryptionMasterPass),
+                                    ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
+                                    ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
+                                    ServerPassword = Decrypt(item.serverpass, EncryptionMasterPass),
+                                    PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),
+                                    ServerPort = Decrypt(item.port, EncryptionMasterPass)
+                                });
+                            }
+                            else
+                            {
+                                ServerList.Add(new ServerListModel
+                                {
+                                    ServerName = Decrypt(item.Name, EncryptionMasterPass),
+                                    ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
+                                    ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
+                                    ServerPort = Decrypt(item.port, EncryptionMasterPass),
+                                    PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),
+                                    RSAKEY = Encoding.UTF8.GetBytes(Decrypt(item.serverpass, EncryptionMasterPass))
+                                });
+                            }
+                        }
+
                     }
-
-
-                    AuthCookieForAPI = datastuff.AuthCookie;
-                    foreach (var item in datastuff.ServerRes)
+                    catch
                     {
-                        if (!Boolean.Parse(item.isKey))
+                        var datastuff = JsonConvert.DeserializeObject<LoginNoServerDeserilizeModel>(res);
+                        // if Error
+                        if (!System.String.IsNullOrEmpty(datastuff.Error))
                         {
-                            ServerList.Add(new ServerListModel
-                            {
-                                ServerName = Decrypt(item.Name, EncryptionMasterPass),
-                                ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
-                                ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
-                                ServerPassword = Decrypt(item.serverpass, EncryptionMasterPass),
-                                PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),
-                                ServerPort = Decrypt(item.port, EncryptionMasterPass)
-                            });
+                            return datastuff.Error;
                         }
-                        else
-                        {
-                            ServerList.Add(new ServerListModel
-                            {
-                                ServerName = Decrypt(item.Name, EncryptionMasterPass),
-                                ServerIP = Decrypt(item.ServerIP, EncryptionMasterPass),
-                                ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
-                                ServerPort = Decrypt(item.port, EncryptionMasterPass),
-                                PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),
-                                RSAKEY = Encoding.UTF8.GetBytes(Decrypt(item.serverpass, EncryptionMasterPass))
-                            });
-                        }
+
+                        AuthCookieForAPI = datastuff.AuthCookie;
+                        return "ok";
                     }
                     return "ok";
                 }
@@ -73,16 +88,17 @@ namespace BeeSSH.Core.API
         }
 
         // Add a Server to the Backend from the Webpage
-        internal static string AddServer(string servername_crypted, string port_crypted, bool isKey, string ipadress_crypted, string PasswordOrKey_crypted, string passPharse = "null")
+        internal static string AddServer(string servername_crypted, string port_crypted, bool isKey, string ipadress_crypted, string PasswordOrKey_crypted, string serverusername_crypted, string passPharse = "null")
         {
             var requestOptions = new Dictionary<string, string>();
             requestOptions.Add("tool", ClientAuthKey);
             requestOptions.Add("authkey", AuthCookieForAPI);
             requestOptions.Add("servername", servername_crypted);
             requestOptions.Add("port", port_crypted);
-            requestOptions.Add("isKEY", isKey.ToString());
+            requestOptions.Add("isKEY", isKey.ToString().ToLower());
             requestOptions.Add("ipadress", ipadress_crypted);
             requestOptions.Add("PasswordKey", PasswordOrKey_crypted);
+            requestOptions.Add("ServerUsername", serverusername_crypted);
             requestOptions.Add("PassPharse", passPharse);
             using (var client = new HttpClient())
             {
@@ -121,23 +137,31 @@ namespace BeeSSH.Core.API
                 var req = new HttpRequestMessage(HttpMethod.Post, AddServerAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
                 var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
                 string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
-                var datastuff = JsonConvert.DeserializeObject<ScriptsModel>(res);
 
-                if (datastuff.InfoRes != "Success")
+                try
                 {
-                    return datastuff.InfoRes;
-                }
+                    var datastuff = JsonConvert.DeserializeObject<ScriptsModel>(res);
 
-
-                foreach (var resListArr in datastuff.ListRes)
-                {
-                    Scriptlist.Add(new ScriptModel
+                    if (datastuff.InfoRes != "Success")
                     {
-                        name = resListArr.Name,
-                        script = resListArr.scriptdata
+                        return datastuff.InfoRes;
                     }
-                    );
+
+
+                    foreach (var resListArr in datastuff.ListRes)
+                    {
+                        Scriptlist.Add(new ScriptModel
+                        {
+                            name = resListArr.Name,
+                            script = resListArr.scriptdata
+                        }
+                        );
+                    }
+                } catch
+                {
+                    return "ok";
                 }
+               
 
                 return "ok";
             }
@@ -157,9 +181,20 @@ namespace BeeSSH.Core.API
         public string Error { get; set; }
         [JsonProperty("AuthKey")]
         public string AuthCookie { get; set; }
-        [JsonProperty("AuthKey")]
+
+        [JsonProperty("data")]
         public List<DataLoginModel> ServerRes { get; set; }
     }
+
+    //Login if no Server
+    internal class LoginNoServerDeserilizeModel
+    {
+        [JsonProperty("Info")]
+        public string Error { get; set; }
+        [JsonProperty("AuthKey")]
+        public string AuthCookie { get; set; }
+    }
+
     // Login
     internal class DataLoginModel
     {

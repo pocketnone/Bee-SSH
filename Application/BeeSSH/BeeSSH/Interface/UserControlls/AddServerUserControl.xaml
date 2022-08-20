@@ -19,7 +19,7 @@
                 <TextBox x:Name="ServerIP" materialdesign:HintAssist.Hint="Server Adress" Foreground="White" Margin="5"/>
                 <TextBox x:Name="ServerPort" materialdesign:HintAssist.Hint="Port" Foreground="White" Margin="5"/>
                 <TextBox x:Name="Serverusername" materialdesign:HintAssist.Hint="Username" Foreground="White" Margin="5"/>
-                <TextBox x:Name="ServerPassword" materialdesign:HintAssist.Hint="Password" Foreground="White" Margin="5"/>
+                <PasswordBox x:Name="ServerPassword" materialdesign:HintAssist.Hint="Password" Foreground="White" Margin="5"/>
                 <TextBox x:Name="ServerPassPharse" materialdesign:HintAssist.Hint="Passphrase" Foreground="White" Margin="5"/>
                 <RadioButton x:Name="RSAKEY" Content="Add RSA Key" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}" Click="AddRSABtn"/>
                 <RadioButton x:Name="AddBtn" Content="Add" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}" Click="AddServerBtn"/>

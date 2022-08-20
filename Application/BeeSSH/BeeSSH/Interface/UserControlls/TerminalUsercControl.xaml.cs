@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 
 namespace BeeSSH.Interface.UserControlls
 {
@@ -10,6 +11,7 @@ namespace BeeSSH.Interface.UserControlls
         public TerminalUsercControl()
         {
             InitializeComponent();
+            Terminal_MainView();
         }
     }
 }

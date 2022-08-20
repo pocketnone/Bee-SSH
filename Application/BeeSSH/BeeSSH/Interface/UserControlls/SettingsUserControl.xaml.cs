@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BeeSSH.Interface.CustomMessageBox;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
+
 
 namespace BeeSSH.Interface.UserControlls
 {
@@ -23,6 +14,15 @@ namespace BeeSSH.Interface.UserControlls
         public SettingsUserControl()
         {
             InitializeComponent();
+            Settings_MainView();
+        }
+
+        private void MessageBoxBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (new BeeMessageBox("Example", BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog().Value)
+            {
+                var name = new BeeMessageBox("Example2", BeeMessageBox.MessageType.Warning, BeeMessageBox.MessageButtons.YesNo).ShowDialog().Value;
+            }
         }
     }
 }

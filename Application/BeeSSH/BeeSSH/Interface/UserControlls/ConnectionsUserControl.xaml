@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="BeeSSH.Interface.UserControlls.ConnectionsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BeeSSH.Interface.UserControlls"
+             xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             FontFamily="Roboto"
+             Loaded="UserControl_Loaded"
+             Background="{DynamicResource MaterialDesignDarkBackground}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=SlideInFromBottom}">
+            <StackPanel>
+                <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
+                    <Label Content="Saved Servers" HorizontalAlignment="Center"/>
+                </materialdesign:Card>
+                    <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
+                        <ListBox x:Name="ServerList" HorizontalAlignment="Center"
+                              VerticalAlignment="Top"
+                             Width="Auto"
+                             Background="{x:Null}"
+                             BorderBrush="Transparent"
+                             >
+                        </ListBox>
+
+
+                    </materialdesign:TransitioningContent>
+            </StackPanel>
+
+
+        </materialdesign:TransitioningContent>
+    </Grid>
+</UserControl>

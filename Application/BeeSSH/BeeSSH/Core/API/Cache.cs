@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BeeSSH.Core.API
 {
@@ -15,10 +11,10 @@ namespace BeeSSH.Core.API
 
         // API Endpoints 
         internal static string LoginAPIURL = "https://as.mba/api/client_login";             // Request a Login
-                
+
         internal static string AddServerAPIURL = "https://as.mba/api/client_new";           // Add a new server to the Webapp
 
-        internal static string FetchScriptsAPIURL = "https://as.mba/api/fetch_userscripte"; 
+        internal static string FetchScriptsAPIURL = "https://as.mba/api/fetch_userscripte";
 
         internal static string AddScriptAPIURL = "https://as.mba/api/add_userscript";
 
@@ -28,19 +24,19 @@ namespace BeeSSH.Core.API
 
     internal class ServerListModel
     {
-        internal string ServerName           { get; set; }
-        internal string ServerIP             { get; set; }
-        internal string ServerPassword       { get; set; }
-        internal string ServerPort           { get; set; }
-        internal string ServerUserName       { get; set; }
-        internal string PassPharse           { get; set; }
-        internal byte[] RSAKEY               { get; set; }
+        internal string ServerName { get; set; }
+        internal string ServerIP { get; set; }
+        internal string ServerPassword { get; set; }
+        internal string ServerPort { get; set; }
+        internal string ServerUserName { get; set; }
+        internal string PassPharse { get; set; }
+        internal byte[] RSAKEY { get; set; }
     }
 
     internal class ScriptModel
     {
         internal string name { get; set; }
-        
+
         internal string script { get; set; }
     }
 }

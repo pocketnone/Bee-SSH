@@ -12,6 +12,7 @@ namespace BeeSSH.Interface
         public ApplicationWindow()
         {
             InitializeComponent();
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -36,7 +37,7 @@ namespace BeeSSH.Interface
 
         private void ConnectionsBtn_Click(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(new Uri("Interface/UserControlls/WelcomeUserControl.xaml", UriKind.Relative));
+            ContentFrame.Navigate(new Uri("Interface/UserControlls/ConnectionsUserControl.xaml", UriKind.Relative));
         }
 
         private void TerminalBtn_Click(object sender, RoutedEventArgs e)
@@ -67,6 +68,11 @@ namespace BeeSSH.Interface
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(new Uri("Interface/UserControlls/SettingsUserControl.xaml", UriKind.Relative));
+        }
+
+        private void RemoteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

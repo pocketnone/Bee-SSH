@@ -103,6 +103,8 @@ router.post("/client_login", (req, res) => {
     });
 });
 
+//region Userser Shortcuts
+
 // User Scripte
 
 router.post("/fetch_userscripte", (req, res) => {
@@ -144,7 +146,7 @@ router.post("/add_userscript", (req, res)=> {
     if(!userscript) {
         return res.status(404);
     }
-    if(tool != process.env.CLIENTPASSWORD) {
+    if(tool !== process.env.CLIENTPASSWORD) {
         return res.end();
     }
     if(!tool|| !userscript|| !scriptName ) {
@@ -157,10 +159,12 @@ router.post("/add_userscript", (req, res)=> {
             AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
             return res.status(201).json({Info:"Invalid"});
         }
+        const sCUID = randomstring.generate(20);
         const _NewScript = new UserScripteDB({
             name: scriptName,
             UID: _uid.UID,
-            Script: userscript
+            Script: userscript,
+            Script_UID: sCUID
         }).save();
 
        return res.status(200).json({
@@ -170,11 +174,46 @@ router.post("/add_userscript", (req, res)=> {
     });
 });
 
+router.post("/delete_userscripte", (req, res) => {
+    const { authkey, tool, sCUID } = req.body;
+    if(!authkey) {
+        return res.status(404);
+    }
+    if(!tool) {
+        return res.status(404);
+    }
+    AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
+        if(!_uid)
+            return res.status(201).json({Info:"Invalid"});
+        if(_uid.IP !== req.cf_ip) {
+            AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
+            return res.status(201).json({Info:"Invalid"});
+        }
+
+        UserScripteDB.findOneAndDelete({Script_UID: sCUID}).then(b =>{});
+
+        return res.status(200).json({
+            Info: "Success"
+        });
+    });
+});
+
+//endregion
+
+// ===================================================================================================================
+
+                                            // Server API Stuff
+
+// ===================================================================================================================
+
+
+//region Servers
+
 router.post("/client_new", (req, res) => {
    const { authkey, tool } = req.body;
    const {servername, port, isKEY, ipadress, PasswordKey, ServerUsername, PassPharse} = req.body;
 
-    if(tool != process.env.CLIENTPASSWORD) {
+    if(tool !== process.env.CLIENTPASSWORD) {
         return res.end();
     }
     if(!authkey) {
@@ -182,9 +221,6 @@ router.post("/client_new", (req, res) => {
     }
     if(!tool) {
         return res.status(404).json({Info: "Tool Missing", data: req.body});
-    }
-    if(tool != process.env.CLIENTPASSWORD) {
-        return res.status(404).json({Info: "Clientpass", data: req.body});
     }
     if(!servername || !port || !ipadress || !PasswordKey || !ServerUsername) {
         return res.status(404).json({Info: "Values Missing", data: req.body});
@@ -196,6 +232,7 @@ router.post("/client_new", (req, res) => {
             AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
             return res.status(201).json({Info:"Invalid"});
         }
+        const sUID = randomstring.generate(20);
         const newServer = new sshdb({
             name: servername,
             crpyt_ServerUser: ServerUsername,
@@ -204,6 +241,7 @@ router.post("/client_new", (req, res) => {
             crpyt_port: port,
             crpyt_PassPharse: PassPharse,
             isKEY: isKEY,
+            script_UID: sUID,
             UID: _uid.UID
         });
         newServer.save();
@@ -214,6 +252,77 @@ router.post("/client_new", (req, res) => {
     })
 });
 
+
+// Delete Server
+
+router.post("/client_delete", (req, res) => {
+    const { authkey, tool } = req.body;
+    const {scriptUID} = req.body;
+
+    if(tool !== process.env.CLIENTPASSWORD) {
+        return res.end();
+    }
+    if(!scriptUID) {
+        return res.status(404).json({Info: "Auth Missing", data: req.body});
+    }
+
+    AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
+        if(!_uid)
+            return res.status(201).json({Info: "AuthCookie Error"});
+        if(_uid.IP !== req.cf_ip) {
+            AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
+            return res.status(201).json({Info:"Invalid"});
+        }
+        sshdb.findOneAndDelete({script_UID: scriptUID}).then(deleter=>{});
+        return res.status(200).json({
+            Info: "Success"
+        });
+    })
+});
+
+// Update Server
+
+router.post("/client_update", (req, res) => {
+    const { authkey, tool } = req.body;
+    const {servername, port, isKEY, ipadress, PasswordKey, ServerUsername, PassPharse, scriptUID} = req.body;
+
+    if(tool !== process.env.CLIENTPASSWORD) {
+        return res.end();
+    }
+    if(!authkey) {
+        return res.status(404).json({Info: "Auth Missing", data: req.body});
+    }
+    if(!tool) {
+        return res.status(404).json({Info: "Tool Missing", data: req.body});
+    }
+    if(!servername || !port || !ipadress || !PasswordKey || !ServerUsername || !scriptUID) {
+        return res.status(404).json({Info: "Values Missing", data: req.body});
+    }
+    AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
+        if(!_uid)
+            return res.status(201).json({Info: "AuthCookie Error"});
+        if(_uid.IP !== req.cf_ip) {
+            AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
+            return res.status(201).json({Info:"Invalid"});
+        }
+        const sUID = randomstring.generate(20);
+
+        sshdb.findByIdAndUpdate({script_UID: scriptUID}, {
+            name: servername,
+            crpyt_ServerUser: ServerUsername,
+            crpyt_ip: ipadress,
+            crpyt_password: PasswordKey,
+            crpyt_port: port,
+            crpyt_PassPharse: PassPharse,
+            isKEY: isKEY
+        }).then(finish => {})
+        return res.status(200).json({
+            Info: "Success"
+        });
+    })
+});
+
+//endregion
 
 // Developer APIs.
 

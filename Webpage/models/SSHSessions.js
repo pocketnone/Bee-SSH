@@ -34,6 +34,10 @@ const SSH = new mongoose.Schema({
     UID: {
         type: String,
         required: true
+    },
+    script_UID: {
+        type: String,
+        required: true
     }
 });
 

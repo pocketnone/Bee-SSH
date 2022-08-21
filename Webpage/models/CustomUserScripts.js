@@ -12,6 +12,10 @@ const UserScripte = new mongoose.Schema({
     Script: {
         type: String,
         required: true
+    },
+    Script_UID: {
+        type: String,
+        required: true
     }
 });
 

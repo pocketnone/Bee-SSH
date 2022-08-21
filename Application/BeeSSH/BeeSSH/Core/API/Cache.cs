@@ -36,9 +36,6 @@ namespace BeeSSH.Core.API
 
             #endregion
         }
-        // API Endpoints 
-        
-
         // Some stuff
         internal static string ClientAuthKey = "vnsjrgshvb48sbvrbiwbkb_kbkkbhkgberibg";
     }

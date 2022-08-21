@@ -38,8 +38,6 @@ namespace BeeSSH.Core.API
         }
         // API Endpoints 
         
-        
-        internal static string 
 
         // Some stuff
         internal static string ClientAuthKey = "vnsjrgshvb48sbvrbiwbkb_kbkkbhkgberibg";

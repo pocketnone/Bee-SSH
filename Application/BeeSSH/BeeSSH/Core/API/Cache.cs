@@ -9,14 +9,37 @@ namespace BeeSSH.Core.API
         internal static List<ServerListModel> ServerList = new List<ServerListModel>();     // All Servers in a list Uncrypted
         internal static List<ScriptModel> Scriptlist = new List<ScriptModel>();             // All Scripts
 
+        
+        internal struct APIEndPoint
+        {
+
+            #region Serverendpoints
+
+            internal static string Login = "https://as.mba/api/client_login";             // Request a Login
+
+            internal static string AddServer = "https://as.mba/api/client_new";           // Add a new server to the Webapp
+            
+            internal static string DeleteServer = "https://as.mba/api/client_delete";  
+            
+            internal static string UpdateServer = "https://as.mba/api/client_update";  
+
+            #endregion
+            
+
+            #region ScriptEndpoints
+
+            internal static string FetchScripts = "https://as.mba/api/fetch_userscripte";
+
+            internal static string AddScript = "https://as.mba/api/add_userscript";
+
+            internal static string DeleteScript = "https://as.mba/api/delete_userscripte";
+
+            #endregion
+        }
         // API Endpoints 
-        internal static string LoginAPIURL = "https://as.mba/api/client_login";             // Request a Login
-
-        internal static string AddServerAPIURL = "https://as.mba/api/client_new";           // Add a new server to the Webapp
-
-        internal static string FetchScriptsAPIURL = "https://as.mba/api/fetch_userscripte";
-
-        internal static string AddScriptAPIURL = "https://as.mba/api/add_userscript";
+        
+        
+        internal static string 
 
         // Some stuff
         internal static string ClientAuthKey = "vnsjrgshvb48sbvrbiwbkb_kbkkbhkgberibg";

@@ -23,7 +23,7 @@ namespace BeeSSH.Core.API
                 try
                 {
 
-                    var req = new HttpRequestMessage(HttpMethod.Post, LoginAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
+                    var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.Login) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
                     var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
                     string res = res_raw.Content.ReadAsStringAsync().Result;
                     try
@@ -102,7 +102,7 @@ namespace BeeSSH.Core.API
             requestOptions.Add("PassPharse", passPharse);
             using (var client = new HttpClient())
             {
-                var req = new HttpRequestMessage(HttpMethod.Post, AddServerAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
+                var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.AddServer) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
                 var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
                 string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
                 var datastuff = JsonConvert.DeserializeObject<OtherResponse>(res);
@@ -110,6 +110,66 @@ namespace BeeSSH.Core.API
             }
         }
 
+
+        /// <summary>
+        /// Update Server
+        /// </summary>
+        /// <param name="servername_crypted"></param>
+        /// <param name="port_crypted"></param>
+        /// <param name="isKey"></param>
+        /// <param name="ipadress_crypted"></param>
+        /// <param name="PasswordOrKey_crypted"></param>
+        /// <param name="serverusername_crypted"></param>
+        /// <param name="ScriptUID"></param>
+        /// <param name="passPharse"></param>
+        /// <returns></returns>
+        internal static string UpdateServer(string servername_crypted, string port_crypted, bool isKey,
+            string ipadress_crypted,
+            string PasswordOrKey_crypted, string serverusername_crypted, string ScriptUID, string passPharse = "null")
+        {
+            var requestOptions = new Dictionary<string, string>();
+            requestOptions.Add("tool", ClientAuthKey);
+            requestOptions.Add("authkey", AuthCookieForAPI);
+            requestOptions.Add("servername", servername_crypted);
+            requestOptions.Add("port", port_crypted);
+            requestOptions.Add("isKEY", isKey.ToString().ToLower());
+            requestOptions.Add("ipadress", ipadress_crypted);
+            requestOptions.Add("PasswordKey", PasswordOrKey_crypted);
+            requestOptions.Add("ServerUsername", serverusername_crypted);
+            requestOptions.Add("PassPharse", passPharse);
+            requestOptions.Add("scriptUID", ScriptUID);
+            using (var client = new HttpClient())
+            {
+                var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.UpdateServer) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
+                var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
+                string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
+                var datastuff = JsonConvert.DeserializeObject<OtherResponse>(res);
+                return datastuff.DataRes;
+            }
+        }
+        
+        /// <summary>
+        /// Delete Server
+        /// </summary>
+        /// <param name="ScriptUID"></param>
+        /// <returns></returns>
+        internal static string DeleteServer(string ScriptUID)
+        {
+            var requestOptions = new Dictionary<string, string>();
+            requestOptions.Add("tool", ClientAuthKey);
+            requestOptions.Add("authkey", AuthCookieForAPI);
+            requestOptions.Add("scriptUID", ScriptUID);
+            using (var client = new HttpClient())
+            {
+                var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.DeleteServer) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
+                var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
+                string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
+                var datastuff = JsonConvert.DeserializeObject<OtherResponse>(res);
+                return datastuff.DataRes;
+            }
+        }
+        
+        
         internal static string AddScripts(string Scriptname, string ScriptContent)
         {
             var requestOptions = new Dictionary<string, string>();
@@ -119,12 +179,29 @@ namespace BeeSSH.Core.API
             requestOptions.Add("scriptName", Scriptname);
             using (var client = new HttpClient())
             {
-                var req = new HttpRequestMessage(HttpMethod.Post, AddServerAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };                 // Request
+                var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.AddScript) { Content = new FormUrlEncodedContent(requestOptions) };                 // Request
                 var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
                 string res = res_raw.Content.ReadAsStringAsync().Result;                                                                                    // Convert to String
                 var datastuff = JsonConvert.DeserializeObject<OtherResponse>(res);
                 return datastuff.DataRes;
             }
+        }
+
+        internal static string DeleteScript(string ScriptID)
+        {
+            var requestOptions = new Dictionary<string, string>();
+            requestOptions.Add("tool", ClientAuthKey);
+            requestOptions.Add("authkey", AuthCookieForAPI);
+            requestOptions.Add("sCUID", ScriptID);
+            using (var client = new HttpClient())
+            {
+                var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.DeleteScript) { Content = new FormUrlEncodedContent(requestOptions) };                 // Request
+                var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
+                string res = res_raw.Content.ReadAsStringAsync().Result;                                                                                    // Convert to String
+                var datastuff = JsonConvert.DeserializeObject<OtherResponse>(res);
+                return datastuff.DataRes;
+            }
+            
         }
 
         internal static string FetchShortCutsScripts()
@@ -134,7 +211,7 @@ namespace BeeSSH.Core.API
             requestOptions.Add("authkey", AuthCookieForAPI);
             using (var client = new HttpClient())
             {
-                var req = new HttpRequestMessage(HttpMethod.Post, AddServerAPIURL) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
+                var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.FetchScripts) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
                 var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
                 string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
 

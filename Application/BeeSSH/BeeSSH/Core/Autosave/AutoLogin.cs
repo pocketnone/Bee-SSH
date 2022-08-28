@@ -26,13 +26,14 @@ namespace BeeSSH.Core.Autosave
             return thePath + "config.json";
         }
         
-        internal static void CreateAutologin(string Username, string Password, string Masterpassword)
+        internal static void CreateAutologin(string Username, string Password, string Masterpassword, bool totfa)
         {
             string json = GetLocalFolder;
             JObject rss = new JObject(
                 new JProperty("username", Encrypt(Username, HardCodetPassword)),
                 new JProperty("password", Encrypt(Password, HardCodetPassword)),
-                new JProperty("masterpassword", Encrypt(Masterpassword, HardCodetPassword)));
+                new JProperty("masterpassword", Encrypt(Masterpassword, HardCodetPassword)),
+                new JProperty("totf", "totfa"));
             File.WriteAllText(json, rss.ToString());
         }
 
@@ -56,5 +57,7 @@ namespace BeeSSH.Core.Autosave
         internal string Password;
         [JsonProperty("masterpassword")]
         internal string MasterPassword;
+        [JsonProperty("totf")]
+        internal string totfa;
     }
 }

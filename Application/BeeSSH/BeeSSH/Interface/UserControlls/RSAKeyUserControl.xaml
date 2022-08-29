@@ -16,6 +16,8 @@
                     <Label Content="Generate RSAKey" HorizontalAlignment="Center"/>
                 </materialdesign:Card>
                 <TextBox x:Name="RSAKeyName" materialdesign:HintAssist.Hint="key Name" Foreground="White" Margin="5" Cursor="Arrow"/>
+                <TextBox x:Name="RSAKeyByts" materialdesign:HintAssist.Hint="generation bytes" Foreground="White" Margin="5" Cursor="Arrow"
+                PreviewTextInput="onlynumber"/>
 
                 <RadioButton Content="Generate" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}" Click="GenerateRSA"/>
             </StackPanel>

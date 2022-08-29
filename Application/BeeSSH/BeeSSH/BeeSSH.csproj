@@ -133,6 +133,9 @@
     <Compile Include="Interface\UserControlls\TerminalUsercControl.xaml.cs">
       <DependentUpon>TerminalUsercControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interface\UserControlls\totp_imput.xaml.cs">
+      <DependentUpon>totp_imput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interface\UserControlls\WelcomeUserControl.xaml.cs">
       <DependentUpon>WelcomeUserControl.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Interface\UserControlls\totp_imput.xaml" />
     <Page Include="Interface\UserControlls\WelcomeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

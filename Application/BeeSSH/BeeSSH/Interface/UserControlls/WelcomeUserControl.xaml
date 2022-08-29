@@ -47,6 +47,11 @@
                                    Foreground="{DynamicResource MaterialDesignTextAreaBorder}"
                                    FontSize="18"
                                    Margin="20,10,10,0"/>
+                            <TextBlock Text=""
+                                       x:Name="WelcomeBack"
+                                       Foreground="{DynamicResource MaterialDesignTextAreaBorder}"
+                                       FontSize="18"
+                                       Margin="20,10,10,0"/>
                             <StackPanel Orientation="Horizontal">
                                 <Button x:Name="discordBtn" Width="50"
                                         Click="discordBtn_Click"
@@ -69,6 +74,28 @@
                                                          
                                                          Width="15"
                                                          Foreground="White"/>
+                                </Button>
+                                <Button x:Name="twitterbtn" Width="50"
+                                        Click="twitterBtn_Click"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Left"
+                                        Margin="0,15,15,15"
+                                        Height="50" Style="{DynamicResource  MaterialDesignFlatAccentButton}">
+                                    <materialdesign:PackIcon Kind="Twitter"
+                                                         
+                                                             Width="15"
+                                                             Foreground="White"/>
+                                </Button>
+                                <Button x:Name="webpagebtn" Width="50"
+                                        Click="Webpagebtn_OnClickBtn_Click"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Left"
+                                        Margin="0,15,15,15"
+                                        Height="50" Style="{DynamicResource  MaterialDesignFlatAccentButton}">
+                                    <materialdesign:PackIcon Kind="Web"
+                                                         
+                                                             Width="15"
+                                                             Foreground="White"/>
                                 </Button>
                             </StackPanel>
                             

@@ -8,6 +8,7 @@ using BeeSSH.Interface.CustomMessageBox;
 using WK.Libraries.BetterFolderBrowserNS;
 using System.IO;
 using System.Windows.Forms;
+using BeeSSH.Core.API;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using UserControl = System.Windows.Controls.UserControl;
 
@@ -18,7 +19,7 @@ namespace BeeSSH.Interface.UserControlls
     /// </summary>
     public partial class AddServerUserControl : UserControl
     {
-        byte[] rsakey_buff = null; 
+        string rsakey_buff = null; 
         public AddServerUserControl()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace BeeSSH.Interface.UserControlls
             {
                 //Get the path of specified file
                 string filePath = ofd.FileName;
-                rsakey_buff = File.ReadAllBytes(filePath);
+                rsakey_buff = File.ReadAllText(filePath);
             }
             ofd.Dispose();
         }
@@ -41,6 +42,16 @@ namespace BeeSSH.Interface.UserControlls
         private void AddServerBtn(object sender, RoutedEventArgs e)
         {
             string response = "Not Requested";
+            ServerList.Add(new ServerListModel
+            {
+                PassPharse = ServerPassPharse.Text,
+                RSAKEY = rsakey_buff,
+                ServerIP = ServerIP.Text,
+                ServerName = ServerName.Text,
+                ServerPassword = ServerPassword.Password,
+                ServerPort = ServerPort.Text,
+                ServerUserName = Serverusername.Text
+            });
             if (rsakey_buff == null && string.IsNullOrEmpty(ServerPassPharse.Text))
             {
                 response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
@@ -48,7 +59,7 @@ namespace BeeSSH.Interface.UserControlls
                Encrypt(Serverusername.Text, EncryptionMasterPass),
                Encrypt(ServerPassPharse.Text, EncryptionMasterPass));
             }
-            else if (rsakey_buff == null)
+            else if (rsakey_buff == null && !string.IsNullOrEmpty(ServerPassPharse.Text))
             {
                 response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
                false, Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(ServerPassword.Password, EncryptionMasterPass),
@@ -56,7 +67,9 @@ namespace BeeSSH.Interface.UserControlls
             }
             else
             {
-
+                response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
+                    true, Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(rsakey_buff, EncryptionMasterPass),
+                    Encrypt(ServerPassPharse.Text, EncryptionMasterPass), Encrypt(Serverusername.Text, EncryptionMasterPass));
             }
             new BeeMessageBox(response, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog();
         }

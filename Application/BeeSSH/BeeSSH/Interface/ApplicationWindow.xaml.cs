@@ -74,5 +74,10 @@ namespace BeeSSH.Interface
         {
 
         }
+
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new Uri("Interface/UserControlls/WelcomeUserControl.xaml", UriKind.Relative));
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using BeeSSH.Core.API;
+using static BeeSSH.Core.API.Cache;
 using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 
 namespace BeeSSH.Interface.UserControlls
@@ -56,7 +58,11 @@ namespace BeeSSH.Interface.UserControlls
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            ServerList.Items.Add(CreateServerItem("bla bla"));
+            // @TODO: Add Buttion Funktion to Connect.
+            foreach (var _server in Cache.ServerList)
+            {
+                ServerList.Items.Add(CreateServerItem(_server.ServerName));   
+            }
         }
     }
 }

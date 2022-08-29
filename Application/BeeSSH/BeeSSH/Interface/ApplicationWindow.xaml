@@ -108,9 +108,22 @@
                     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromLeft}" materialDesign:ShadowAssist.ShadowDepth="Depth3">
                         <StackPanel Orientation="Vertical">
                             <RadioButton Margin="5"
-                                 x:Name="AddBtn"
-                                 Click="AddBtn_Click"
-                             Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                                         x:Name="home"
+                                         Click="HomeBtn_Click"
+                                         Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Home" Foreground="White"
+                                                                 VerticalAlignment="Center"/>
+                                        <Label Content="Title Screen"/>
+
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Margin="5"
+                                         x:Name="AddBtn"
+                                         Click="AddBtn_Click"
+                                         Style="{DynamicResource MaterialDesignFlatAccentButton}">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="Add" Foreground="White"

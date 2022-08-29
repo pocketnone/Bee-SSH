@@ -5,6 +5,8 @@ namespace BeeSSH.Core.API
     internal class Cache
     {
         internal static string AuthCookieForAPI { get; set; }
+        internal static string _email { get; set; }
+        internal static string _password { get; set; }
         internal static string EncryptionMasterPass { get; set; }                           // Master Password for encryption
         internal static List<ServerListModel> ServerList = new List<ServerListModel>();     // All Servers in a list Uncrypted
         internal static List<ScriptModel> Scriptlist = new List<ScriptModel>();             // All Scripts
@@ -48,7 +50,7 @@ namespace BeeSSH.Core.API
         internal string ServerPort { get; set; }
         internal string ServerUserName { get; set; }
         internal string PassPharse { get; set; }
-        internal byte[] RSAKEY { get; set; }
+        internal string RSAKEY { get; set; }
     }
 
     internal class ScriptModel

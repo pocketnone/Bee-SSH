@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
+using static BeeSSH.Core.API.Cache;
 using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 
 namespace BeeSSH.Interface.UserControlls
@@ -13,6 +15,7 @@ namespace BeeSSH.Interface.UserControlls
         {
             InitializeComponent();
             MainView();
+            WelcomeBack.Text = "Welcome back " + _email + "!";
         }
 
         private void githubBtn_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -23,6 +26,16 @@ namespace BeeSSH.Interface.UserControlls
         private void discordBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Process.Start("https://discord.gg/A2pUGTPjru");
+        }
+
+        private void twitterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://twitter.com/SshBeessh");
+        }
+
+        private void Webpagebtn_OnClickBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://as.mba/");
         }
     }
 }

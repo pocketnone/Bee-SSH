@@ -60,7 +60,7 @@ namespace BeeSSH.Core.API
                                     ServerUserName = Decrypt(item.ServeruserName, EncryptionMasterPass),
                                     ServerPort = Decrypt(item.port, EncryptionMasterPass),
                                     PassPharse = Decrypt(item.PassPharseData, EncryptionMasterPass),
-                                    RSAKEY = Encoding.UTF8.GetBytes(Decrypt(item.serverpass, EncryptionMasterPass))
+                                    RSAKEY = Decrypt(item.serverpass, EncryptionMasterPass)
                                 });
                             }
                         }

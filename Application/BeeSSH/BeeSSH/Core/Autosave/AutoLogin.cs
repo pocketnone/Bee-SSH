@@ -15,14 +15,22 @@ namespace BeeSSH.Core.Autosave
 
         private static string GetPath()
         {
-            string thePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                "/.beeshh/");
+            string thePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                "/beeshh/";
             if (!Directory.Exists(thePath))
                 Directory.CreateDirectory(thePath);
 
             if (!File.Exists(thePath + "config.json"))
-                File.Create(thePath + "config.json");
-
+            {
+                string json = thePath + "config.json";
+                JObject rss = new JObject(
+                    new JProperty("username", null),
+                    new JProperty("password", null),
+                    new JProperty("masterpassword", null),
+                    new JProperty("totf", false));
+                File.WriteAllText(json, rss.ToString());
+            }
+            
             return thePath + "config.json";
         }
         
@@ -33,7 +41,7 @@ namespace BeeSSH.Core.Autosave
                 new JProperty("username", Encrypt(Username, HardCodetPassword)),
                 new JProperty("password", Encrypt(Password, HardCodetPassword)),
                 new JProperty("masterpassword", Encrypt(Masterpassword, HardCodetPassword)),
-                new JProperty("totf", "totfa"));
+                new JProperty("totf", totfa));
             File.WriteAllText(json, rss.ToString());
         }
 
@@ -45,7 +53,17 @@ namespace BeeSSH.Core.Autosave
             res.Add(Decrypt(datastuff.Username, HardCodetPassword));
             res.Add(Decrypt(datastuff.Password, HardCodetPassword));
             res.Add(Decrypt(datastuff.MasterPassword, HardCodetPassword));
+            res.Add(datastuff.totfa);
             return res.ToArray();
+        }
+        
+        
+        
+        internal static bool GetAutoLogin()
+        {
+            var data = File.ReadAllText(GetLocalFolder);
+            var datastuff = JsonConvert.DeserializeObject<AutoLoginModel>(data);
+            return Boolean.Parse(datastuff.totfa);
         }
     }
 

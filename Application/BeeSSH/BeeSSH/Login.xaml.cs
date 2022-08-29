@@ -3,10 +3,11 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using BeeSSH.Interface.CustomMessageBox;
 using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 using static BeeSSH.Core.API.Request;
 using static BeeSSH.Core.API.Cache;
-using BeeSSH.Interface.CustomMessageBox;
+using static BeeSSH.Core.Autosave.AutoLogin;
 
 namespace BeeSSH
 {
@@ -20,6 +21,16 @@ namespace BeeSSH
         {
             InitializeComponent();
             LoginView();
+            bool _b = GetAutoLogin();
+            if (_b)
+            {
+                string[] b = GiveLoginData();
+                EncryptionMasterPass = b[2];
+                _email = b[0];
+                _password = b[1];
+                // @TODO: Open a "totp" imput Field filled over the Screen.
+                // @TODO: Request Example at line 49
+            }
         }
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
@@ -28,15 +39,21 @@ namespace BeeSSH
             {
                 //make master password checks here
                 EncryptionMasterPass = masterPasBox.Password;
-                string email = emailBox.Text;
-                string password = passBox.Password;
+                _email = emailBox.Text;
+                _password = passBox.Password;
                 string otp = faAuthBox.Text;
 
-                if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+                
+                
+                if (!string.IsNullOrEmpty(_email) && !string.IsNullOrEmpty(_password))
                 {
-                    string res = Login(email, password, otp);           // get all servers
+                    string res = Login(_email, _password, otp);           // get all servers
                     if (res == "ok")
                     {
+                        if (autologin.IsChecked == true)
+                        {
+                            CreateAutologin(_email, _password, EncryptionMasterPass, true);
+                        }
                         FetchShortCutsScripts(); // Fetch Scripts
                         Interface.ApplicationWindow b = new Interface.ApplicationWindow();
                         b.Show();
@@ -142,5 +159,6 @@ namespace BeeSSH
         {
             Process.Start("https://as.mba");
         }
+        
     }
 }

@@ -303,7 +303,15 @@
                     </materialDesign:Card>
                 </StackPanel>
             </Border>
-            
+            <Frame x:Name="ContentFrame" Grid.Column="0"
+                   NavigationUIVisibility="Hidden"
+                   Grid.ColumnSpan="6"
+                   HorizontalAlignment="Right"
+                   Width="430"
+                   Height="670"
+                   Margin="5 59 0 0 "
+                   Grid.RowSpan="7"
+            />
 
         </Grid>
     </Border>

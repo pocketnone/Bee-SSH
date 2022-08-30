@@ -1,4 +1,5 @@
-﻿using BeeSSH.Utils.DiscordRPC;
+﻿using System;
+using BeeSSH.Utils.DiscordRPC;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -28,6 +29,7 @@ namespace BeeSSH
                 EncryptionMasterPass = b[2];
                 _email = b[0];
                 _password = b[1];
+                ContentFrame.Navigate(new Uri("Interface/UserControlls/totp_imput.xaml", UriKind.Relative));
                 // @TODO: Open a "totp" imput Field filled over the Screen.
                 // @TODO: Request Example at line 49
             }
@@ -43,8 +45,6 @@ namespace BeeSSH
                 _password = passBox.Password;
                 string otp = faAuthBox.Text;
 
-                
-                
                 if (!string.IsNullOrEmpty(_email) && !string.IsNullOrEmpty(_password))
                 {
                     string res = Login(_email, _password, otp);           // get all servers

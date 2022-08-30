@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Runtime.Remoting.Channels;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using BeeSSH.Core.API;
@@ -45,6 +46,8 @@ namespace BeeSSH.Interface.UserControlls
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
                 Margin = new System.Windows.Thickness(5),
             };
+            ;
+            
             var newStackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
             newStackPanel.Children.Add(newIcon);
             newStackPanel.Children.Add(newTitle);
@@ -56,9 +59,14 @@ namespace BeeSSH.Interface.UserControlls
             };
         }
 
+        private void ConnectToServer(string _Servername)
+        {
+            var b = Cache.ServerList.Find(x => x.ServerName.Contains(_Servername));
+            // @TODO: Open a Terminal with SSH.
+        }
+
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            // @TODO: Add Buttion Funktion to Connect.
             foreach (var _server in Cache.ServerList)
             {
                 ServerList.Items.Add(CreateServerItem(_server.ServerName));   

@@ -6,21 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BEESSH</title>
+    <script src="https://rawgithub.com/soulwire/sketch.js/master/js/sketch.min.js" type="application/javascript"></script>
     <%- include('./includes/trailwind.ejs'); %>
+    <style>
+        .sketch {
+            z-index: 0;
+            display: inline!important;
+            width: 100%!important;
+            height: 100%!important;
+            overflow: hidden;
+            position: absolute;
+            vertical-align: middle;
+        }
+    </style>
+
 </head>
 <body class="landing-page">
+<script src="/js/core/background.js" type="application/javascript"></script>
 <!-- Navbar -->
 <%- include('./includes/header.ejs'); %>
 <!-- End Navbar -->
 <div class="wrapper">
     <div class="page-header">
-        <img src="/img/blob.png" class="path">
-        <img src="/img/path2.png" class="path2">
-        <img src="/img/triunghiuri.png" class="shapes triangle">
-        <img src="/img/waves.png" class="shapes wave">
-        <img src="/img/patrat.png" class="shapes squares">
-        <img src="/img/cercuri.png" class="shapes circle">
-        <div class="content-center">
+        <img src="/img/blob.png" class="path" style="z-index: 1">
+        <img src="/img/path2.png" class="path2" style="z-index: 1">
+        <img src="/img/waves.png" class="shapes wave" style="z-index: 1">
+        <img src="/img/patrat.png" class="shapes squares" style="z-index: 1">
+        <img src="/img/cercuri.png" class="shapes circle" style="z-index: 1">
+        <div class="content-center" style="z-index: 2">
             <div class="row row-grid justify-content-between align-items-center text-left">
                 <div class="col-lg-6 col-md-6">
                     <h1 class="text-white">Keep SSH and sFTP
@@ -38,6 +51,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <section class="section section-lg">
         <div class="container">
@@ -157,6 +171,7 @@
         </div>
     </section>
 </div>
+
 <!--   Core JS Files   -->
 <script src=" /js/core/jquery.min.js" type="text/javascript"></script>
 <script src="/js/core/popper.min.js" type="text/javascript"></script>

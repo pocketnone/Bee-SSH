@@ -7,8 +7,18 @@
              xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              FontFamily="Roboto"
+             Background="{DynamicResource MaterialDesignDarkBackground}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button Content="Show MessageBox Example" x:Name="MessageBoxBtn" Click="MessageBoxBtn_Click" Cursor="Hand"/>
+        <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
+            <StackPanel x:Name="SFTPFiew">
+                <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
+                    <Label Content="Settings" HorizontalAlignment="Center"/>
+                </materialdesign:Card>
+                <!--
+                TODO: SFTP Fiew like in Filetilla or simmelat
+                -->
+            </StackPanel>
+        </materialdesign:TransitioningContent>
     </Grid>
 </UserControl>

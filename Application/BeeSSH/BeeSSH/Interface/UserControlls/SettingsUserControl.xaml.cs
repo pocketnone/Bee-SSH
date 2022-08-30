@@ -16,13 +16,6 @@ namespace BeeSSH.Interface.UserControlls
             InitializeComponent();
             Settings_MainView();
         }
-
-        private void MessageBoxBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (new BeeMessageBox("Example", BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog().Value)
-            {
-                var name = new BeeMessageBox("Example2", BeeMessageBox.MessageType.Warning, BeeMessageBox.MessageButtons.YesNo).ShowDialog().Value;
-            }
-        }
+        
     }
 }

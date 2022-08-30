@@ -130,6 +130,9 @@
     <Compile Include="Interface\UserControlls\SettingsUserControl.xaml.cs">
       <DependentUpon>SettingsUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interface\UserControlls\SFTPControl.xaml.cs">
+      <DependentUpon>SFTPControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interface\UserControlls\TerminalUsercControl.xaml.cs">
       <DependentUpon>TerminalUsercControl.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Interface\UserControlls\SFTPControl.xaml" />
     <Page Include="Interface\UserControlls\TerminalUsercControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

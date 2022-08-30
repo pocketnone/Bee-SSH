@@ -14,6 +14,9 @@
     <Grid>
         <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
             <StackPanel x:Name="SFTPFiew">
+                <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
+                    <Label Content="SFTP" HorizontalAlignment="Center"/>
+                </materialdesign:Card>
                 <!--
                 TODO: SFTP Fiew like in Filetilla or simmelat
                 -->

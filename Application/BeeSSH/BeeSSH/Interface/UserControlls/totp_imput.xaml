@@ -20,7 +20,7 @@
                 />
                 <Label
                     x:Name="statusLbl"
-                    Content="Enter yolonginFinalMargin=5"
+                    Content="Enter your 2-FA Code" Margin="5"
                     Style="{DynamicResource MaterialDesignLabel}"
                     FontSize="19"
                     HorizontalContentAlignment="Center"

@@ -5,8 +5,6 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeSSH", "BeeSSH\BeeSSH.csproj", "{11602167-7BE3-4082-BBC5-C70CD03876B3}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BeeSSH Setup", "BeeSSH Setup\BeeSSH Setup.vdproj", "{07D0B6CB-5470-4933-9809-0C7FAD7B640C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -29,15 +27,6 @@ Global
 		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Release|x64.ActiveCfg = Release|x64
 		{11602167-7BE3-4082-BBC5-C70CD03876B3}.Release|x64.Build.0 = Release|x64
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.All|Any CPU.ActiveCfg = Debug
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.All|x64.ActiveCfg = Debug
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.All|x64.Build.0 = Debug
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.Debug|Any CPU.ActiveCfg = Debug
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.Debug|x64.ActiveCfg = Debug
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.Debug|x64.Build.0 = Debug
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.Release|Any CPU.ActiveCfg = Release
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.Release|x64.ActiveCfg = Release
-		{07D0B6CB-5470-4933-9809-0C7FAD7B640C}.Release|x64.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

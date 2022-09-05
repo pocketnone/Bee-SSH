@@ -16,6 +16,20 @@ namespace BeeSSH.Interface.UserControlls
             InitializeComponent();
             Settings_MainView();
         }
-        
+
+        private void pwchangeBtnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void BtnCheckForUpdate_OnClickBtnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void SaveSettings_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

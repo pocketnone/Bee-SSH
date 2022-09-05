@@ -1,0 +1,49 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Simple.Wpf.Terminal.Themes/2.3.49": {
+        "dependencies": {
+          "Simple.Wpf.Terminal": "2.3.49"
+        },
+        "runtime": {
+          "Simple.Wpf.Terminal.Themes.dll": {}
+        }
+      },
+      "Simple.Wpf.Terminal/2.3.49": {
+        "dependencies": {
+          "Simple.Wpf.Terminal.Common": "2.3.49"
+        },
+        "runtime": {
+          "Simple.Wpf.Terminal.dll": {}
+        }
+      },
+      "Simple.Wpf.Terminal.Common/2.3.49": {
+        "runtime": {
+          "Simple.Wpf.Terminal.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Simple.Wpf.Terminal.Themes/2.3.49": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Simple.Wpf.Terminal/2.3.49": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Simple.Wpf.Terminal.Common/2.3.49": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -251,6 +251,9 @@
     <Compile Include="Interface\ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interface\CustomMessageBox\BeeFingerprint.xaml.cs">
+      <DependentUpon>BeeFingerprint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interface\CustomMessageBox\BeeMessageBox.xaml.cs">
       <DependentUpon>BeeMessageBox.xaml</DependentUpon>
     </Compile>
@@ -282,6 +285,10 @@
     <Compile Include="Utils\DiscordRPC\DiscordRPCLoader.cs" />
     <Compile Include="Utils\DiscordRPC\DiscordRPCManager.cs" />
     <Page Include="Interface\ApplicationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\CustomMessageBox\BeeFingerprint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

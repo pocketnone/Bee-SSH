@@ -9,6 +9,7 @@ using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 using static BeeSSH.Core.API.Request;
 using static BeeSSH.Core.API.Cache;
 using static BeeSSH.Core.Autosave.AutoLogin;
+using static BeeSSH.Core.Autosave.ConfigLoader;
 
 namespace BeeSSH
 {
@@ -21,7 +22,12 @@ namespace BeeSSH
         public Login()
         {
             InitializeComponent();
-            LoginView();
+            InizialConfig();
+
+            
+            LoginView();    
+            
+            
             bool _b = GetAutoLogin();
             if (_b)
             {

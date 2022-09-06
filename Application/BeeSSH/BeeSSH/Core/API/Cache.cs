@@ -50,6 +50,7 @@ namespace BeeSSH.Core.API
         internal string ServerPort { get; set; }
         internal string ServerUserName { get; set; }
         internal string PassPharse { get; set; }
+        internal string FingerPrint { get; set; }
         internal string RSAKEY { get; set; }
     }
 

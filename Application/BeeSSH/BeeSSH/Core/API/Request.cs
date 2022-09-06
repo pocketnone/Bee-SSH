@@ -88,7 +88,7 @@ namespace BeeSSH.Core.API
         }
 
         // Add a Server to the Backend from the Webpage
-        internal static string AddServer(string servername_crypted, string port_crypted, bool isKey, string ipadress_crypted, string PasswordOrKey_crypted, string serverusername_crypted, string passPharse = "null")
+        internal static string AddServer(string servername_crypted, string port_crypted, string isKey, string ipadress_crypted, string PasswordOrKey_crypted, string serverusername_crypted, string passPharse = "null")
         {
             var requestOptions = new Dictionary<string, string>();
             requestOptions.Add("tool", ClientAuthKey);
@@ -100,9 +100,27 @@ namespace BeeSSH.Core.API
             requestOptions.Add("PasswordKey", PasswordOrKey_crypted);
             requestOptions.Add("ServerUsername", serverusername_crypted);
             requestOptions.Add("PassPharse", passPharse);
+            requestOptions.Add("Fingerprint", "null");
             using (var client = new HttpClient())
             {
                 var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.AddServer) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
+                var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
+                string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
+                var datastuff = JsonConvert.DeserializeObject<OtherResponse>(res);
+                return datastuff.DataRes;
+            }
+        }
+        
+        internal static string AddFingerprint(string crypt_fingerprint, string serverUID)
+        {
+            var requestOptions = new Dictionary<string, string>();
+            requestOptions.Add("tool", ClientAuthKey);
+            requestOptions.Add("authkey", AuthCookieForAPI);
+            requestOptions.Add("serverUID", serverUID);
+            requestOptions.Add("Fingerprint", crypt_fingerprint);
+            using (var client = new HttpClient())
+            {
+                var req = new HttpRequestMessage(HttpMethod.Post, APIEndPoint.FingerPrintAPI) { Content = new FormUrlEncodedContent(requestOptions) };     // Request
                 var res_raw = client.SendAsync(req).Result;                                                                                 // Response from the API
                 string res = res_raw.Content.ReadAsStringAsync().Result;                                                                    // Convert to String
                 var datastuff = JsonConvert.DeserializeObject<OtherResponse>(res);
@@ -290,11 +308,14 @@ namespace BeeSSH.Core.API
         [JsonProperty("crpyt_port")]
         public string port { get; set; }
 
-        [JsonProperty("isKey")]
+        [JsonProperty("crypt_RSAKey")]
         public string isKey { get; set; }
 
         [JsonProperty("crpyt_PassPharse")]
         public string PassPharseData { get; set; }
+        
+        [JsonProperty("server_UID")]
+        public string ServerUID { get; set; }
     }
 
     // ETC

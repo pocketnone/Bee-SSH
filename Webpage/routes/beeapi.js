@@ -253,6 +253,7 @@ router.post("/client_new", (req, res) => {
 });
 
 
+
 // Delete Server
 
 router.post("/client_delete", (req, res) => {
@@ -263,7 +264,7 @@ router.post("/client_delete", (req, res) => {
         return res.end();
     }
     if(!scriptUID) {
-        return res.status(404).json({Info: "Auth Missing", data: req.body});
+        return res.status(404).json({Info: "Script UID Missing", data: req.body, RequestIP: req.cf_ip});
     }
 
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
@@ -273,12 +274,45 @@ router.post("/client_delete", (req, res) => {
             AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
             return res.status(201).json({Info:"Invalid"});
         }
-        sshdb.findOneAndDelete({script_UID: scriptUID}).then(deleter=>{});
+        sshdb.findOneAndDelete({server_UID: scriptUID}).then(deleter=>{});
         return res.status(200).json({
             Info: "Success"
         });
     })
 });
+
+// Add Fingerprint
+router.post("/add_fingerprint", (req, res) => {
+    const { authkey, tool } = req.body;
+    const {serverUID, Fingerprint} = req.body;
+
+    if(tool !== process.env.CLIENTPASSWORD) {
+        return res.end();
+    }
+    if(!authkey) {
+        return res.status(404).json({Info: "Auth Missing", RequestIP: req.cf_ip});
+    }
+    if(!tool) {
+        return res.status(404).json({Info: "Tool Missing", RequestIP: req.cf_ip});
+    }
+
+    AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
+        if(!_uid)
+            return res.status(201).json({Info: "AuthCookie Error", RequestIP: req.cf_ip});
+        if(_uid.IP !== req.cf_ip) {
+            AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
+            return res.status(201).json({Info:"Invalid"});
+        }
+        sshdb.findOneAndUpdate({server_UID: serverUID}, {fingerprint: Fingerprint}).then(b =>{});
+
+        return res.status(200).json({
+            Info: "Success"
+        });
+    })
+
+
+});
+
 
 // Update Server
 
@@ -290,10 +324,10 @@ router.post("/client_update", (req, res) => {
         return res.end();
     }
     if(!authkey) {
-        return res.status(404).json({Info: "Auth Missing", data: req.body});
+        return res.status(404).json({Info: "Auth Missing"});
     }
     if(!tool) {
-        return res.status(404).json({Info: "Tool Missing", data: req.body});
+        return res.status(404).json({Info: "Tool Missing"});
     }
     if(!servername || !port || !ipadress || !PasswordKey || !ServerUsername || !scriptUID) {
         return res.status(404).json({Info: "Values Missing", data: req.body});
@@ -307,7 +341,7 @@ router.post("/client_update", (req, res) => {
         }
         const sUID = randomstring.generate(20);
 
-        sshdb.findByIdAndUpdate({script_UID: scriptUID}, {
+        sshdb.findByIdAndUpdate({server_UID: scriptUID}, {
             name: servername,
             crpyt_ServerUser: ServerUsername,
             crpyt_ip: ipadress,

@@ -26,8 +26,8 @@ const SSH = new mongoose.Schema({
         required: true,
         default: "NULL"
     },
-    isKey: {
-        type: Boolean,
+    crypt_RSAKey: {
+        type: String,
         default: false,
         required: true
     },
@@ -35,9 +35,14 @@ const SSH = new mongoose.Schema({
         type: String,
         required: true
     },
-    script_UID: {
+    server_UID: {
         type: String,
         required: true
+    },
+    fingerprint: {
+        type: String,
+        required: true,
+        default: 'null'
     }
 });
 

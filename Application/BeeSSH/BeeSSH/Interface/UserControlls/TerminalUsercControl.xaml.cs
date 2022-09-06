@@ -1,7 +1,8 @@
 ﻿using System.Windows.Controls;
+using BeeSSH.Core.API;
 using Renci.SshNet;
-using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 using static BeeSSH.Core.API.Cache;
+using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 
 namespace BeeSSH.Interface.UserControlls
 {
@@ -21,6 +22,7 @@ namespace BeeSSH.Interface.UserControlls
 
         private void ConnectSSH()
         {
+            var b = Cache.ServerList.Find(x => x.ServerUID.Contains(_Servername));
             
         }
     }

@@ -28,8 +28,6 @@
 
                     </materialdesign:TransitioningContent>
             </StackPanel>
-
-
         </materialdesign:TransitioningContent>
     </Grid>
 </UserControl>

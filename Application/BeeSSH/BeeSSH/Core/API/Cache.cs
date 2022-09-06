@@ -23,7 +23,9 @@ namespace BeeSSH.Core.API
             
             internal static string DeleteServer = "https://as.mba/api/client_delete";  
             
-            internal static string UpdateServer = "https://as.mba/api/client_update";  
+            internal static string UpdateServer = "https://as.mba/api/client_update";
+
+            internal static string FingerPrintAPI = "https://as.mba/api/add_fingerprint";
 
             #endregion
             
@@ -50,6 +52,7 @@ namespace BeeSSH.Core.API
         internal string ServerPort { get; set; }
         internal string ServerUserName { get; set; }
         internal string PassPharse { get; set; }
+        internal string ServerUID { get; set; }
         internal string FingerPrint { get; set; }
         internal string RSAKEY { get; set; }
     }

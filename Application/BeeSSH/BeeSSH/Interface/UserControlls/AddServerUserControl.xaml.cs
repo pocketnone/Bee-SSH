@@ -50,25 +50,26 @@ namespace BeeSSH.Interface.UserControlls
                 ServerName = ServerName.Text,
                 ServerPassword = ServerPassword.Password,
                 ServerPort = ServerPort.Text,
-                ServerUserName = Serverusername.Text
+                ServerUserName = Serverusername.Text,
+                FingerPrint = "null"
             });
             if (rsakey_buff == null && string.IsNullOrEmpty(ServerPassPharse.Text))
             {
                 response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
-               false, Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(ServerPassword.Password, EncryptionMasterPass), 
+               "null", Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(ServerPassword.Password, EncryptionMasterPass), 
                Encrypt(Serverusername.Text, EncryptionMasterPass),
                Encrypt(ServerPassPharse.Text, EncryptionMasterPass));
             }
             else if (rsakey_buff == null && !string.IsNullOrEmpty(ServerPassPharse.Text))
             {
                 response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
-               false, Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(ServerPassword.Password, EncryptionMasterPass),
+               "null", Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(ServerPassword.Password, EncryptionMasterPass),
                Encrypt(ServerPassPharse.Text, EncryptionMasterPass), Encrypt(Serverusername.Text, EncryptionMasterPass));
             }
             else
             {
                 response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
-                    true, Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(rsakey_buff, EncryptionMasterPass),
+                    Encrypt(rsakey_buff, EncryptionMasterPass), Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(rsakey_buff, EncryptionMasterPass),
                     Encrypt(ServerPassPharse.Text, EncryptionMasterPass), Encrypt(Serverusername.Text, EncryptionMasterPass));
             }
             new BeeMessageBox(response, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog();

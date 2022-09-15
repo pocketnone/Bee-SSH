@@ -24,6 +24,7 @@ namespace BeeSSH
             InitializeComponent();
             InizialConfig();
             LoginView();
+
             bool _b = GetAutoLogin();
             if (_b)
             {
@@ -31,7 +32,16 @@ namespace BeeSSH
                 EncryptionMasterPass = b[2];
                 _email = b[0];
                 _password = b[1];
-                ContentFrame.Navigate(new Uri("Interface/UserControlls/totp_imput.xaml", UriKind.Relative));
+                if (b[3] == "true")
+                {
+                    ContentFrame.Navigate(new Uri("Interface/UserControlls/totp_imput.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    Core.GUILoader.GUIPandleLoader.OpenGUI();
+                    this.Close(); 
+                }
+                
             }
         }
 

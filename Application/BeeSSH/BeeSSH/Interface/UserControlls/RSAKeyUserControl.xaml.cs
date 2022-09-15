@@ -26,7 +26,7 @@ namespace BeeSSH.Interface.UserControlls
 
         private void GenerateRSA(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(RSAKeyName.ToString()) && string.IsNullOrEmpty(RSAKeyByts.ToString()))
+            if (string.IsNullOrEmpty(RSAKeyName.Text.ToString()) && string.IsNullOrEmpty(RSAKeyByts.Text.ToString()))
             {
 
 
@@ -38,12 +38,12 @@ namespace BeeSSH.Interface.UserControlls
                 {
                     new Thread(() =>
                     {
-                        var keygen = new global::SshKeyGenerator.SshKeyGenerator(Convert.ToInt32(RSAKeyByts));
+                        var keygen = new global::SshKeyGenerator.SshKeyGenerator(Convert.ToInt32(RSAKeyByts.Text));
                         var privateKey = keygen.ToPrivateKey();
                         var publicSshKey = keygen.ToRfcPublicKey();
                         string folder = FolderBrowser.SelectedFolder;
-                        string _privateKey = "private_" + RSAKeyName + ".key";
-                        string _publicKey = "public_" + RSAKeyName + ".key";
+                        string _privateKey = "private_" + RSAKeyName.Text + ".key";
+                        string _publicKey = "public_" + RSAKeyName.Text + ".key";
                         _privateKey = Path.Combine(folder, _privateKey);
                         _publicKey = Path.Combine(folder, _publicKey);
                         File.WriteAllText(_publicKey, publicSshKey);

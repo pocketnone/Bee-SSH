@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              FontFamily="Roboto"
              Background="{DynamicResource MaterialDesignDarkBackground}"
-             d:DesignHeight="760" d:DesignWidth="450">
+             d:DesignHeight="860" d:DesignWidth="450">
     <Grid>
         <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
             <StackPanel>

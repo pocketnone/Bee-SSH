@@ -307,7 +307,7 @@
                    Grid.ColumnSpan="6"
                    HorizontalAlignment="Right"
                    Width="430"
-                   Height="670"
+                   Height="970"
                    Margin="5 59 0 0 "
                    Grid.RowSpan="7"
             />

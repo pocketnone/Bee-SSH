@@ -128,39 +128,42 @@ router.post('/login', (req, res, next) => {
           'hCaptcha Error'
       );
       return res.redirect('/users/login');
-    }}).catch(console.error);
-
-  User.findOne({email: mail}).then(user=>{
-    if(user) {
-      if (user.mfa == true) {                        // User use 2FA
-        if (mfa(user.secret , secret)) {
-          passport.authenticate('local', {
-            successRedirect: '/dashboard',
-            failureRedirect: '/users/login',
-            failureFlash: true
-          })(req, res, next);
-        } else {
-          req.flash(
-              'error_msg',
-              'User, Password ore 2FA Code are Incorrect'
-          );
-          return res.redirect('/users/login');
-        }
-      } else {
-        passport.authenticate('local', {
-          successRedirect: '/dashboard',
-          failureRedirect: '/users/login',
-          failureFlash: true
-        })(req, res, next);
-      }
     } else {
-      req.flash(
-          'error_msg',
-          'User or Password are Incorrect'
-      );
-      return res.redirect('/users/login');
+        User.findOne({email: mail}).then(user=>{
+            if(user) {
+                if (user.mfa == true) {                        // User use 2FA
+                    if (mfa(user.secret , secret)) {
+                        passport.authenticate('local', {
+                            successRedirect: '/dashboard',
+                            failureRedirect: '/users/login',
+                            failureFlash: true
+                        })(req, res, next);
+                    } else {
+                        req.flash(
+                            'error_msg',
+                            'User, Password ore 2FA Code are Incorrect'
+                        );
+                        return res.redirect('/users/login');
+                    }
+                } else {
+                    passport.authenticate('local', {
+                        successRedirect: '/dashboard',
+                        failureRedirect: '/users/login',
+                        failureFlash: true
+                    })(req, res, next);
+                }
+            } else {
+                req.flash(
+                    'error_msg',
+                    'User or Password are Incorrect'
+                );
+                return res.redirect('/users/login');
+            }
+        });
     }
-  });
+
+  }).catch(console.error);
+
 });
 
 // Logout

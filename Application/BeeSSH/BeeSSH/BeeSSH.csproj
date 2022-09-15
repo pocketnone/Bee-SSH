@@ -248,6 +248,7 @@
     <Compile Include="Core\Autosave\AutoLogin.cs" />
     <Compile Include="Core\Autosave\ConfigLoader.cs" />
     <Compile Include="Core\Autosave\INISystem.cs" />
+    <Compile Include="Core\GUILoader\GUIPandleLoader.cs" />
     <Compile Include="Interface\ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>

@@ -24,7 +24,7 @@ namespace BeeSSH.Interface.UserControlls
             var newIcon = new MaterialDesignThemes.Wpf.PackIcon()
             {
                 Kind = MaterialDesignThemes.Wpf.PackIconKind.Server,
-                Name = serverUID,
+                Name = serverUID + "_ico",
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
                 Margin = new System.Windows.Thickness(5),
@@ -33,7 +33,7 @@ namespace BeeSSH.Interface.UserControlls
             var newTitle = new Label()
             {
                 Content = serverTitle,
-                Name = serverUID,
+                Name = serverUID + "_tit",
                 Foreground = Brushes.White,
                 FontSize = 20,
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
@@ -53,7 +53,7 @@ namespace BeeSSH.Interface.UserControlls
             var DelBtn = new RadioButton()
             {
                 Content = "Delete",
-                Name = serverUID,
+                Name = serverUID + "_del",
                 Style = FindResource("MaterialDesignFlatAccentButton") as Style,
                 Foreground = Brushes.White,
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
@@ -68,7 +68,7 @@ namespace BeeSSH.Interface.UserControlls
             newStackPanel.Children.Add(newTitle);
             newStackPanel.Children.Add(newBtn);
             newStackPanel.Children.Add(DelBtn);
-            newStackPanel.Name = serverUID;
+            newStackPanel.Name = serverUID + "_stackp";
 
             return new MaterialDesignThemes.Wpf.Card()
             {
@@ -87,20 +87,23 @@ namespace BeeSSH.Interface.UserControlls
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            string serverUID = button.Name.ToString();
-            var DeleteStackpandel = (StackPanel)this.FindName(serverUID);
+            string serverUID = button.Name.ToString().Replace("_del", "");
+            var DeleteStackpandel = (StackPanel)this.FindName(serverUID+ "_stackp");
             Request.DeleteServer(serverUID);
             DeleteStackpandel.Children.Clear();
             foreach (var oldServer in Cache.ServerList)
             {
                 if (oldServer.ServerUID == serverUID)
+                {
                     Cache.ServerList.Remove(oldServer);
+                    break;
+                }
+                    
             }
         }
         
         private void ConnectToServer(string _ServerUID)
         {
-            var b = Cache.ServerList.Find(x => x.ServerUID.Contains(_ServerUID));
             // @TODO: Open a Terminal with SSH.
         }
 

@@ -190,27 +190,15 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
+                            <StackPanel Margin="0 50 0 0" Background="#20edeeaf">
+                                <ListBox x:Name="TerminalBtnList">
+ 
+                                </ListBox>
+                            </StackPanel>
 
-                            <RadioButton Margin="5"
-                                 x:Name="TerminalBtn"
-                                 Click="TerminalBtn_Click"
-                             Style="{DynamicResource MaterialDesignFlatAccentButton}">
-                                <RadioButton.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Terminal" Foreground="White"
-                                                         VerticalAlignment="Center"/>
-                                        <Label Content="Terminal"/>
-
-                                    </StackPanel>
-                                </RadioButton.Content>
-                            </RadioButton>
                             
-                            
-
-
-
-
                         </StackPanel>
+                        
                     </materialDesign:TransitioningContent>
                 </materialDesign:Card>
             </StackPanel>

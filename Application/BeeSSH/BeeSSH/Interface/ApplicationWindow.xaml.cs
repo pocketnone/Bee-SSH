@@ -42,7 +42,7 @@ namespace BeeSSH.Interface
 
         private void TerminalBtn_Click(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(new Uri("Interface/UserControlls/TerminalUsercControl.xaml", UriKind.Relative));
+            //ContentFrame.Navigate(new Uri("Interface/UserControlls/TerminalUsercControl.xaml", UriKind.Relative));
         }
 
         private void GenerateRSABtn_Click(object sender, RoutedEventArgs e)

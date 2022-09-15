@@ -15,7 +15,7 @@
                 <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
                     <Label Content="Settings" HorizontalAlignment="Center"/>
                 </materialdesign:Card>
-                <materialdesign:Card Width="800" Height="50" HorizontalAlignment="Left">
+                <materialdesign:Card Height="50" HorizontalAlignment="Center">
                     <StackPanel VerticalAlignment="Center">
                         <Label VerticalAlignment="Center" Content="Logged in as [EMAIL]" x:Name="CurrentUserLabel"></Label>
                         <Label  VerticalAlignment="Center" Content="Servers: [SERVERNUMBER]" x:Name="CurrentNumberOfServer"></Label>

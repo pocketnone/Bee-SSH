@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Controls;
 using BeeSSH.Core.API;
 using BeeSSH.Interface.CustomMessageBox;
@@ -14,11 +15,15 @@ namespace BeeSSH.Interface.UserControlls
     public partial class TerminalUsercControl : UserControl
     {
         private string _Servername { get; set; }
-        public TerminalUsercControl(string Servername)
+
+        private SshClient client;
+        private ShellStream _shellStream;
+        public TerminalUsercControl()
         {
             InitializeComponent();
-            PandleServer(Servername);
-            _Servername = Servername;
+            string ServerUID = Cache._ServerUID;
+            PandleServer(ServerUID);
+            _Servername = ServerUID;
             Terminal_MainView();
         }
 
@@ -33,7 +38,17 @@ namespace BeeSSH.Interface.UserControlls
                 fingerprint = true;
             }
 
-            var client = new SshClient(b.ServerIP, Int32.Parse(b.ServerPort), b.ServerUserName);
+            if (!string.IsNullOrEmpty(b.RSAKEY) && !string.IsNullOrEmpty(b.ServerPassword))
+            {
+                string path = Path.GetTempPath() + b.ServerUID + ".key";
+                File.WriteAllText(path, b.RSAKEY);
+                client = new SshClient(b.ServerIP, Int32.Parse(b.ServerPort), b.ServerUserName, new PrivateKeyFile(path));
+                File.Delete(path);
+            }
+            else
+                client = new SshClient(b.ServerIP, Int32.Parse(b.ServerPort), b.ServerUserName, b.ServerPassword);
+            
+            
             client.HostKeyReceived += (sender, e) =>
             {
                 if (fingerprint)
@@ -67,12 +82,21 @@ namespace BeeSSH.Interface.UserControlls
                 }
             };
             client.Connect();
-            
+            SendCommand("cd ~");
         }
 
-        private void ConnectSSHwithRSA()
+        public void SendDataToGUI(string data)
         {
-            
+            UI.Inlines.Add(new Label(){
+                Content = data
+            });
+        }
+        
+        private void SendCommand(string command)
+        {
+            var cmd = client.CreateCommand(command);
+            var res = cmd.Execute();
+            SendDataToGUI(res);
         }
     }
 }

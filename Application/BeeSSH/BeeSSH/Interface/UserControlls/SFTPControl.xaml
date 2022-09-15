@@ -17,6 +17,7 @@
                 <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
                     <Label Content="SFTP" HorizontalAlignment="Center"/>
                 </materialdesign:Card>
+                <Label Content="Work in Progress..."></Label>
                 <!--
                 TODO: SFTP Fiew like in Filetilla or simmelat
                 -->

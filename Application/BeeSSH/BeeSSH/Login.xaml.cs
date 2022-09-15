@@ -23,11 +23,7 @@ namespace BeeSSH
         {
             InitializeComponent();
             InizialConfig();
-
-            
-            LoginView();    
-            
-            
+            LoginView();
             bool _b = GetAutoLogin();
             if (_b)
             {
@@ -36,8 +32,6 @@ namespace BeeSSH
                 _email = b[0];
                 _password = b[1];
                 ContentFrame.Navigate(new Uri("Interface/UserControlls/totp_imput.xaml", UriKind.Relative));
-                // @TODO: Open a "totp" imput Field filled over the Screen.
-                // @TODO: Request Example at line 49
             }
         }
 
@@ -61,8 +55,7 @@ namespace BeeSSH
                             CreateAutologin(_email, _password, EncryptionMasterPass, true);
                         }
                         FetchShortCutsScripts(); // Fetch Scripts
-                        Interface.ApplicationWindow b = new Interface.ApplicationWindow();
-                        b.Show();
+                        Core.GUILoader.GUIPandleLoader.OpenGUI();
                         this.Close(); 
                     } else
                     {
@@ -106,7 +99,7 @@ namespace BeeSSH
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://as.mba");
+            Process.Start("https://as.mba/users/register");
         }
 
         private void forgotPassword(object sender, RoutedEventArgs e)

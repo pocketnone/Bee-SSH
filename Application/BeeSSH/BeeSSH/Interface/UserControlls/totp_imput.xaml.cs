@@ -19,8 +19,7 @@ namespace BeeSSH.Interface.UserControlls
             if (res == "ok")
             {
                 FetchShortCutsScripts(); // Fetch Scripts
-                Interface.ApplicationWindow b = new Interface.ApplicationWindow();
-                b.Show();
+                Core.GUILoader.GUIPandleLoader.OpenGUI();
                 var parentWindow = Window.GetWindow(this);
                 parentWindow.Close();
             } else

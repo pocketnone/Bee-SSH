@@ -183,37 +183,36 @@
 
 
 
-
-
-                            <materialDesign:Card
-                            Background="{DynamicResource AttentionToActionBrush}"
+                            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn}">
+                                <materialDesign:Card
+                                    Background="{DynamicResource AttentionToActionBrush}">
+                                    <TextBox  x:Name="faAuthBox"
+                                              Visibility="Collapsed"
+                                  
+                                              Margin="5"
+                                              TextWrapping="Wrap"
+                                              TextAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Width="200"
+                                              Height="30"
+                                              Background="Transparent"
+                                              materialDesign:HintAssist.Hint="2-FA"
+                                              VerticalContentAlignment="Center"
+                                              HorizontalContentAlignment="Center"
+                                              TextElement.Foreground="{DynamicResource MaterialDesignBody}" PreviewTextInput="OnlyNumber" Cursor="Arrow"
                             
-                            >
-                                <TextBox  x:Name="faAuthBox"
-                                  Visibility="Collapsed"
-                            Margin="5"
-                            TextWrapping="Wrap"
-                            TextAlignment="Center"
-                            VerticalAlignment="Center"
-                            Width="200"
-                            Height="30"
-                            Background="Transparent"
-                                 materialDesign:HintAssist.Hint="2-FA"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" PreviewTextInput="OnlyNumber" Cursor="Arrow"
-                            
-                                 />
-                            </materialDesign:Card>
+                                    />
+                                </materialDesign:Card>
+                            </materialDesign:TransitioningContent>
 
                             <CheckBox Content="Enable 2-FA"
                                       x:Name="twoFAEnabled"
-                                  Style="{DynamicResource MaterialDesignCheckBox}"
-                                  HorizontalAlignment="Right"
-                                  Margin="0,0,10,0"
+                                      Style="{DynamicResource MaterialDesignCheckBox}"
+                                      HorizontalAlignment="Right"
+                                      Margin="0,0,10,0"
                                       Checked="twoFAEnabled_Checked"
                                       Unchecked="twoFAEnabled_Unchecked"
-                                  />
+                            />
                             <CheckBox Content="Enable Auto-Login"
                                       x:Name="autologin"
                                       Style="{DynamicResource MaterialDesignCheckBox}"

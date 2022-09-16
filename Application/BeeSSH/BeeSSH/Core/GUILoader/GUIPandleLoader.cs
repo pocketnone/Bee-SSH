@@ -5,7 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using BeeSSH.Core.API;
+using DiscordRPC;
 using Renci.SshNet;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static BeeSSH.Core.API.Cache;
 using static BeeSSH.Utils.DiscordRPC.DiscordRPCManager;
 
@@ -27,38 +29,42 @@ namespace BeeSSH.Core.GUILoader
             b.TerminalBtnList.Items.Add(CreateServerItem(serverTitle, ServerUID));
         }
 
-        private static MaterialDesignThemes.Wpf.Card CreateServerItem(string serverTitle, string serverUID)
+        private static RadioButton CreateServerItem(string serverTitle, string serverUID)
         {
-            var newIcon = new MaterialDesignThemes.Wpf.PackIcon()
-            {
-                Kind = MaterialDesignThemes.Wpf.PackIconKind.Server,
-                Name = serverUID + "_ico",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(5)
-            };
-
+            b.TerminalBtnList.Visibility = Visibility.Visible;
             var newBtn = new RadioButton()
             {
-                Content = "Terminal",
+                Content = new StackPanel()
+                {
+                    Orientation = Orientation.Horizontal,
+                    Children =
+                    {
+                        new MaterialDesignThemes.Wpf.PackIcon()
+                        {
+                            Kind = MaterialDesignThemes.Wpf.PackIconKind.TerminalLine,
+                            Name = serverUID + "_ico",
+                            VerticalAlignment = VerticalAlignment.Center,
+                            HorizontalContentAlignment = HorizontalAlignment.Left,
+                            Margin = new Thickness(0,0,5,0),
+                            Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
+                        },
+                        new Label()
+                        {
+                            Content = serverTitle,
+                            FontSize = 16,
+                            Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
+                        }
+                    }
+                },
                 Name = serverUID,
-                Style = _frameworkElement.FindResource("MaterialDesignFlatAccentButton") as Style,
                 Foreground = Brushes.White,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(5)
+                Style = _frameworkElement.FindResource("MaterialDesignFlatAccentButton") as Style
             };
             newBtn.Click += ConnectionInfo;
 
-            var newStackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
-            newStackPanel.Children.Add(newIcon);
-            newStackPanel.Children.Add(newBtn);
-            newStackPanel.Name = serverUID + "_span";
+            //newStackPanel.Name = serverUID + "_span";
 
-            return new MaterialDesignThemes.Wpf.Card()
-            {
-                Content = newStackPanel
-            };
+            return newBtn;
         }
 
 

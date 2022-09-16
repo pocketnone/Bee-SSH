@@ -197,8 +197,10 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-                            <StackPanel Margin="0 50 0 0" Background="#20edeeaf">
-                                <ListBox x:Name="TerminalBtnList" />
+                            <StackPanel Background="Transparent">
+                                <ListBox x:Name="TerminalBtnList" Visibility="Collapsed"
+                                         Margin="0,50,0,0"
+                                         HorizontalAlignment="Left" VerticalAlignment="Center" />
                             </StackPanel>
 
 

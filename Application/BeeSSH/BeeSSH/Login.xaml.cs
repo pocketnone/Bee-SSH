@@ -19,27 +19,42 @@ namespace BeeSSH
     public partial class Login : Window
     {
         private bool userIsLoggedIn = true; //bool temoprär
+
         public Login()
         {
             InitializeComponent();
             InizialConfig();
             LoginView();
 
-            bool _b = GetAutoLogin();
+            var _b = GetAutoLogin();
             if (_b)
             {
-                string[] b = GiveLoginData();
+                var b = GiveLoginData();
                 EncryptionMasterPass = b[2];
                 _email = b[0];
                 _password = b[1];
-                if (b[3] == "true")
+                if (b[4] == "true")
                 {
-                    ContentFrame.Navigate(new Uri("Interface/UserControlls/totp_imput.xaml", UriKind.Relative));
-                }
-                else
-                {
-                    Core.GUILoader.GUIPandleLoader.OpenGUI();
-                    this.Close(); 
+                   
+                    if (b[3] == "true")
+                    {
+                        xBottomCard.Visibility = Visibility.Hidden;
+                        ContentFrame.Navigate(new Uri("Interface/UserControlls/totp_imput.xaml", UriKind.Relative));
+                    }
+                    else
+                    {
+                        var res = Login(_email, _password); // get all servers
+                        if (res == "ok")
+                        {
+                            FetchShortCutsScripts(); // Fetch Scripts
+                            Core.GUILoader.GUIPandleLoader.OpenGUI();
+                            this.Close();
+                        }
+                        else
+                        {
+                            new BeeMessageBox(res, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog();
+                        }
+                    }
                 }
                 
             }
@@ -53,23 +68,29 @@ namespace BeeSSH
                 EncryptionMasterPass = masterPasBox.Password;
                 _email = emailBox.Text;
                 _password = passBox.Password;
-                string otp = faAuthBox.Text;
+                var otp = faAuthBox.Text;
 
                 if (!string.IsNullOrEmpty(_email) && !string.IsNullOrEmpty(_password))
                 {
-                    string res = Login(_email, _password, otp);           // get all servers
+                    var res = Login(_email, _password, otp); // get all servers
                     if (res == "ok")
                     {
                         if (autologin.IsChecked == true)
                         {
-                            CreateAutologin(_email, _password, EncryptionMasterPass, true);
+                            if (twoFAEnabled.IsChecked == true)
+                                CreateAutologin(_email, _password, EncryptionMasterPass, true, true);
+                            else
+                                CreateAutologin(_email, _password, EncryptionMasterPass, false, true);
                         }
+
                         FetchShortCutsScripts(); // Fetch Scripts
                         Core.GUILoader.GUIPandleLoader.OpenGUI();
-                        this.Close(); 
-                    } else
+                        Close();
+                    }
+                    else
                     {
-                        new BeeMessageBox(res, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog();
+                        new BeeMessageBox(res, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok)
+                            .ShowDialog();
                     }
                 }
             }
@@ -79,7 +100,6 @@ namespace BeeSSH
                 if (userIsLoggedIn)
                     ShowMasterPasswordBox();
             }
-
         }
 
         private void ShowMasterPasswordBox()
@@ -101,9 +121,9 @@ namespace BeeSSH
 
         private void loginBtnOffline_Click(object sender, RoutedEventArgs e)
         {
-            Interface.ApplicationWindow b = new Interface.ApplicationWindow();
+            var b = new Interface.ApplicationWindow();
             b.Show();
-            this.Close();
+            Close();
         }
 
 
@@ -128,12 +148,21 @@ namespace BeeSSH
                 DragMove();
         }
 
-        private void minBtn_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+        private void minBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
 
 
-        private void twoFAEnabled_Checked(object sender, RoutedEventArgs e) => faAuthBox.Visibility = Visibility.Visible;
+        private void twoFAEnabled_Checked(object sender, RoutedEventArgs e)
+        {
+            faAuthBox.Visibility = Visibility.Visible;
+        }
 
-        private void twoFAEnabled_Unchecked(object sender, RoutedEventArgs e) => faAuthBox.Visibility = Visibility.Collapsed;
+        private void twoFAEnabled_Unchecked(object sender, RoutedEventArgs e)
+        {
+            faAuthBox.Visibility = Visibility.Collapsed;
+        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -160,7 +189,7 @@ namespace BeeSSH
         // Only input Numbers
         private void OnlyNumber(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            var regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
@@ -168,6 +197,5 @@ namespace BeeSSH
         {
             Process.Start("https://as.mba");
         }
-        
     }
 }

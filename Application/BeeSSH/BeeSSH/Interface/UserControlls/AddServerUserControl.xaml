@@ -1,28 +1,33 @@
 ﻿<UserControl x:Class="BeeSSH.Interface.UserControlls.AddServerUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:BeeSSH.Interface.UserControlls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              FontFamily="Roboto"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
             <StackPanel>
-                <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
-                    <Label Content="Add Server" HorizontalAlignment="Center"/>
+                <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top">
+                    <Label Content="Add Server" HorizontalAlignment="Center" />
                 </materialdesign:Card>
-                <TextBox x:Name="ServerName" materialdesign:HintAssist.Hint="Server Name" Foreground="White" Margin="5"/>
-                <TextBox x:Name="ServerIP" materialdesign:HintAssist.Hint="Server Adress" Foreground="White" Margin="5"/>
-                <TextBox x:Name="ServerPort" materialdesign:HintAssist.Hint="Port" Foreground="White" Margin="5"/>
-                <TextBox x:Name="Serverusername" materialdesign:HintAssist.Hint="Username" Foreground="White" Margin="5"/>
-                <PasswordBox x:Name="ServerPassword" materialdesign:HintAssist.Hint="Password" Foreground="White" Margin="5"/>
-                <TextBox x:Name="ServerPassPharse" materialdesign:HintAssist.Hint="Passphrase" Foreground="White" Margin="5"/>
-                <RadioButton x:Name="RSAKEY" Content="Add RSA Key" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}" Click="AddRSABtn"/>
-                <RadioButton x:Name="AddBtn" Content="Add" Margin="5" Style="{DynamicResource MaterialDesignFlatAccentButton}" Click="AddServerBtn"/>
+                <TextBox x:Name="ServerName" materialdesign:HintAssist.Hint="Server Name" Foreground="White" Margin="5" />
+                <TextBox x:Name="ServerIP" materialdesign:HintAssist.Hint="Server Adress" Foreground="White" Margin="5" />
+                <TextBox x:Name="ServerPort" materialdesign:HintAssist.Hint="Port" Foreground="White" Margin="5" />
+                <TextBox x:Name="Serverusername" materialdesign:HintAssist.Hint="Username" Foreground="White"
+                         Margin="5" />
+                <PasswordBox x:Name="ServerPassword" materialdesign:HintAssist.Hint="Password" Foreground="White"
+                             Margin="5" />
+
+                <RadioButton x:Name="RSAKEY" Content="Add RSA Key" Margin="5"
+                             Style="{DynamicResource MaterialDesignFlatAccentButton}" Click="AddRSABtn" />
+                <TextBox x:Name="ServerPassPharse" materialdesign:HintAssist.Hint="Passphrase" Foreground="White"
+                         Margin="5" />
+                <RadioButton x:Name="AddBtn" Content="Add" Margin="5"
+                             Style="{DynamicResource MaterialDesignFlatAccentButton}" Click="AddServerBtn" />
             </StackPanel>
         </materialdesign:TransitioningContent>
     </Grid>

@@ -5,16 +5,17 @@ using System.Text;
 
 namespace BeeSSH.Core.Autosave.INI
 {
-    class IniFile   
+    internal class IniFile
     {
-        string Path;
-        string EXE = Assembly.GetExecutingAssembly().GetName().Name;
+        private string Path;
+        private string EXE = Assembly.GetExecutingAssembly().GetName().Name;
 
         [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
+        private static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
 
         [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
+        private static extern int GetPrivateProfileString(string Section, string Key, string Default,
+            StringBuilder RetVal, int Size, string FilePath);
 
         public IniFile(string IniPath = null)
         {

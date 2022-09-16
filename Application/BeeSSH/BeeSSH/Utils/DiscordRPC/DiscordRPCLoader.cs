@@ -28,11 +28,12 @@ namespace BeeSSH.Utils.DiscordRPC
                 },
                 Buttons = new Button[]
                 {
-                    new Button(){ Label = "Download BeeSSH", Url = "https://as.mba/" },
-                    new Button(){ Label = "Discord", Url = "https://discord.gg/ChhDyjCQWK" }
+                    new Button() { Label = "Download BeeSSH", Url = "https://as.mba/" },
+                    new Button() { Label = "Discord", Url = "https://discord.gg/ChhDyjCQWK" }
                 }
             });
         }
+
         //Update the Current Details from the SSH
         public void UpdateDetails(string State)
         {
@@ -45,9 +46,9 @@ namespace BeeSSH.Utils.DiscordRPC
             _client.UpdateDetails(State);
         }
 
-     
 
-        ~DiscordRPCLoader() {
+        ~DiscordRPCLoader()
+        {
             Dispose();
         }
 

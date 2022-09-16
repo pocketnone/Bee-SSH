@@ -18,12 +18,12 @@ namespace BeeSSH.Interface.UserControlls
             WelcomeBack.Text = "Welcome back " + _email + "!";
         }
 
-        private void githubBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void githubBtn_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("https://github.com/sysfaker/Bee-SSH");
         }
 
-        private void discordBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void discordBtn_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("https://discord.gg/A2pUGTPjru");
         }

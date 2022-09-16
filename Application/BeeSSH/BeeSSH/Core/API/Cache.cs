@@ -7,30 +7,32 @@ namespace BeeSSH.Core.API
         internal static string AuthCookieForAPI { get; set; }
         internal static string _email { get; set; }
         internal static string _password { get; set; }
-        
-        internal static string _ServerUID { get; set; }
-        internal static string EncryptionMasterPass { get; set; }                           // Master Password for encryption
-        internal static List<ServerListModel> ServerList = new List<ServerListModel>();     // All Servers in a list Uncrypted
-        internal static List<ScriptModel> Scriptlist = new List<ScriptModel>();             // All Scripts
 
-        
+        internal static string _ServerUID { get; set; }
+        internal static string EncryptionMasterPass { get; set; } // Master Password for encryption
+
+        internal static List<ServerListModel>
+            ServerList = new List<ServerListModel>(); // All Servers in a list Uncrypted
+
+        internal static List<ScriptModel> Scriptlist = new List<ScriptModel>(); // All Scripts
+
+
         internal struct APIEndPoint
         {
-
             #region Serverendpoints
 
-            internal static string Login = "https://as.mba/api/client_login";             // Request a Login
+            internal static string Login = "https://as.mba/api/client_login"; // Request a Login
 
-            internal static string AddServer = "https://as.mba/api/client_new";           // Add a new server to the Webapp
-            
-            internal static string DeleteServer = "https://as.mba/api/client_delete";  
-            
+            internal static string AddServer = "https://as.mba/api/client_new"; // Add a new server to the Webapp
+
+            internal static string DeleteServer = "https://as.mba/api/client_delete";
+
             internal static string UpdateServer = "https://as.mba/api/client_update";
 
             internal static string FingerPrintAPI = "https://as.mba/api/add_fingerprint";
 
             #endregion
-            
+
 
             #region ScriptEndpoints
 
@@ -42,6 +44,7 @@ namespace BeeSSH.Core.API
 
             #endregion
         }
+
         // Some stuff
         internal static string ClientAuthKey = "vnsjrgshvb48sbvrbiwbkb_kbkkbhkgberibg";
     }
@@ -56,7 +59,8 @@ namespace BeeSSH.Core.API
         internal string PassPharse { get; set; }
         internal string ServerUID { get; set; }
         internal string FingerPrint { get; set; }
-        internal string RSAKEY { get; set; }
+        internal string RSAKeyText { get; set; }
+        internal bool RSAKEY { get; set; }
     }
 
     internal class ScriptModel

@@ -15,14 +15,15 @@ namespace BeeSSH.Interface.UserControlls
 
         private void longinFinal(object sender, RoutedEventArgs e)
         {
-            string res = Login(_email, _password, totpText.Text);           // get all servers
+            var res = Login(_email, _password, totpText.Text); // get all servers
             if (res == "ok")
             {
                 FetchShortCutsScripts(); // Fetch Scripts
                 Core.GUILoader.GUIPandleLoader.OpenGUI();
                 var parentWindow = Window.GetWindow(this);
                 parentWindow.Close();
-            } else
+            }
+            else
             {
                 new BeeMessageBox(res, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog();
             }

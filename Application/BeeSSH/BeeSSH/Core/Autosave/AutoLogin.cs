@@ -9,73 +9,72 @@ namespace BeeSSH.Core.Autosave
 {
     public class AutoLogin
     {
-        private static string HardCodetPassword = "superSecretPassword";    // Need to be changed!
+        private static string HardCodetPassword = "superSecretPassword"; // Need to be changed!
 
         private static string GetLocalFolder => GetPath();
 
         private static string GetPath()
         {
-            string thePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                "/beeshh/";
+            var thePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                          "/beeshh/";
             if (!Directory.Exists(thePath))
                 Directory.CreateDirectory(thePath);
 
             if (!File.Exists(thePath + "config.json"))
             {
-                string json = thePath + "config.json";
-                JObject rss = new JObject(
+                var json = thePath + "config.json";
+                var rss = new JObject(
                     new JProperty("username", null),
                     new JProperty("password", null),
                     new JProperty("masterpassword", null),
-                    new JProperty("totf", false));
+                    new JProperty("totf", false),
+                    new JProperty("autologin", false));
                 File.WriteAllText(json, rss.ToString());
             }
-            
+
             return thePath + "config.json";
         }
-        
-        internal static void CreateAutologin(string Username, string Password, string Masterpassword, bool totfa)
+
+        internal static void CreateAutologin(string Username, string Password, string Masterpassword, bool totfa, bool autologin)
         {
-            string json = GetLocalFolder;
-            JObject rss = new JObject(
+            var json = GetLocalFolder;
+            var rss = new JObject(
                 new JProperty("username", Encrypt(Username, HardCodetPassword)),
                 new JProperty("password", Encrypt(Password, HardCodetPassword)),
                 new JProperty("masterpassword", Encrypt(Masterpassword, HardCodetPassword)),
-                new JProperty("totf", totfa));
+                new JProperty("totf", totfa), 
+                new JProperty("autologin", autologin));
             File.WriteAllText(json, rss.ToString());
         }
 
         internal static string[] GiveLoginData()
         {
-            List<string> res = new List<string>();
+            var res = new List<string>();
             var data = File.ReadAllText(GetLocalFolder);
             var datastuff = JsonConvert.DeserializeObject<AutoLoginModel>(data);
             res.Add(Decrypt(datastuff.Username, HardCodetPassword));
             res.Add(Decrypt(datastuff.Password, HardCodetPassword));
             res.Add(Decrypt(datastuff.MasterPassword, HardCodetPassword));
             res.Add(datastuff.totfa);
+            res.Add(datastuff.autologin);
             return res.ToArray();
         }
-        
-        
-        
+
+
         internal static bool GetAutoLogin()
         {
             var data = File.ReadAllText(GetLocalFolder);
             var datastuff = JsonConvert.DeserializeObject<AutoLoginModel>(data);
-            return Boolean.Parse(datastuff.totfa);
+            return bool.Parse(datastuff.autologin);
         }
     }
 
     internal class AutoLoginModel
     {
-        [JsonProperty("username")]
-        internal string Username;
-        [JsonProperty("password")]
-        internal string Password;
-        [JsonProperty("masterpassword")]
-        internal string MasterPassword;
-        [JsonProperty("totf")]
-        internal string totfa;
+        [JsonProperty("username")] internal string Username;
+        [JsonProperty("password")] internal string Password;
+        [JsonProperty("masterpassword")] internal string MasterPassword;
+        [JsonProperty("totf")] internal string totfa;
+        [JsonProperty("autologin")] internal string autologin;
     }
 }

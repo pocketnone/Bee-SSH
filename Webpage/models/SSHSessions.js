@@ -26,9 +26,14 @@ const SSH = new mongoose.Schema({
         required: true,
         default: "NULL"
     },
+    isRSA: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
     crypt_RSAKey: {
         type: String,
-        default: false,
+        default: "nodata",
         required: true
     },
     UID: {

@@ -8,33 +8,32 @@ namespace BeeSSH.Core.Crypter
     {
         internal static string Encrypt(string text, string key)
         {
+            var textBytes = Encoding.UTF8.GetBytes(text);
+            var rijndael = SetRijndaelManaged(key);
+            var transform = rijndael.CreateEncryptor();
 
-            byte[] textBytes = Encoding.UTF8.GetBytes(text);
-            RijndaelManaged rijndael = SetRijndaelManaged(key);
-            ICryptoTransform transform = rijndael.CreateEncryptor();
+            var encryptBytes = transform.TransformFinalBlock(textBytes, 0, textBytes.Length);
 
-            byte[] encryptBytes = transform.TransformFinalBlock(textBytes, 0, textBytes.Length);
-
-            string newText = Convert.ToBase64String(encryptBytes);
+            var newText = Convert.ToBase64String(encryptBytes);
             return newText;
         }
 
         internal static string Decrypt(string text, string password)
         {
-
-            RijndaelManaged rijndaelCipher = new RijndaelManaged();
+            var rijndaelCipher = new RijndaelManaged();
             rijndaelCipher.Mode = CipherMode.CFB;
             rijndaelCipher.Padding = PaddingMode.ISO10126;
             rijndaelCipher.KeySize = 256;
             rijndaelCipher.BlockSize = 128;
-            byte[] encryptedData = Convert.FromBase64String(text);
-            byte[] pwdBytes = Encoding.UTF8.GetBytes(password);
+            var encryptedData = Convert.FromBase64String(text);
+            var pwdBytes = Encoding.UTF8.GetBytes(password);
             var _key = new Rfc2898DeriveBytes(pwdBytes, Salt, 10);
 
-            rijndaelCipher.Key = _key.GetBytes(rijndaelCipher.KeySize / 8); ;
+            rijndaelCipher.Key = _key.GetBytes(rijndaelCipher.KeySize / 8);
+            ;
             rijndaelCipher.IV = _key.GetBytes(rijndaelCipher.BlockSize / 8);
 
-            ICryptoTransform transform = rijndaelCipher.CreateDecryptor();
+            var transform = rijndaelCipher.CreateDecryptor();
             byte[] plainText;
             try
             {
@@ -42,19 +41,19 @@ namespace BeeSSH.Core.Crypter
             }
             catch (Exception)
             {
-
                 plainText = null;
             }
 
             rijndaelCipher.Clear();
             _key.Dispose();
-            return Encoding.UTF8.GetString(plainText);
+            return Encoding.UTF8.GetString(plainText); 
         }
+
         internal static byte[] Salt = new byte[16];
 
         internal static RijndaelManaged SetRijndaelManaged(string pass)
         {
-            RijndaelManaged rijndaelManaged = new RijndaelManaged
+            var rijndaelManaged = new RijndaelManaged
             {
                 Mode = CipherMode.CFB,
                 Padding = PaddingMode.ISO10126,
@@ -63,7 +62,7 @@ namespace BeeSSH.Core.Crypter
             };
 
 
-            byte[] keyArray = Encoding.UTF8.GetBytes(pass);
+            var keyArray = Encoding.UTF8.GetBytes(pass);
             var key = new Rfc2898DeriveBytes(keyArray, Salt, 10);
             rijndaelManaged.Key = key.GetBytes(rijndaelManaged.KeySize / 8);
             rijndaelManaged.IV = key.GetBytes(rijndaelManaged.BlockSize / 8);

@@ -26,7 +26,7 @@ namespace BeeSSH.Core.GUILoader
         {
             b.TerminalBtnList.Items.Add(CreateServerItem(serverTitle, ServerUID));
         }
-        
+
         private static MaterialDesignThemes.Wpf.Card CreateServerItem(string serverTitle, string serverUID)
         {
             var newIcon = new MaterialDesignThemes.Wpf.PackIcon()
@@ -35,19 +35,18 @@ namespace BeeSSH.Core.GUILoader
                 Name = serverUID + "_ico",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(5),
-
+                Margin = new Thickness(5)
             };
-            
+
             var newBtn = new RadioButton()
             {
                 Content = "Terminal",
                 Name = serverUID,
                 Style = _frameworkElement.FindResource("MaterialDesignFlatAccentButton") as Style,
                 Foreground = Brushes.White,
-                HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
-                VerticalAlignment = System.Windows.VerticalAlignment.Center,
-                Margin = new System.Windows.Thickness(5),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(5)
             };
             newBtn.Click += ConnectionInfo;
 
@@ -65,7 +64,7 @@ namespace BeeSSH.Core.GUILoader
 
         internal static void ConnectionInfo(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
+            var button = (RadioButton)sender;
             _ServerUID = button.Name.ToString();
             b.ContentFrame.Navigate(new Uri("Interface/UserControlls/TerminalUsercControl.xaml", UriKind.Relative));
         }

@@ -1,5 +1,6 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System.Windows;
+
 namespace BeeSSH.Interface.CustomMessageBox
 {
     /// <summary>
@@ -11,6 +12,7 @@ namespace BeeSSH.Interface.CustomMessageBox
         {
             ShowBeeMessageBox(message, type, buttons);
         }
+
         public void ShowBeeMessageBox(string message, MessageType type, MessageButtons buttons)
         {
             InitializeComponent();
@@ -18,39 +20,43 @@ namespace BeeSSH.Interface.CustomMessageBox
             switch (type)
             {
                 case MessageType.Info:
-                    {
-                        txtTitle.Text = "Info";
-                        break;
-                    }
+                {
+                    txtTitle.Text = "Info";
+                    break;
+                }
                 case MessageType.Warning:
-                    {
-                        txtTitle.Text = "Warning";
-                        break;
-                    }
+                {
+                    txtTitle.Text = "Warning";
+                    break;
+                }
                 case MessageType.Error:
-                    {
-                        txtTitle.Text = "Error";
-                        break;
-                    }
+                {
+                    txtTitle.Text = "Error";
+                    break;
+                }
                 case MessageType.API:
-                    {
-                        txtTitle.Text = "API";
-                        BtnClose.Visibility = Visibility.Hidden;
-                        break;
-                    }
+                {
+                    txtTitle.Text = "API";
+                    BtnClose.Visibility = Visibility.Hidden;
+                    break;
+                }
             }
+
             switch (buttons)
             {
                 case MessageButtons.OkCancel:
-                    btnYes.Visibility = Visibility.Collapsed; btnNo.Visibility = Visibility.Collapsed;
+                    btnYes.Visibility = Visibility.Collapsed;
+                    btnNo.Visibility = Visibility.Collapsed;
                     break;
                 case MessageButtons.YesNo:
-                    btnOk.Visibility = Visibility.Collapsed; btnCancel.Visibility = Visibility.Collapsed;
+                    btnOk.Visibility = Visibility.Collapsed;
+                    btnCancel.Visibility = Visibility.Collapsed;
                     break;
                 case MessageButtons.Ok:
                     btnOk.Visibility = Visibility.Visible;
                     btnCancel.Visibility = Visibility.Collapsed;
-                    btnYes.Visibility = Visibility.Collapsed; btnNo.Visibility = Visibility.Collapsed;
+                    btnYes.Visibility = Visibility.Collapsed;
+                    btnNo.Visibility = Visibility.Collapsed;
                     break;
             }
         }
@@ -60,38 +66,54 @@ namespace BeeSSH.Interface.CustomMessageBox
         {
             //PaletteHelper für later design change stuff.
             var paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
+            var theme = paletteHelper.GetTheme();
             paletteHelper.SetTheme(theme);
         }
 
-        private void BtnClose_Click(object sender, RoutedEventArgs e) => DialogResultEnd(false);
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResultEnd(false);
+        }
 
-        private void btnOk_Click(object sender, RoutedEventArgs e) => DialogResultEnd(true);
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResultEnd(true);
+        }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e) => DialogResultEnd(false);
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResultEnd(false);
+        }
 
-        private void btnYes_Click(object sender, RoutedEventArgs e) => DialogResultEnd(true);
+        private void btnYes_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResultEnd(true);
+        }
 
-        private void btnNo_Click(object sender, RoutedEventArgs e) => DialogResultEnd(false);
+        private void btnNo_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResultEnd(false);
+        }
+
         private void DialogResultEnd(bool val)
         {
             DialogResult = val;
             Close();
         }
+
         public enum MessageType
         {
             Info,
             Warning,
             Error,
-            API,
-
+            API
         }
 
         public enum MessageButtons
         {
             OkCancel,
             YesNo,
-            Ok,
+            Ok
         }
     }
 }

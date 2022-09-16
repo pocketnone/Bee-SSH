@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BeeSSH.Interface.CustomMessageBox"
         mc:Ignorable="d"
         xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="BeeMessageBox"
@@ -15,33 +14,34 @@
         Loaded="Window_Loaded"
         Height="230"
         Width="510"
-        ResizeMode="NoResize"
-        >
+        ResizeMode="NoResize">
     <Grid Background="{DynamicResource MaterialDesignShadowBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="197*"/>
-            <ColumnDefinition Width="295*"/>
+            <ColumnDefinition Width="197*" />
+            <ColumnDefinition Width="295*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBlock x:Name="txtTitle" HorizontalAlignment="Left"
                        Foreground="White"
                        VerticalAlignment="Stretch"
                        FontSize="20"
-                       Margin="10">Message Title</TextBlock>
+                       Margin="10">
+                Message Title
+            </TextBlock>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Right" Margin="0,5,5,0"  VerticalAlignment="Top" Grid.Column="1"
-                    >
-            <Button x:Name="BtnClose" Click="BtnClose_Click" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+        <StackPanel HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top" Grid.Column="1">
+            <Button x:Name="BtnClose" Click="BtnClose_Click"
+                    Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
                     Height="30"
                     Width="30"
                     Foreground="White"
                     Margin="175,0,0,0">
                 <Button.Content>
-                    <materialdesign:PackIcon Kind="Close"/>
+                    <materialdesign:PackIcon Kind="Close" />
                 </Button.Content>
             </Button>
         </StackPanel>
@@ -50,37 +50,43 @@
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid Margin="20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <materialdesign:TransitioningContent >
-                        <materialdesign:TransitioningContent.OpeningEffects >
+                    <materialdesign:TransitioningContent>
+                        <materialdesign:TransitioningContent.OpeningEffects>
                             <materialdesign:TransitionEffect Kind="FadeIn" />
                         </materialdesign:TransitioningContent.OpeningEffects>
 
-                        <TextBox x:Name="txtMessage" HorizontalAlignment="Center" IsReadOnly="True" Grid.Row="0" Margin="5" TextWrapping="Wrap" Foreground="White" FontSize="18" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="txtMessage" HorizontalAlignment="Center" IsReadOnly="True" Margin="5"
+                                 TextWrapping="Wrap" Foreground="White" FontSize="18"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
                     </materialdesign:TransitioningContent>
 
                 </Grid>
                 <Grid Grid.Row="1" Margin="0,20,0,5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <RadioButton x:Name="btnOk" Click="btnOk_Click" Foreground="White" Grid.Column="1" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Margin="5" Width="100" Content="OK" ToolTip="Ok"/>
-                    <RadioButton x:Name="btnCancel" Click="btnCancel_Click" Foreground="White" Grid.Column="2" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Margin="5" Width="100" Content="Cancel" ToolTip="Cancel"/>
+                    <RadioButton x:Name="btnOk" Click="btnOk_Click" Foreground="White" Grid.Column="1"
+                                 Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Margin="5"
+                                 Width="100" Content="OK" ToolTip="Ok" />
+                    <RadioButton x:Name="btnCancel" Click="btnCancel_Click" Foreground="White" Grid.Column="2"
+                                 Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Margin="5"
+                                 Width="100" Content="Cancel" ToolTip="Cancel" />
                 </Grid>
 
             </Grid>

@@ -211,7 +211,7 @@ router.post("/delete_userscripte", (req, res) => {
 
 router.post("/client_new", (req, res) => {
    const { authkey, tool } = req.body;
-   const {servername, port, isKEY, ipadress, PasswordKey, ServerUsername, PassPharse} = req.body;
+   const {servername, port, isKEY, rsakey, ipadress, PasswordKey, ServerUsername, PassPharse} = req.body;
 
     if(tool !== process.env.CLIENTPASSWORD) {
         return res.end();
@@ -232,7 +232,10 @@ router.post("/client_new", (req, res) => {
             AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
             return res.status(201).json({Info:"Invalid"});
         }
-        const sUID = randomstring.generate(20);
+        var sUID = randomstring.generate({
+                length: 56,
+                charset: "alphabetic"
+            });
         const newServer = new sshdb({
             name: servername,
             crpyt_ServerUser: ServerUsername,
@@ -241,13 +244,15 @@ router.post("/client_new", (req, res) => {
             crpyt_port: port,
             crpyt_PassPharse: PassPharse,
             isKEY: isKEY,
-            script_UID: sUID,
+            crypt_RSAKey: rsakey,
+            server_UID: sUID,
             UID: _uid.UID
         });
         newServer.save();
 
         return res.status(200).json({
-            Info: "Success"
+            Info: "Success",
+            ServerUID: sUID
         });
     })
 });
@@ -318,7 +323,7 @@ router.post("/add_fingerprint", (req, res) => {
 
 router.post("/client_update", (req, res) => {
     const { authkey, tool } = req.body;
-    const {servername, port, isKEY, ipadress, PasswordKey, ServerUsername, PassPharse, scriptUID} = req.body;
+    const {servername, port, isKEY, cryptRSAKEY, ipadress, PasswordKey, ServerUsername, PassPharse, scriptUID} = req.body;
 
     if(tool !== process.env.CLIENTPASSWORD) {
         return res.end();
@@ -339,8 +344,6 @@ router.post("/client_update", (req, res) => {
             AuthCookie.findOneAndDelete({AuthCookie: authkey}).then(b =>{});
             return res.status(201).json({Info:"Invalid"});
         }
-        const sUID = randomstring.generate(20);
-
         sshdb.findByIdAndUpdate({server_UID: scriptUID}, {
             name: servername,
             crpyt_ServerUser: ServerUsername,
@@ -348,7 +351,9 @@ router.post("/client_update", (req, res) => {
             crpyt_password: PasswordKey,
             crpyt_port: port,
             crpyt_PassPharse: PassPharse,
-            isKEY: isKEY
+            isKEY: isKEY,
+            crypt_RSAKey: cryptRSAKEY
+
         }).then(finish => {})
         return res.status(200).json({
             Info: "Success"

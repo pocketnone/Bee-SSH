@@ -1,82 +1,79 @@
 ﻿<UserControl x:Class="BeeSSH.Interface.UserControlls.SettingsUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BeeSSH.Interface.UserControlls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              FontFamily="Roboto"
              Background="{DynamicResource MaterialDesignDarkBackground}"
-             d:DesignHeight="450" d:DesignWidth="800" >
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
             <StackPanel x:Name="SFTPFiew">
-                <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top" >
-                    <Label Content="Settings" HorizontalAlignment="Center"/>
+                <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top">
+                    <Label Content="Settings" HorizontalAlignment="Center" />
                 </materialdesign:Card>
                 <materialdesign:Card Height="50" HorizontalAlignment="Center">
                     <StackPanel VerticalAlignment="Center">
-                        <Label VerticalAlignment="Center" Content="Logged in as [EMAIL]" x:Name="CurrentUserLabel"></Label>
-                        <Label  VerticalAlignment="Center" Content="Servers: [SERVERNUMBER]" x:Name="CurrentNumberOfServer"></Label>
+                        <Label VerticalAlignment="Center" Content="Logged in as [EMAIL]" x:Name="CurrentUserLabel" />
+                        <Label VerticalAlignment="Center" Content="Servers: [SERVERNUMBER]"
+                               x:Name="CurrentNumberOfServer" />
                     </StackPanel>
                 </materialdesign:Card>
-                <StackPanel Width="400" Margin="0 50 0 0" HorizontalAlignment="Center" >
-                    <Label Content="General Settings" HorizontalAlignment="Center" FontSize="20" FontFamily="Arial"></Label>
-                    
+                <StackPanel Width="400" Margin="0 50 0 0" HorizontalAlignment="Center">
+                    <Label Content="General Settings" HorizontalAlignment="Center" FontSize="20" FontFamily="Arial" />
+
                     <CheckBox Content="Auto-Login"
                               x:Name="twoFAEnabled"
                               Style="{DynamicResource MaterialDesignCheckBox}"
                               Foreground="Wheat"
                               HorizontalAlignment="Left"
                               Margin="0,0,10,0"
-                              FontFamily="Arial"
-                    />
+                              FontFamily="Arial" />
                     <CheckBox Content="Discord RPC"
                               x:Name="checkboxDiscord"
                               Style="{DynamicResource MaterialDesignCheckBox}"
                               Foreground="Wheat"
                               HorizontalAlignment="Left"
                               Margin="0,0,10,0"
-                              FontFamily="Arial"
-                    />
+                              FontFamily="Arial" />
                     <CheckBox Content="Enable Debug Logging"
                               x:Name="checkboxLogging"
                               Style="{DynamicResource MaterialDesignCheckBox}"
                               Foreground="Wheat"
                               HorizontalAlignment="Left"
                               Margin="0,0,10,0"
-                              FontFamily="Arial"
-                    />
-                    <RadioButton  x:Name="SaveSettings" FontFamily="Arial"
-                                  Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
-                                  Margin="20"
-                                  HorizontalAlignment="Center" Cursor="Hand" Click="SaveSettings_OnClick">
+                              FontFamily="Arial" />
+                    <RadioButton x:Name="SaveSettings" FontFamily="Arial"
+                                 Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
+                                 Margin="20"
+                                 HorizontalAlignment="Center" Cursor="Hand" Click="SaveSettings_OnClick">
                         <RadioButton.Content>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Save changes"/>
+                                <Label Content="Save changes" />
                             </StackPanel>
                         </RadioButton.Content>
                     </RadioButton>
-                    
-                    <Label Content="Other Changes" HorizontalAlignment="Center" FontSize="20" FontFamily="Arial"></Label>
-                    <RadioButton  x:Name="changePassword" FontFamily="Arial"
-                                  Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
-                                  Margin="20"
-                                  HorizontalAlignment="Right" Cursor="Hand" Click="pwchangeBtnClick">
+
+                    <Label Content="Other Changes" HorizontalAlignment="Center" FontSize="20" FontFamily="Arial" />
+                    <RadioButton x:Name="changePassword" FontFamily="Arial"
+                                 Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
+                                 Margin="20"
+                                 HorizontalAlignment="Right" Cursor="Hand" Click="pwchangeBtnClick">
                         <RadioButton.Content>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Change Password"/>
+                                <Label Content="Change Password" />
                             </StackPanel>
                         </RadioButton.Content>
                     </RadioButton>
-                    <RadioButton  x:Name="BtnCheckForUpdate" FontFamily="Arial"
-                                  Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
-                                  HorizontalAlignment="Left" Cursor="Hand" Click="BtnCheckForUpdate_OnClickBtnClick"
-                                  Margin="0 -60 0 0">
+                    <RadioButton x:Name="BtnCheckForUpdate" FontFamily="Arial"
+                                 Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
+                                 HorizontalAlignment="Left" Cursor="Hand" Click="BtnCheckForUpdate_OnClickBtnClick"
+                                 Margin="0 -60 0 0">
                         <RadioButton.Content>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Check for Updates"/>
+                                <Label Content="Check for Updates" />
                             </StackPanel>
                         </RadioButton.Content>
                     </RadioButton>

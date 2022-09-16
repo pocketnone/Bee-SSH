@@ -19,60 +19,90 @@ namespace BeeSSH.Interface.UserControlls
     /// </summary>
     public partial class AddServerUserControl : UserControl
     {
-        string rsakey_buff = null; 
+        private string rsakey_buff = null;
+
         public AddServerUserControl()
         {
             InitializeComponent();
             AddServer_MainView();
+            ServerPassPharse.Visibility = Visibility.Hidden;
         }
 
         private void AddRSABtn(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog();
             ofd.Title = "BEESSH | Select RSA File";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 //Get the path of specified file
-                string filePath = ofd.FileName;
+                var filePath = ofd.FileName;
                 rsakey_buff = File.ReadAllText(filePath);
+                ServerPassPharse.Visibility = Visibility.Visible;
             }
+
             ofd.Dispose();
         }
 
         private void AddServerBtn(object sender, RoutedEventArgs e)
         {
-            string response = "Not Requested";
-            ServerList.Add(new ServerListModel
+            var response = new AddServerResponse();
+            if (string.IsNullOrEmpty(rsakey_buff))
             {
-                PassPharse = ServerPassPharse.Text,
-                RSAKEY = rsakey_buff,
-                ServerIP = ServerIP.Text,
-                ServerName = ServerName.Text,
-                ServerPassword = ServerPassword.Password,
-                ServerPort = ServerPort.Text,
-                ServerUserName = Serverusername.Text,
-                FingerPrint = "null"
-            });
-            if (rsakey_buff == null && string.IsNullOrEmpty(ServerPassPharse.Text))
-            {
-                response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
-               "null", Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(ServerPassword.Password, EncryptionMasterPass), 
-               Encrypt(Serverusername.Text, EncryptionMasterPass),
-               Encrypt(ServerPassPharse.Text, EncryptionMasterPass));
-            }
-            else if (rsakey_buff == null && !string.IsNullOrEmpty(ServerPassPharse.Text))
-            {
-                response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
-               "null", Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(ServerPassword.Password, EncryptionMasterPass),
-               Encrypt(ServerPassPharse.Text, EncryptionMasterPass), Encrypt(Serverusername.Text, EncryptionMasterPass));
+                response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass),
+                    Encrypt(ServerPort.Text, EncryptionMasterPass), false,
+                    Encrypt("null", EncryptionMasterPass), Encrypt(ServerIP.Text, EncryptionMasterPass),
+                    Encrypt(ServerPassword.Password, EncryptionMasterPass),
+                    Encrypt(ServerPassPharse.Text, EncryptionMasterPass),
+                    Encrypt(Serverusername.Text, EncryptionMasterPass));
+                ServerList.Add(new ServerListModel
+                {
+                    PassPharse = ServerPassPharse.Text,
+                    RSAKEY = false,
+                    RSAKeyText = "null",
+                    ServerIP = ServerIP.Text,
+                    ServerName = ServerName.Text,
+                    ServerPassword = ServerPassword.Password,
+                    ServerPort = ServerPort.Text,
+                    ServerUserName = Serverusername.Text,
+                    FingerPrint = "null",
+                    ServerUID = response.ServerUID
+                });
+               
             }
             else
             {
-                response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass), Encrypt(ServerPort.Text, EncryptionMasterPass),
-                    Encrypt(rsakey_buff, EncryptionMasterPass), Encrypt(ServerIP.Text, EncryptionMasterPass), Encrypt(rsakey_buff, EncryptionMasterPass),
-                    Encrypt(ServerPassPharse.Text, EncryptionMasterPass), Encrypt(Serverusername.Text, EncryptionMasterPass));
+                response = AddServer(Encrypt(ServerName.Text, EncryptionMasterPass),
+                    Encrypt(ServerPort.Text, EncryptionMasterPass), true,
+                    Encrypt(rsakey_buff, EncryptionMasterPass), Encrypt(ServerIP.Text, EncryptionMasterPass),
+                    Encrypt(ServerPassword.Password, EncryptionMasterPass),
+                    Encrypt(ServerPassPharse.Text, EncryptionMasterPass),
+                    Encrypt(Serverusername.Text, EncryptionMasterPass));
+                ServerList.Add(new ServerListModel
+                {
+                    PassPharse = ServerPassPharse.Text,
+                    RSAKEY = true,
+                    RSAKeyText = rsakey_buff,
+                    ServerIP = ServerIP.Text,
+                    ServerName = ServerName.Text,
+                    ServerPassword = ServerPassword.Password,
+                    ServerPort = ServerPort.Text,
+                    ServerUserName = Serverusername.Text,
+                    FingerPrint = "null",
+                    ServerUID = response.ServerUID
+                }); 
+                
             }
-            new BeeMessageBox(response, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog();
+
+            new BeeMessageBox(response.DataRes, BeeMessageBox.MessageType.Info, BeeMessageBox.MessageButtons.Ok).ShowDialog();
+            
+            ServerPassPharse.Visibility = Visibility.Hidden;
+            ServerName.Text = "";
+            ServerPort.Text = "";
+            ServerName.Text = "";
+            ServerIP.Text  = "";
+            ServerPassword.Password = "";
+            ServerPassPharse.Text = "";
+            Serverusername.Text = "";
         }
     }
 }

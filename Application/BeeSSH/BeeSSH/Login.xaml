@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BeeSSH"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         FontFamily="Roboto"
@@ -18,83 +17,75 @@
         MouseDown="dragmove">
 
     <Border
-            Grid.Row="1"
-            Grid.RowSpan="8"
-            Grid.ColumnSpan="7"
-            CornerRadius="25"
-            BorderBrush="{DynamicResource SecondaryHueMidBrush}"
-            Background="{DynamicResource MaterialDesignChipBackground}"
-            >
+        CornerRadius="25"
+        BorderBrush="{DynamicResource SecondaryHueMidBrush}"
+        Background="{DynamicResource MaterialDesignChipBackground}">
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0"/>
-                <RowDefinition Height="55"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="0" />
+                <RowDefinition Height="55" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="20" />
             </Grid.RowDefinitions>
             <!--Header-->
             <Border BorderBrush="{DynamicResource PrimaryHueDarkBrush}"
-                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="6"
-                Panel.ZIndex="1" 
-                BorderThickness="0,0,0,5" CornerRadius="0,0,25,0"
-                Background="{DynamicResource MaterialDesignDarkBackground}"
-                    >
+                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="6"
+                    Panel.ZIndex="1"
+                    BorderThickness="0,0,0,5" CornerRadius="0,0,25,0"
+                    Background="{DynamicResource MaterialDesignDarkBackground}">
                 <materialDesign:Card
-                Background="Transparent"
-                             >
+                    Background="Transparent">
 
                     <StackPanel Orientation="Horizontal">
 
-                        <Image 
-                    VerticalAlignment="Center"
-                    Source="{StaticResource BeeSSH_logo}"
-                    Width="50" Height="50" Margin="5">
-                        </Image>
+                        <Image
+                            VerticalAlignment="Center"
+                            Source="{StaticResource BeeSSH_logo}"
+                            Width="50" Height="50" Margin="5" />
 
                         <Label Content="Login"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="24" FontWeight="Bold"
-                       Margin="5"
-                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"/>
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="24" FontWeight="Bold"
+                               Margin="5"
+                               TextElement.Foreground="{DynamicResource MaterialDesignBody}" />
 
                         <StackPanel Orientation="Horizontal" Margin="170,0,0,0">
                             <RadioButton x:Name="minBtn"
-                                    Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
-                                 Margin="5"
-                                    HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                    Click="minBtn_Click">
+                                         Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                                         Margin="5"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         Click="minBtn_Click">
                                 <RadioButton.Content>
                                     <materialDesign:PackIcon Kind="WindowMinimize"
-                                                             Foreground="White"
-                                                             />
+                                                             Foreground="White" />
                                 </RadioButton.Content>
                             </RadioButton>
                             <RadioButton x:Name="CloseBtn"
-                                    Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
-                                 Margin="5"
-                                    HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                    Click="exitApp">
+                                         Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                                         Margin="5"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         Click="exitApp">
                                 <RadioButton.Content>
                                     <materialDesign:PackIcon Kind="WindowClose"
-                                                             Foreground="White"/>
+                                                             Foreground="White" />
                                 </RadioButton.Content>
                             </RadioButton>
 
@@ -106,8 +97,7 @@
             <Border
                 Grid.Row="1"
                 Grid.ColumnSpan="7"
-                Background="{DynamicResource PrimaryHueDarkBrush}"
-                />
+                Background="{DynamicResource PrimaryHueDarkBrush}" />
             <!--#endregion-->
             <!--#endregion-->
 
@@ -120,88 +110,77 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="7"
                 Grid.Row="0"
-                Grid.RowSpan="9"
-                
-                >
+                Grid.RowSpan="9">
                 <StackPanel
-                
-                Orientation="Horizontal" 
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                >
+
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
                     <materialDesign:Card Background="Transparent">
                         <StackPanel>
                             <Image Source="{DynamicResource BeeSSH_LogoBig}"
-                               
-                               Height="280"
 
-                               Width="350"
-                               />
+                                   Height="280"
+
+                                   Width="350" />
                             <Label
                                 x:Name="statusLbl"
                                 Content="Log in to your Account or use it Offline" Margin="5"
-                                   Style="{DynamicResource MaterialDesignLabel}"
-                               FontSize="20"
-                               
-                               />
+                                Style="{DynamicResource MaterialDesignLabel}"
+                                FontSize="20" />
                             <materialDesign:Card
-                            
-                            Background="{DynamicResource AttentionToActionBrush}"
-                            >
+
+                                Background="{DynamicResource AttentionToActionBrush}">
                                 <TextBox x:Name="emailBox"
-                            Margin="10"
-                            TextWrapping="Wrap"
-                            TextAlignment="Center"
-                            VerticalAlignment="Center"
-                            Width="200"
-                            Height="30"
-                            Background="Transparent"
-                                 materialDesign:HintAssist.Hint="Email"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" Cursor="Arrow"
-                            />
+                                         Margin="10"
+                                         TextWrapping="Wrap"
+                                         TextAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         Width="200"
+                                         Height="30"
+                                         Background="Transparent"
+                                         materialDesign:HintAssist.Hint="Email"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         TextElement.Foreground="{DynamicResource MaterialDesignBody}" Cursor="Arrow" />
                             </materialDesign:Card>
 
                             <materialDesign:Card
-                            
-                            Background="{DynamicResource AttentionToActionBrush}"
-                            >
+
+                                Background="{DynamicResource AttentionToActionBrush}">
                                 <PasswordBox x:Name="passBox"
-                            Margin="10"
-                            VerticalAlignment="Center"
-                            Width="200"
-                            Height="30"
-                            Background="Transparent"
-                                 materialDesign:HintAssist.Hint="Password"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" Cursor="Arrow"
-                            />
+                                             Margin="10"
+                                             VerticalAlignment="Center"
+                                             Width="200"
+                                             Height="30"
+                                             Background="Transparent"
+                                             materialDesign:HintAssist.Hint="Password"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                                             Cursor="Arrow" />
                             </materialDesign:Card>
 
 
-
-
-                            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn}">
+                            <materialDesign:TransitioningContent
+                                OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn}">
                                 <materialDesign:Card
                                     Background="{DynamicResource AttentionToActionBrush}">
-                                    <TextBox  x:Name="faAuthBox"
-                                              Visibility="Collapsed"
-                                  
-                                              Margin="5"
-                                              TextWrapping="Wrap"
-                                              TextAlignment="Center"
-                                              VerticalAlignment="Center"
-                                              Width="200"
-                                              Height="30"
-                                              Background="Transparent"
-                                              materialDesign:HintAssist.Hint="2-FA"
-                                              VerticalContentAlignment="Center"
-                                              HorizontalContentAlignment="Center"
-                                              TextElement.Foreground="{DynamicResource MaterialDesignBody}" PreviewTextInput="OnlyNumber" Cursor="Arrow"
-                            
-                                    />
+                                    <TextBox x:Name="faAuthBox"
+                                             Visibility="Collapsed"
+
+                                             Margin="5"
+                                             TextWrapping="Wrap"
+                                             TextAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             Width="200"
+                                             Height="30"
+                                             Background="Transparent"
+                                             materialDesign:HintAssist.Hint="2-FA"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                                             PreviewTextInput="OnlyNumber" Cursor="Arrow" />
                                 </materialDesign:Card>
                             </materialDesign:TransitioningContent>
 
@@ -211,30 +190,29 @@
                                       HorizontalAlignment="Right"
                                       Margin="0,0,10,0"
                                       Checked="twoFAEnabled_Checked"
-                                      Unchecked="twoFAEnabled_Unchecked"
-                            />
+                                      Unchecked="twoFAEnabled_Unchecked" />
                             <CheckBox Content="Enable Auto-Login"
                                       x:Name="autologin"
                                       Style="{DynamicResource MaterialDesignCheckBox}"
                                       HorizontalAlignment="Left"
-                                      Margin="0,-20,245,0"
-                            />
+                                      Margin="0,-20,245,0" />
                             <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Center"
-                                    >
-                                <RadioButton x:Name="loginBtn" Click="loginBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                        HorizontalAlignment="Center">
+                                <RadioButton x:Name="loginBtn" Click="loginBtn_Click"
+                                             Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                                     <RadioButton.Content>
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Content="Login"/>
-                                            <materialDesign:PackIcon Kind="LoginVariant" Foreground="White"/>
+                                            <Label Content="Login" />
+                                            <materialDesign:PackIcon Kind="LoginVariant" Foreground="White" />
                                         </StackPanel>
                                     </RadioButton.Content>
                                 </RadioButton>
-                                <RadioButton x:Name="regBtn" Click="Register_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                <RadioButton x:Name="regBtn" Click="Register_Click"
+                                             Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                                     <RadioButton.Content>
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Content="Register"/>
-                                            <materialDesign:PackIcon Kind="RegisterOutline" Foreground="White"/>
+                                            <Label Content="Register" />
+                                            <materialDesign:PackIcon Kind="RegisterOutline" Foreground="White" />
                                         </StackPanel>
                                     </RadioButton.Content>
                                 </RadioButton>
@@ -242,62 +220,61 @@
                             </StackPanel>
                             <materialDesign:Card
                                 x:Name="masterPasBoxCard"
-                            
-                            Background="{DynamicResource AttentionToActionBrush}"
-                            >
+
+                                Background="{DynamicResource AttentionToActionBrush}">
                                 <PasswordBox x:Name="masterPasBox"
-                            Margin="10"
-                            VerticalAlignment="Center"
-                            Width="200"
-                            Height="30"
-                            Background="Transparent"
-                                 materialDesign:HintAssist.Hint="Master Password"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                            TextElement.Foreground="{DynamicResource MaterialDesignBody}" Cursor="Arrow"
-                            />
+                                             Margin="10"
+                                             VerticalAlignment="Center"
+                                             Width="200"
+                                             Height="30"
+                                             Background="Transparent"
+                                             materialDesign:HintAssist.Hint="Master Password"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                                             Cursor="Arrow" />
                             </materialDesign:Card>
                             <Label Content="OR" HorizontalAlignment="Center"
-                                            FontSize="25" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                   FontSize="25" Foreground="{DynamicResource PrimaryHueMidBrush}" />
                             <materialDesign:Card
-                            Background="{DynamicResource AttentionToActionBrush}"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                            >
+                                Background="{DynamicResource AttentionToActionBrush}"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                x:Name="xBottomCard">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                                    <RadioButton  x:Name="runOfflineBtn" 
-                                          Click="loginBtnOffline_Click"
-                                     Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
-                                     Margin="10"
-                                     HorizontalAlignment="Center" Cursor="Hand">
+                                    <RadioButton x:Name="runOfflineBtn"
+                                                 Click="loginBtnOffline_Click"
+                                                 Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
+                                                 Margin="10"
+                                                 HorizontalAlignment="Center" Cursor="Hand">
                                         <RadioButton.Content>
                                             <StackPanel Orientation="Horizontal">
-                                                <Label Content="Run Offline"/>
+                                                <Label Content="Run Offline" />
                                                 <materialDesign:PackIcon Kind="Connection"
-                                                                 VerticalAlignment="Center"
-                                                                 Foreground="White"/>
+                                                                         VerticalAlignment="Center"
+                                                                         Foreground="White" />
                                             </StackPanel>
                                         </RadioButton.Content>
                                     </RadioButton>
 
-                                    <RadioButton  x:Name="helpBtn" 
-                                     Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
-                                     Margin="10"
-                                     HorizontalAlignment="Center" Cursor="Hand" Click="helpBtnClick">
+                                    <RadioButton x:Name="helpBtn"
+                                                 Style="{DynamicResource MaterialDesignFlatSecondaryButton}"
+                                                 Margin="10"
+                                                 HorizontalAlignment="Center" Cursor="Hand" Click="helpBtnClick">
                                         <RadioButton.Content>
                                             <StackPanel Orientation="Horizontal">
-                                                <Label Content="Need Help"/>
+                                                <Label Content="Need Help" />
                                                 <materialDesign:PackIcon Kind="Help"
-                                                                 VerticalAlignment="Center"
-                                                                 Foreground="White"/>
+                                                                         VerticalAlignment="Center"
+                                                                         Foreground="White" />
                                             </StackPanel>
                                         </RadioButton.Content>
                                     </RadioButton>
-                                    
+
                                 </StackPanel>
-                                
+
                             </materialDesign:Card>
-                            
+
                         </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
@@ -309,10 +286,9 @@
                    Width="430"
                    Height="970"
                    Margin="5 59 0 0 "
-                   Grid.RowSpan="7"
-            />
+                   Grid.RowSpan="7" />
 
         </Grid>
     </Border>
-    
+
 </Window>

@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:BeeSSH.Interface"
         mc:Ignorable="d"
         FontFamily="Roboto"
         Height="760"
@@ -12,100 +11,108 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignBackground}"
         AllowsTransparency="True"
+        Title="BEESSH Client"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
-        MouseDown="Window_MouseDown"
-        
-        >
+        MouseDown="Window_MouseDown">
 
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="208"/>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
+                                           Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="208" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="208"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="60"/>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
+                                           Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="208" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="60" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="OpenMenuBtn">
-            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}" />
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="CloseMenuBtn">
-            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
         </EventTrigger>
     </Window.Triggers>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="5" Panel.ZIndex="1">
             <materialDesign:Card Background="Transparent">
                 <StackPanel Orientation="Horizontal" Margin="80,0,0,0">
                     <RadioButton x:Name="minBtn"
-                                    Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
-                                    HorizontalAlignment="Center"
+                                 Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                                 HorizontalAlignment="Center"
                                  VerticalAlignment="Center"
-                                    Click="minBtn_Click">
+                                 Click="minBtn_Click">
                         <RadioButton.Content>
                             <materialDesign:PackIcon Kind="WindowMinimize"
-                                                             Foreground="White"
-                                                             />
+                                                     Foreground="White" />
                         </RadioButton.Content>
                     </RadioButton>
                     <RadioButton x:Name="CloseBtn"
-                                    Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
-                                    HorizontalAlignment="Center"
+                                 Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                                 HorizontalAlignment="Center"
                                  VerticalAlignment="Center"
-                                    Click="CloseBtn_Click">
+                                 Click="CloseBtn_Click">
                         <RadioButton.Content>
                             <materialDesign:PackIcon Kind="WindowClose"
-                                                             Foreground="White"/>
+                                                     Foreground="White" />
                         </RadioButton.Content>
                     </RadioButton>
 
                 </StackPanel>
             </materialDesign:Card>
         </Grid>
-        <Grid x:Name="GridMenu" Panel.ZIndex="1" Grid.RowSpan="5" Width="60" HorizontalAlignment="Left" Background="{DynamicResource MaterialDesignCardBackground}">
+        <Grid x:Name="GridMenu" Panel.ZIndex="1" Grid.RowSpan="5" Width="60" HorizontalAlignment="Left"
+              Background="{DynamicResource MaterialDesignCardBackground}">
             <StackPanel>
                 <Grid Height="150" Background="{DynamicResource PrimaryHueDarkBrush}">
-                    <Image Source="{DynamicResource BeeSSH_logo}" Width="auto" Height="auto" Margin="5" HorizontalAlignment="Left"/>
-                    <Button x:Name="CloseMenuBtn" Click="CloseMenuBtn_Click" Visibility="Collapsed" Width="60" Height="30" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Image Source="{DynamicResource BeeSSH_logo}" Width="auto" Height="auto" Margin="5"
+                           HorizontalAlignment="Left" />
+                    <Button x:Name="CloseMenuBtn" Click="CloseMenuBtn_Click" Visibility="Collapsed" Width="60"
+                            Height="30" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top"
+                            HorizontalAlignment="Right">
                         <materialDesign:PackIcon Kind="ArrowLeft"
                                                  Width="25"
                                                  Height="25"
-                                                 Foreground="{DynamicResource MaterialDesignCardBackground}"/>
+                                                 Foreground="{DynamicResource MaterialDesignCardBackground}" />
                     </Button>
-                    <Button x:Name="OpenMenuBtn" Click="OpenMenuBtn_Click" Width="60" Height="30" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Button x:Name="OpenMenuBtn" Click="OpenMenuBtn_Click" Width="60" Height="30"
+                            Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top"
+                            HorizontalAlignment="Right">
                         <materialDesign:PackIcon Kind="Menu"
                                                  Width="25"
                                                  Height="25"
-                                                 Foreground="{DynamicResource MaterialDesignCardBackground}"/>
+                                                 Foreground="{DynamicResource MaterialDesignCardBackground}" />
                     </Button>
                 </Grid>
                 <materialDesign:Card>
-                    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromLeft}" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                    <materialDesign:TransitioningContent
+                        OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromLeft}"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth3">
                         <StackPanel Orientation="Vertical">
                             <RadioButton Margin="5"
                                          x:Name="home"
@@ -114,8 +121,8 @@
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="Home" Foreground="White"
-                                                                 VerticalAlignment="Center"/>
-                                        <Label Content="Title Screen"/>
+                                                                 VerticalAlignment="Center" />
+                                        <Label Content="Title Screen" />
 
                                     </StackPanel>
                                 </RadioButton.Content>
@@ -127,36 +134,36 @@
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="Add" Foreground="White"
-                                                         VerticalAlignment="Center"/>
-                                        <Label Content="Add Server"/>
+                                                                 VerticalAlignment="Center" />
+                                        <Label Content="Add Server" />
 
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
 
                             <RadioButton Margin="5"
-                                 x:Name="RemoteBtn"
-                                 Click="RemoteBtn_Click"
-                             Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                                         x:Name="RemoteBtn"
+                                         Click="RemoteBtn_Click"
+                                         Style="{DynamicResource MaterialDesignFlatAccentButton}">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="RemoteDesktop" Foreground="White"
-                                                         VerticalAlignment="Center"/>
-                                        <Label Content="Remote Desktop"/>
+                                                                 VerticalAlignment="Center" />
+                                        <Label Content="Remote Desktop" />
 
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
 
                             <RadioButton Margin="5"
-                                 x:Name="GenerateRSABtn"
-                                 Click="GenerateRSABtn_Click"
-                             Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                                         x:Name="GenerateRSABtn"
+                                         Click="GenerateRSABtn_Click"
+                                         Style="{DynamicResource MaterialDesignFlatAccentButton}">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="Key" Foreground="White"
-                                                         VerticalAlignment="Center"/>
-                                        <Label Content="Generate RSA Key"/>
+                                                                 VerticalAlignment="Center" />
+                                        <Label Content="Generate RSA Key" />
 
                                     </StackPanel>
                                 </RadioButton.Content>
@@ -164,14 +171,14 @@
 
 
                             <RadioButton Margin="5"
-                                 x:Name="ConnectionsBtn"
-                                 Click="ConnectionsBtn_Click"
-                             Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                                         x:Name="ConnectionsBtn"
+                                         Click="ConnectionsBtn_Click"
+                                         Style="{DynamicResource MaterialDesignFlatAccentButton}">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="Server" Foreground="White"
-                                                         VerticalAlignment="Center"/>
-                                        <Label Content="Connections"/>
+                                                                 VerticalAlignment="Center" />
+                                        <Label Content="Connections" />
 
                                     </StackPanel>
                                 </RadioButton.Content>
@@ -184,33 +191,30 @@
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="Settings" Foreground="White"
-                                                                 VerticalAlignment="Center"/>
-                                        <Label Content="Settings"/>
+                                                                 VerticalAlignment="Center" />
+                                        <Label Content="Settings" />
 
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
                             <StackPanel Margin="0 50 0 0" Background="#20edeeaf">
-                                <ListBox x:Name="TerminalBtnList">
- 
-                                </ListBox>
+                                <ListBox x:Name="TerminalBtnList" />
                             </StackPanel>
 
-                            
+
                         </StackPanel>
-                        
+
                     </materialDesign:TransitioningContent>
                 </materialDesign:Card>
             </StackPanel>
         </Grid>
-        
+
         <Frame x:Name="ContentFrame" Grid.Column="0"
                NavigationUIVisibility="Hidden"
-                             Grid.ColumnSpan="6"
+               Grid.ColumnSpan="6"
                HorizontalAlignment="Right"
                Width=" 1190"
-                             Grid.RowSpan="7"
-                             />
+               Grid.RowSpan="7" />
 
 
     </Grid>

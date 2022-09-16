@@ -12,7 +12,6 @@ namespace BeeSSH.Interface
         public ApplicationWindow()
         {
             InitializeComponent();
-
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -26,9 +25,15 @@ namespace BeeSSH.Interface
             ContentFrame.Navigate(new Uri("Interface/UserControlls/WelcomeUserControl.xaml", UriKind.Relative));
         }
 
-        private void minBtn_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+        private void minBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
 
-        private void CloseBtn_Click(object sender, RoutedEventArgs e) => Close();
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -62,7 +67,6 @@ namespace BeeSSH.Interface
             OpenMenuBtn.Visibility = Visibility.Visible;
             CloseMenuBtn.Visibility = Visibility.Collapsed;
             ContentFrame.Width = 1190;
-
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
@@ -72,7 +76,6 @@ namespace BeeSSH.Interface
 
         private void RemoteBtn_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void HomeBtn_Click(object sender, RoutedEventArgs e)

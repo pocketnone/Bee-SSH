@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static BeeSSH.Core.Crypter.String;
@@ -65,7 +66,14 @@ namespace BeeSSH.Core.Autosave
         {
             var data = File.ReadAllText(GetLocalFolder);
             var datastuff = JsonConvert.DeserializeObject<AutoLoginModel>(data);
-            return bool.Parse(datastuff.autologin);
+            bool res = false;
+            try
+            {
+                res = bool.Parse(datastuff.autologin);
+            }
+            catch { }
+
+            return res;
         }
     }
 

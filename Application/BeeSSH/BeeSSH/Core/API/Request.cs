@@ -31,6 +31,7 @@ namespace BeeSSH.Core.API
                         // if Error
                         if (!string.IsNullOrEmpty(datastuff.Error)) return datastuff.Error;
                         AuthCookieForAPI = datastuff.AuthCookie;
+                        _Username = datastuff.Username;
                         foreach (var item in datastuff.ServerRes)
                         {
                             ServerList.Add(new ServerListModel
@@ -56,6 +57,7 @@ namespace BeeSSH.Core.API
                         if (!string.IsNullOrEmpty(datastuff.Error)) return datastuff.Error;
                         
                         AuthCookieForAPI = datastuff.AuthCookie;
+                        _Username = datastuff.Username;
                         return "ok";
                     }
 
@@ -81,7 +83,7 @@ namespace BeeSSH.Core.API
             requestOptions.Add("isKEY", isKey.ToString());
             requestOptions.Add("rsakey", crypt_key);
             requestOptions.Add("ipadress", ipadress_crypted);
-            requestOptions.Add("PasswordKey", Password_crypted);
+            requestOptions.Add("Password", Password_crypted);
             requestOptions.Add("ServerUsername", serverusername_crypted);
             requestOptions.Add("PassPharse", passPharse);
             requestOptions.Add("Fingerprint", "null");
@@ -261,7 +263,7 @@ namespace BeeSSH.Core.API
     {
         [JsonProperty("Info")] public string Error { get; set; }
         [JsonProperty("AuthKey")] public string AuthCookie { get; set; }
-
+        [JsonProperty("Username")] public string Username { get; set; }
         [JsonProperty("data")] public List<DataLoginModel> ServerRes { get; set; }
     }
 
@@ -269,6 +271,8 @@ namespace BeeSSH.Core.API
     internal class LoginNoServerDeserilizeModel
     {
         [JsonProperty("Info")] public string Error { get; set; }
+        
+        [JsonProperty("Username")] public string Username { get; set; }
         [JsonProperty("AuthKey")] public string AuthCookie { get; set; }
     }
 

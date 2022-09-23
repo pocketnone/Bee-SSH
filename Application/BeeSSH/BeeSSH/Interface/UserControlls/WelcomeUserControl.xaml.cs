@@ -15,7 +15,7 @@ namespace BeeSSH.Interface.UserControlls
         {
             InitializeComponent();
             MainView();
-            WelcomeBack.Text = "Welcome back " + _email + "!";
+            WelcomeBack.Text = "Welcome back " + _Username + "!";
         }
 
         private void githubBtn_Click(object sender, RoutedEventArgs e)

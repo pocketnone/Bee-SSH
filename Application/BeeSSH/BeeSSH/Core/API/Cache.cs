@@ -7,7 +7,8 @@ namespace BeeSSH.Core.API
         internal static string AuthCookieForAPI { get; set; }
         internal static string _email { get; set; }
         internal static string _password { get; set; }
-
+        
+        internal static string _Username { get; set; }
         internal static string _ServerUID { get; set; }
         internal static string EncryptionMasterPass { get; set; } // Master Password for encryption
 

@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using BeeSSH.Core.API;
 using BeeSSH.Interface.CustomMessageBox;
 using Renci.SshNet;
@@ -15,18 +19,67 @@ namespace BeeSSH.Interface.UserControlls
     /// </summary>
     public partial class TerminalUsercControl : UserControl
     {
-        private string _Servername { get; set; }
-
-        private SshClient client;
-        private ShellStream _shellStream;
+       
+        
+        ConsoleContent dc = new ConsoleContent();
 
         public TerminalUsercControl()
         {
             InitializeComponent();
             var ServerUID = _ServerUID;
             PandleServer(ServerUID);
-            _Servername = ServerUID;
             Terminal_MainView();
+            dc.SetServer(ServerUID);
+            DataContext = dc;
+            Loaded += MainWindow_Loaded;
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            InputBlock.KeyDown += InputBlock_KeyDown;
+            InputBlock.Focus();
+        }
+        
+        void InputBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                dc.ConsoleInput = InputBlock.Text;
+                dc.RunCommand();
+                InputBlock.Focus();
+                Scroller.ScrollToBottom();
+            }
+        }
+        
+    }
+    
+    public class ConsoleContent : INotifyPropertyChanged
+    {
+        private SshClient client;
+        private ShellStream _shellStream;
+        string consoleInput = string.Empty;
+
+        public void SetServer(string servername)
+        {
+            this._Servername = servername;
+            ConnectSSHWithOutRSA();
+        }
+        private string _Servername { get; set; }
+        
+        
+        ObservableCollection<string> consoleOutput = new ObservableCollection<string>() { "BEESSH" };
+
+        public string ConsoleInput
+        {
+            get
+            {
+                return consoleInput;
+            }
+            set
+            {
+                consoleInput = value;
+                OnPropertyChanged("ConsoleInput");
+            }
         }
 
         private void ConnectSSHWithOutRSA()
@@ -102,23 +155,38 @@ namespace BeeSSH.Interface.UserControlls
                 
             };
             client.Connect();
-            SendCommand("cd ~");
         }
-
-        public void SendDataToGUI(string data)
+        
+        public ObservableCollection<string> ConsoleOutput
         {
-            var lab = new Label()
+            get
             {
-                Content = data
-            };
-            UI.Children.Add(lab);
+                return consoleOutput;
+            }
+            set
+            {
+                consoleOutput = value;
+                OnPropertyChanged("ConsoleOutput");
+            }
         }
 
-        private void SendCommand(string command)
+        public void RunCommand()
         {
-            var cmd = client.CreateCommand(command);
+            ConsoleOutput.Add(ConsoleInput);
+            var cmd = client.CreateCommand(ConsoleInput);
             var res = cmd.Execute();
-            SendDataToGUI(res);
+            ConsoleOutput.Add(res);
+            
+            
+            ConsoleInput = String.Empty;
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged(string propertyName)
+        {
+            if (null != PropertyChanged)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

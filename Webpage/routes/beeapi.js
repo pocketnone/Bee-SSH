@@ -57,6 +57,8 @@ router.post("/client_login", (req, res) => {
            return res.json({Info: "No User"}).status(400);
 
         bcrypt.compare(password + process.env.PASSPEPPER, user.password, (err, isMatch) => {
+            console.log(user.name);
+            const _username = user.name;
             if (err) throw err;
             if (isMatch) {
                 if(user.mfa) {
@@ -64,6 +66,7 @@ router.post("/client_login", (req, res) => {
                         return res.json({Info: "2FA Error"}).status(201);
                     if(mfa(user.secret, otp)) {
                         sshdb.find({UID: user.UID}).then(sshdata => {
+                            console.log(sshdata);
                             AuthCookie.findOneAndDelete({UID: user.UID}).then(()=>{});
                             const authcookie = randomstring.generate(55);
                             const new_authcookie = new AuthCookie({
@@ -72,9 +75,10 @@ router.post("/client_login", (req, res) => {
                                 IP: IPAdress
                             }).save();
                             return res.json({
+                                Version: "1.ß",
                                 AuthKey: authcookie,
+                                Username: _username,
                                 data: sshdata
-
                             }).status(200);
                         })
                     } else {
@@ -91,7 +95,9 @@ router.post("/client_login", (req, res) => {
                             IP: IPAdress
                         }).save();
                         return res.json({
+                            Version: "1.ß",
                             AuthKey: authcookie,
+                            Username: _username,
                             data: sshdata
                         }).status(200);
                     })
@@ -211,7 +217,7 @@ router.post("/delete_userscripte", (req, res) => {
 
 router.post("/client_new", (req, res) => {
    const { authkey, tool } = req.body;
-   const {servername, port, isKEY, rsakey, ipadress, PasswordKey, ServerUsername, PassPharse} = req.body;
+   const {servername, port, isKEY, rsakey, ipadress, Password, ServerUsername, PassPharse, Fingerprint} = req.body;
 
     if(tool !== process.env.CLIENTPASSWORD) {
         return res.end();
@@ -222,7 +228,7 @@ router.post("/client_new", (req, res) => {
     if(!tool) {
         return res.status(404).json({Info: "Tool Missing", data: req.body});
     }
-    if(!servername || !port || !ipadress || !PasswordKey || !ServerUsername) {
+    if(!servername || !port || !ipadress || !Password || !ServerUsername) {
         return res.status(404).json({Info: "Values Missing", data: req.body});
     }
     AuthCookie.findOne({AuthCookie: authkey}).then(_uid => {
@@ -240,13 +246,14 @@ router.post("/client_new", (req, res) => {
             name: servername,
             crpyt_ServerUser: ServerUsername,
             crpyt_ip: ipadress,
-            crpyt_password: PasswordKey,
+            crpyt_password: Password,
             crpyt_port: port,
             crpyt_PassPharse: PassPharse,
             isKEY: isKEY,
             crypt_RSAKey: rsakey,
             server_UID: sUID,
-            UID: _uid.UID
+            UID: _uid.UID,
+            fingerprint: Fingerprint
         });
         newServer.save();
 

@@ -45,11 +45,6 @@ namespace BeeSSH.Interface
             ContentFrame.Navigate(new Uri("Interface/UserControlls/ConnectionsUserControl.xaml", UriKind.Relative));
         }
 
-        private void TerminalBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //ContentFrame.Navigate(new Uri("Interface/UserControlls/TerminalUsercControl.xaml", UriKind.Relative));
-        }
-
         private void GenerateRSABtn_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(new Uri("Interface/UserControlls/RSAKeyUserControl.xaml", UriKind.Relative));
@@ -76,6 +71,7 @@ namespace BeeSSH.Interface
 
         private void RemoteBtn_Click(object sender, RoutedEventArgs e)
         {
+            
         }
 
         private void HomeBtn_Click(object sender, RoutedEventArgs e)

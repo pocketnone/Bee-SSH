@@ -12,21 +12,18 @@
 
     <Grid>
         <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
-            <StackPanel>
-                <materialdesign:Card Margin="5" Width="150" Height="25" VerticalAlignment="Top">
-                    <Label Content="Terminal" HorizontalAlignment="Center" />
-                </materialdesign:Card>
-                <Border BorderBrush="Black" BorderThickness="1" Background="Black">
-                    <StackPanel Height="370">
-                            <Grid x:Name="UI">
-                               
-
-                            </Grid>
-                        </StackPanel>
-                </Border>
-                <Label Width="100" Margin="-700 3 0 0">[user@user] =></Label>
-                <TextBox Width="700" Margin="0 -20 -100 0" Foreground="White" x:Name="Input" />
-            </StackPanel>
+            <ScrollViewer Name="Scroller" Margin="0" Background="Black">
+                    <StackPanel Margin="0">
+                        <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=OneWay}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=.}" Foreground="White" FontFamily="Consolas"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBox Text="{Binding ConsoleInput, Mode=TwoWay}" Background="Black" Foreground="White" x:Name="InputBlock" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" />
+                    </StackPanel>
+                </ScrollViewer>
         </materialdesign:TransitioningContent>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Channels;
 using System.Windows;
@@ -91,9 +92,17 @@ namespace BeeSSH.Interface.UserControlls
         {
             var button = (RadioButton)sender;
             var serverUID = button.Name.ToString().Replace("_del", "");
-            var DeleteStackpandel = (StackPanel)FindName(serverUID + "_stackp");
+           
+            
             Request.DeleteServer(serverUID);
-            DeleteStackpandel.Children.Clear();
+
+            try
+            {
+                StackPanel st = this.FindName(serverUID + "_stackp") as StackPanel;
+                st.Children.Clear();
+            } catch{}
+            
+
             foreach (var oldServer in Cache.ServerList)
                 if (oldServer.ServerUID == serverUID)
                 {

@@ -26,34 +26,34 @@ namespace BeeSSH.Interface.UserControlls
 
         private void GenerateRSA(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(RSAKeyName.Text.ToString()) && string.IsNullOrEmpty(RSAKeyByts.Text.ToString()))
+            if (!string.IsNullOrEmpty(RSAKeyName.Text) && !string.IsNullOrEmpty(RSAKeyByts.Text))
             {
                 var FolderBrowser = new BetterFolderBrowser();
                 FolderBrowser.Title = "Select Folder to save...";
                 FolderBrowser.RootFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 FolderBrowser.Multiselect = false;
                 if (FolderBrowser.ShowDialog() == DialogResult.OK)
-                    new Thread(() =>
-                    {
-                        var keygen = new global::SshKeyGenerator.SshKeyGenerator(Convert.ToInt32(RSAKeyByts.Text));
-                        var privateKey = keygen.ToPrivateKey();
-                        var publicSshKey = keygen.ToRfcPublicKey();
-                        var folder = FolderBrowser.SelectedFolder;
-                        var _privateKey = "private_" + RSAKeyName.Text + ".key";
-                        var _publicKey = "public_" + RSAKeyName.Text + ".key";
-                        _privateKey = Path.Combine(folder, _privateKey);
-                        _publicKey = Path.Combine(folder, _publicKey);
-                        File.WriteAllText(_publicKey, publicSshKey);
-                        File.WriteAllText(_privateKey, privateKey);
-                        new BeeMessageBox("Generated Key.", BeeMessageBox.MessageType.Info,
-                            BeeMessageBox.MessageButtons.Ok).ShowDialog();
-                    }).Start();
+                {
+                    
+                    var keygen = new SshKeyGenerator.SshKeyGenerator(Int32.Parse(RSAKeyByts.Text));
+                    var privateKey = keygen.ToPrivateKey();
+                    var publicSshKey = keygen.ToRfcPublicKey();
+                    var folder = FolderBrowser.SelectedFolder;
+                    var _privateKey = "private_" + RSAKeyName.Text + ".key";
+                    var _publicKey = "public_" + RSAKeyName.Text + ".key";
+                    _privateKey = Path.Combine(folder, _privateKey);
+                    _publicKey = Path.Combine(folder, _publicKey);
+                    File.WriteAllText(_publicKey, publicSshKey);
+                    File.WriteAllText(_privateKey, privateKey);
+                    new BeeMessageBox("Generated Key.", BeeMessageBox.MessageType.Info,
+                        BeeMessageBox.MessageButtons.Ok).ShowDialog();
+                }
             }
             else
             {
                 new BeeMessageBox("Please fill out all field", BeeMessageBox.MessageType.Error,
                     BeeMessageBox.MessageButtons.Ok).ShowDialog();
-            }
+            }   
         }
 
         private void onlynumber(object sender, TextCompositionEventArgs e)

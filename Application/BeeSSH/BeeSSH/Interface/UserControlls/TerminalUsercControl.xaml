@@ -4,24 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
              mc:Ignorable="d"
              FontFamily="Roboto"
              Background="{DynamicResource MaterialDesignDarkBackground}"
              d:DesignHeight="450" d:DesignWidth="800">
-
     <Grid>
         <materialdesign:TransitioningContent OpeningEffect="{materialdesign:TransitionEffect Kind=FadeIn}">
             <ScrollViewer Name="Scroller" Margin="0" Background="Black">
                     <StackPanel Margin="0">
-                        <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=OneWay}">
+                        <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=OneWay}" Margin="0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=.}" Foreground="White" FontFamily="Consolas"/>
+                                    <TextBlock Text="{Binding Path=.}" Foreground="White" FontFamily="Consolas" Margin="0"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <TextBox Text="{Binding ConsoleInput, Mode=TwoWay}" Background="Black" Foreground="White" x:Name="InputBlock" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" />
+                        <TextBox Text="{Binding ConsoleInput, Mode=TwoWay}" Background="Black" Foreground="White" x:Name="InputBlock" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Margin="0 415 0 0"/>
                     </StackPanel>
                 </ScrollViewer>
         </materialdesign:TransitioningContent>

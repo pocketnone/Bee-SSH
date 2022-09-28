@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -82,6 +83,7 @@ namespace BeeSSH.Interface.UserControlls
             }
         }
 
+        [STAThread]
         private void ConnectSSHWithOutRSA()
         {
             var b = ServerList.Find(x => x.ServerUID.Contains(_Servername));
@@ -105,7 +107,7 @@ namespace BeeSSH.Interface.UserControlls
                 client = new SshClient(b.ServerIP, int.Parse(b.ServerPort), b.ServerUserName, b.ServerPassword);
             }
 
-
+            
             client.HostKeyReceived += (sender, e) =>
             {
                 if (fingerprint)
@@ -115,11 +117,17 @@ namespace BeeSSH.Interface.UserControlls
                         for (var i = 0; i < expectedFingerPrint.Length; i++)
                             if (expectedFingerPrint[i] != e.FingerPrint[i])
                             {
-                                var trust = Convert.ToBoolean(new BeeFingerprint(
-                                    $"The Server {b.ServerName} has a differnet fingerprint"
-                                    , b.ServerName).ShowDialog());
+                                bool? trust = null;
+                                new Thread(() =>
+                                {
+                                    trust = Convert.ToBoolean(new BeeFingerprint(
+                                        $"The Server {b.ServerName} has a differnet fingerprint"
+                                        , b.ServerName).ShowDialog());
+                                });
+                                while (trust == null)
+                                { }
 
-                                if (!trust)
+                                if (!Convert.ToBoolean(trust))
                                 {
                                     e.CanTrust = false;
                                     break;
@@ -154,7 +162,17 @@ namespace BeeSSH.Interface.UserControlls
                 }
                 
             };
-            client.Connect();
+            
+            
+            try
+            {
+                client.Connect();
+            }
+            catch (Exception ex)
+            {
+                new BeeMessageBox(ex.Message, BeeMessageBox.MessageType.Error, BeeMessageBox.MessageButtons.Ok).ShowDialog();
+            }
+            
         }
         
         public ObservableCollection<string> ConsoleOutput

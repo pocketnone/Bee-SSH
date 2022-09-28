@@ -52,8 +52,8 @@ namespace BeeSSH.Interface.UserControlls
                     Encrypt(ServerPort.Text, EncryptionMasterPass), false,
                     Encrypt("null", EncryptionMasterPass), Encrypt(ServerIP.Text, EncryptionMasterPass),
                     Encrypt(ServerPassword.Password, EncryptionMasterPass),
-                    Encrypt(ServerPassPharse.Text, EncryptionMasterPass),
-                    Encrypt(Serverusername.Text, EncryptionMasterPass));
+                    Encrypt(Serverusername.Text, EncryptionMasterPass),
+                    Encrypt(ServerPassPharse.Text, EncryptionMasterPass));
                 ServerList.Add(new ServerListModel
                 {
                     PassPharse = ServerPassPharse.Text,
@@ -75,8 +75,8 @@ namespace BeeSSH.Interface.UserControlls
                     Encrypt(ServerPort.Text, EncryptionMasterPass), true,
                     Encrypt(rsakey_buff, EncryptionMasterPass), Encrypt(ServerIP.Text, EncryptionMasterPass),
                     Encrypt(ServerPassword.Password, EncryptionMasterPass),
-                    Encrypt(ServerPassPharse.Text, EncryptionMasterPass),
-                    Encrypt(Serverusername.Text, EncryptionMasterPass));
+                    Encrypt(Serverusername.Text, EncryptionMasterPass),
+                    Encrypt(ServerPassPharse.Text, EncryptionMasterPass));
                 ServerList.Add(new ServerListModel
                 {
                     PassPharse = ServerPassPharse.Text,

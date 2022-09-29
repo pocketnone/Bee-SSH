@@ -2,7 +2,11 @@
 
 The Full BEE-SSH Webpage
 
-### Version: 0.0.1
+### Version: 0.9.0
+
+### 0 knowledge
+
+The Backend is build by the 0 knowledge prinzip. We cant see any Passwords, IP etc from your server.
 
 ### Usage
 

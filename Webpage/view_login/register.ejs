@@ -9,7 +9,7 @@
   <%- include('./includes/background.ejs'); %>
 </head>
 <body class="register-page">
-<%- include ("./includes/header"); %>
+<%- include("./includes/header"); %>
 <div class="wrapper">
   <div class="page-header">
     <div class="page-header-image"></div>
@@ -26,7 +26,7 @@
               </div>
               <div class="card-body">
                 <!-- Begin Form -->
-                <%- include ("./includes/messages") %>
+                <%- include("./includes/messages") %>
                 <form class="form" action="/users/register" method="POST">
                   <div class="input-group">
                     <div class="input-group">
@@ -45,7 +45,7 @@
                           <i class="tim-icons icon-email-85"></i>
                         </div>
                       </div>
-                      <input placeholder="Email" class="form-control" name="email" type="email" autocomplete="email" required maxlength="30"
+                      <input placeholder="Email" class="form-control" name="email" type="email" autocomplete="email" required maxlength="40"
                              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                              value="<%= typeof email != 'undefined' ? email : '' %>">
                     </div>

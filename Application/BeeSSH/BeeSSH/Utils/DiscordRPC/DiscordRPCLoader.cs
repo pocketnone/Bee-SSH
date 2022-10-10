@@ -19,7 +19,7 @@ namespace BeeSSH.Utils.DiscordRPC
             _client.SetPresence(new RichPresence()
             {
                 Details = "Bee-SSH Client",
-                State = "https://as.mba",
+                State = "https://as.mba/",
                 Timestamps = Timestamps.Now,
                 Assets = new Assets()
                 {
@@ -28,7 +28,7 @@ namespace BeeSSH.Utils.DiscordRPC
                 },
                 Buttons = new Button[]
                 {
-                    new Button() { Label = "Download BeeSSH", Url = "https://as.mba/" },
+                    new Button() { Label = "Download BEESSH", Url = "https://as.mba/" },
                     new Button() { Label = "Discord", Url = "https://discord.gg/ChhDyjCQWK" }
                 }
             });

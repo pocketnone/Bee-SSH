@@ -131,7 +131,7 @@ router.post('/login', (req, res, next) => {
     } else {
         User.findOne({email: mail}).then(user=>{
             if(user) {
-                if (user.mfa == true) {                        // User use 2FA
+                if (user.mfa == true) {  // User use 2FA
                     if (mfa(user.secret , secret)) {
                         passport.authenticate('local', {
                             successRedirect: '/dashboard',

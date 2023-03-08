@@ -58,7 +58,7 @@
                                         HorizontalAlignment="Left"
                                         Margin="15"
                                         Height="50" Style="{DynamicResource  MaterialDesignFlatAccentButton}">
-                                    <materialdesign:PackIcon Kind="Discord"
+                                    <materialdesign:PackIcon Kind="Web"
 
                                                              Width="15"
                                                              Foreground="White" />

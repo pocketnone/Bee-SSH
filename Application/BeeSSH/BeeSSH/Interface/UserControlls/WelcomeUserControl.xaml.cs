@@ -35,7 +35,7 @@ namespace BeeSSH.Interface.UserControlls
 
         private void Webpagebtn_OnClickBtn_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://as.mba/");
+            Process.Start("https://res.yt/");
         }
     }
 }

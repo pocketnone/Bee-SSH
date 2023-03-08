@@ -125,7 +125,7 @@ namespace BeeSSH.Interface.UserControlls
                                         , b.ServerName).ShowDialog());
                                 });
                                 while (trust == null)
-                                { }
+                                { Thread.Sleep(100); }
 
                                 if (!Convert.ToBoolean(trust))
                                 {

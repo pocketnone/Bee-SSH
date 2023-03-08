@@ -22,15 +22,17 @@ namespace BeeSSH.Core.API
         {
             #region Serverendpoints
 
-            internal static string Login = "https://as.mba/api/client_login"; // Request a Login
+            internal static string TLDomain = "https://res.yt";
+            
+            internal static string Login = $"{TLDomain}/api/client_login"; // Request a Login
 
-            internal static string AddServer = "https://as.mba/api/client_new"; // Add a new server to the Webapp
+            internal static string AddServer = $"{TLDomain}/api/client_new"; // Add a new server to the Webapp
 
-            internal static string DeleteServer = "https://as.mba/api/client_delete";
+            internal static string DeleteServer = $"{TLDomain}/api/client_delete";
 
-            internal static string UpdateServer = "https://as.mba/api/client_update";
+            internal static string UpdateServer = $"{TLDomain}/api/client_update";
 
-            internal static string FingerPrintAPI = "https://as.mba/api/add_fingerprint";
+            internal static string FingerPrintAPI = $"{TLDomain}/api/add_fingerprint";
 
             #endregion
 

@@ -2,7 +2,7 @@
 # Bee-SSH SSH Client
 
 <p align="center">
-  <img src="https://github.com/sysfaker/Bee-SSH/blob/Indev/Branding/b3.png" style="max-height: 50%">
+  <img src="https://github.com/pocketnone/Bee-SSH/blob/Indev/Branding/b3.png" style="max-height: 50%">
 </p>
 
 ----
@@ -11,9 +11,9 @@
 
 
 <p align="center">
-  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/sysfaker/Bee-SSH?style=for-the-badge">
-  <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/sysfaker/Bee-SSH?include_prereleases&style=for-the-badge">
-  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/sysfaker/Bee-SSH/total?color=%230099cc&style=for-the-badge">
+  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/BEESSH/Application?style=for-the-badge">
+  <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/BEESSH/Application?include_prereleases&style=for-the-badge">
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/BEESSH/Application/total?color=%230099cc&style=for-the-badge">
 </p>
 
 ## About
